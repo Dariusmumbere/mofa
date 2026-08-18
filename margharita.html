@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MOVFACOS – Margharita Organic Vanilla Farmers' Cooperative Society Ltd</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --green-deep:    #0e2414;
+  --green-dark:    #163320;
+  --green-mid:     #2c6b38;
+  --green-bright:  #4a9e57;
+  --green-light:   #d0e8d4;
+  --gold:          #c9922b;
+  --gold-light:    #f0c46a;
+  --cream:         #f8f5ef;
+  --cream-dark:    #ede9e0;
+  --white:         #ffffff;
+  --text-dark:     #0e1a10;
+  --text-mid:      #3a4a3c;
+  --text-muted:    #7a8a7c;
+  --border:        rgba(0,0,0,0.09);
+  --vanilla:       #e8c97a;
+  --cocoa:         #7b4a2b;
+}
+
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--cream);
+  color: var(--text-dark);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+img { display: block; max-width: 100%; }
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--cream); }
+::-webkit-scrollbar-thumb { background: var(--green-mid); border-radius: 10px; }
+
+/* ─── HEADER ─────────────────────────── */
+header {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 200; transition: background 0.4s, box-shadow 0.4s;
+}
+header.scrolled {
+  background: rgba(14,36,20,0.97);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.06);
+}
+.nav-inner {
+  max-width: 1280px; margin: 0 auto; padding: 0 2.5rem;
+  height: 72px; display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.logo-badge {
+  width: 42px; height: 42px; border-radius: 50%;
+  border: 1.5px solid var(--gold);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 11px;
+  color: var(--gold); letter-spacing: 0.5px; flex-shrink: 0; text-align: center; line-height: 1.2;
+}
+.logo-label strong { display: block; font-size: 14px; font-weight: 600; color: var(--white); }
+.logo-label small { font-size: 10px; font-weight: 300; color: rgba(255,255,255,0.45); letter-spacing: 1.5px; text-transform: uppercase; }
+
+.nav-links { display: flex; align-items: center; gap: 0.2rem; list-style: none; }
+.nav-links a {
+  font-size: 13px; font-weight: 400; color: rgba(255,255,255,0.72);
+  text-decoration: none; padding: 8px 14px; border-radius: 8px;
+  transition: color 0.2s, background 0.2s;
+}
+.nav-links a:hover { color: var(--white); background: rgba(255,255,255,0.07); }
+.btn-nav-gold {
+  background: var(--gold) !important; color: var(--green-deep) !important;
+  padding: 9px 20px !important; border-radius: 100px !important;
+  font-weight: 600 !important; margin-left: 8px;
+}
+.btn-nav-gold:hover { background: #dba030 !important; }
+
+/* ─── HERO ────────────────────────────── */
+.hero {
+  position: relative; height: 100vh; min-height: 680px; overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, #0e2414 0%, #1a4a2a 40%, #2c6b38 100%);
+}
+
+/* Organic pattern overlay */
+.hero-pattern {
+  position: absolute; inset: 0; z-index: 1; opacity: 0.07;
+  background-image: radial-gradient(circle at 20% 50%, #4a9e57 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, #c9922b 0%, transparent 40%),
+    radial-gradient(circle at 60% 80%, #4a9e57 0%, transparent 45%);
+}
+
+/* Floating botanical shapes */
+.hero-botanicals {
+  position: absolute; inset: 0; z-index: 1; overflow: hidden;
+}
+.botanical {
+  position: absolute; border-radius: 50%;
+  background: radial-gradient(circle, rgba(74,158,87,0.15) 0%, transparent 70%);
+  animation: floatBotanical 12s ease-in-out infinite;
+}
+.botanical-1 { width: 600px; height: 600px; top: -200px; right: -100px; animation-delay: 0s; }
+.botanical-2 { width: 400px; height: 400px; bottom: -100px; left: -100px; animation-delay: 4s; }
+.botanical-3 { width: 300px; height: 300px; top: 30%; right: 15%; background: radial-gradient(circle, rgba(201,146,43,0.12) 0%, transparent 70%); animation-delay: 8s; }
+@keyframes floatBotanical {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-30px) scale(1.05); }
+}
+
+.hero-overlay {
+  position: absolute; inset: 0; z-index: 2;
+  background: linear-gradient(105deg, rgba(10,28,14,0.75) 0%, rgba(14,36,20,0.4) 60%, rgba(22,51,32,0.15) 100%);
+}
+
+/* Image panels on right side */
+.hero-images {
+  position: absolute; right: 0; top: 0; bottom: 0; width: 45%;
+  z-index: 1; display: grid; grid-template-rows: 1fr 1fr; gap: 0;
+}
+.hero-img-panel {
+  overflow: hidden; position: relative;
+}
+.hero-img-panel::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to right, rgba(14,36,20,0.9) 0%, rgba(14,36,20,0.2) 60%);
+}
+.hero-img-panel img {
+  width: 100%; height: 100%; object-fit: cover;
+  animation: slowZoom 20s ease-in-out infinite alternate;
+  filter: saturate(1.1) brightness(0.85);
+}
+.hero-img-panel:nth-child(2) img { animation-delay: 10s; }
+@keyframes slowZoom {
+  from { transform: scale(1); }
+  to   { transform: scale(1.08); }
+}
+
+.hero-content {
+  position: relative; z-index: 3;
+  max-width: 1280px; margin: 0 auto; padding: 0 2.5rem;
+  height: 100%; display: flex; flex-direction: column; justify-content: center;
+  padding-top: 72px;
+}
+.hero-eyebrow {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 1.8rem;
+  opacity: 0; animation: fadeUp 0.7s 0.3s ease forwards;
+}
+.eyebrow-bar { width: 36px; height: 2px; background: var(--gold); }
+.eyebrow-text { font-size: 11px; font-weight: 500; color: var(--gold); letter-spacing: 2.5px; text-transform: uppercase; }
+
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.8rem, 5.5vw, 5rem);
+  font-weight: 700; line-height: 1.06; color: var(--white);
+  max-width: 620px; margin-bottom: 1.5rem;
+  opacity: 0; animation: fadeUp 0.7s 0.45s ease forwards;
+}
+.hero-title em { font-style: italic; color: var(--gold-light); }
+.hero-sub {
+  font-size: 15px; font-weight: 300; color: rgba(255,255,255,0.68);
+  line-height: 1.8; max-width: 480px; margin-bottom: 2.5rem;
+  opacity: 0; animation: fadeUp 0.7s 0.6s ease forwards;
+}
+.hero-ctas {
+  display: flex; gap: 14px; align-items: center; flex-wrap: wrap;
+  opacity: 0; animation: fadeUp 0.7s 0.75s ease forwards;
+}
+.btn-gold {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--gold); color: var(--green-deep);
+  padding: 14px 30px; border-radius: 100px; font-weight: 600; font-size: 14px;
+  text-decoration: none; transition: background 0.2s, transform 0.2s; border: none; cursor: pointer;
+}
+.btn-gold:hover { background: #dba030; transform: translateY(-2px); }
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: transparent; color: rgba(255,255,255,0.82);
+  padding: 13px 28px; border-radius: 100px; font-size: 14px;
+  text-decoration: none; border: 1px solid rgba(255,255,255,0.25);
+  transition: all 0.2s;
+}
+.btn-ghost:hover { border-color: rgba(255,255,255,0.55); color: var(--white); background: rgba(255,255,255,0.07); }
+
+.hero-stats-bar {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: rgba(14,36,20,0.88); backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255,255,255,0.07); z-index: 4;
+  opacity: 0; animation: fadeUp 0.6s 1s ease forwards;
+}
+.stats-inner {
+  max-width: 1280px; margin: 0 auto; padding: 0 2.5rem;
+  display: grid; grid-template-columns: repeat(5,1fr);
+}
+.stat-cell {
+  padding: 1.3rem 1.2rem; border-right: 1px solid rgba(255,255,255,0.07);
+  display: flex; align-items: center; gap: 12px;
+}
+.stat-cell:last-child { border-right: none; }
+.stat-icon {
+  width: 36px; height: 36px; border-radius: 10px;
+  background: rgba(201,146,43,0.15); display: flex; align-items: center; justify-content: center;
+  font-size: 15px; flex-shrink: 0;
+}
+.stat-num { font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; font-weight: 700; color: var(--white); line-height: 1; }
+.stat-label { font-size: 10px; color: rgba(255,255,255,0.4); letter-spacing: 0.8px; text-transform: uppercase; margin-top: 3px; font-weight: 300; }
+
+/* ─── TICKER ──────────────────────────── */
+.ticker-wrap { background: var(--gold); overflow: hidden; padding: 11px 0; white-space: nowrap; }
+.ticker-track { display: inline-flex; gap: 2.5rem; animation: ticker 35s linear infinite; }
+@keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.t-item { display: inline-flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 600; color: var(--green-deep); text-transform: uppercase; letter-spacing: 1.2px; }
+.t-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--green-deep); opacity: 0.35; }
+
+/* ─── SECTION BASE ──────────────────── */
+.section-tag { display: inline-flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 600; color: var(--green-mid); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1rem; }
+.tag-rule { width: 24px; height: 2px; background: var(--green-bright); }
+.section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 3.2vw, 2.8rem); font-weight: 700; line-height: 1.15; color: var(--text-dark); }
+.section-title.light { color: var(--white); }
+.container { max-width: 1280px; margin: 0 auto; padding: 0 2.5rem; }
+
+/* ─── ABOUT / IDENTITY ─────────────── */
+.about { padding: 7rem 0; background: var(--white); }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+.about-text .section-title { margin-bottom: 1.2rem; }
+.about-body { font-size: 15px; line-height: 1.85; color: var(--text-mid); margin-bottom: 1rem; }
+.about-reg {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--green-light); border-radius: 100px;
+  padding: 6px 14px; font-size: 12px; font-weight: 600; color: var(--green-dark);
+  margin-bottom: 1.8rem;
+}
+.about-meta { display: flex; gap: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--border); margin-top: 2rem; }
+.meta-val { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 700; color: var(--green-mid); line-height: 1; }
+.meta-key { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+
+/* Photo mosaic */
+.photo-mosaic { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 220px 220px; gap: 10px; }
+.mosaic-img { border-radius: 14px; overflow: hidden; position: relative; }
+.mosaic-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+.mosaic-img:hover img { transform: scale(1.06); }
+.mosaic-img.tall { grid-row: 1 / 3; }
+.mosaic-badge {
+  position: absolute; bottom: 14px; left: 14px;
+  background: rgba(14,36,20,0.9); backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.1); border-radius: 10px;
+  padding: 8px 12px; color: var(--white); font-size: 12px; font-weight: 500;
+}
+.mosaic-badge span { display: block; font-size: 10px; color: var(--gold-light); font-weight: 300; margin-top: 1px; }
+
+/* ─── PRODUCTS GRID ─────────────────── */
+.products-section { padding: 7rem 0; background: var(--cream); }
+.products-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3.5rem; gap: 2rem; flex-wrap: wrap; }
+.products-header p { font-size: 15px; color: var(--text-mid); max-width: 340px; line-height: 1.7; text-align: right; }
+.products-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; background: var(--border); border-radius: 20px; overflow: hidden; border: 1px solid var(--border); }
+.prod-card {
+  background: var(--white); padding: 2rem 1.8rem 1.6rem;
+  display: flex; flex-direction: column; gap: 0.5rem;
+  transition: background 0.3s; position: relative; overflow: hidden; cursor: default;
+}
+.prod-card::before {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+  background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform 0.3s;
+}
+.prod-card:hover { background: var(--green-deep); }
+.prod-card:hover::before { transform: scaleX(1); }
+.prod-card:hover .prod-name { color: var(--white); }
+.prod-card:hover .prod-desc { color: rgba(255,255,255,0.45); }
+.prod-card:hover .prod-icon-bg { background: rgba(255,255,255,0.1); }
+.prod-icon-bg { width: 46px; height: 46px; border-radius: 13px; background: var(--green-light); display: flex; align-items: center; justify-content: center; font-size: 22px; transition: background 0.3s; margin-bottom: 0.4rem; }
+.prod-name { font-size: 14px; font-weight: 600; color: var(--text-dark); transition: color 0.3s; line-height: 1.3; }
+.prod-desc { font-size: 12px; color: var(--text-muted); transition: color 0.3s; line-height: 1.55; flex: 1; }
+
+/* ─── PARALLAX VISION BANNER ─────────── */
+.parallax-banner { position: relative; height: 440px; overflow: hidden; }
+.parallax-bg {
+  position: absolute; inset: -60px 0;
+  background: linear-gradient(135deg, #0e2414 0%, #1a3d20 50%, #2d4a1a 100%);
+  background-attachment: fixed;
+}
+/* Animated vine-like SVG overlay */
+.parallax-art {
+  position: absolute; inset: 0; z-index: 1; opacity: 0.12;
+  background: radial-gradient(ellipse at 70% 50%, rgba(74,158,87,0.6) 0%, transparent 60%),
+              radial-gradient(ellipse at 20% 30%, rgba(201,146,43,0.5) 0%, transparent 50%);
+}
+.parallax-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to right, rgba(14,36,20,0.92) 35%, rgba(14,36,20,0.55) 100%);
+}
+.parallax-content { position: relative; z-index: 2; height: 100%; display: flex; align-items: center; }
+.parallax-content .container { display: flex; justify-content: space-between; align-items: center; gap: 4rem; width: 100%; }
+.parallax-text { max-width: 580px; }
+.parallax-text blockquote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.5rem, 2.8vw, 2.1rem);
+  font-style: italic; font-weight: 600; color: var(--white); line-height: 1.45;
+  padding-left: 1.5rem; border-left: 3px solid var(--gold); margin-bottom: 1.2rem;
+}
+.parallax-text cite { font-size: 13px; color: rgba(255,255,255,0.45); letter-spacing: 0.5px; font-style: normal; }
+.parallax-figures { display: flex; flex-direction: column; gap: 1.8rem; flex-shrink: 0; }
+.p-fig { text-align: right; border-right: 3px solid var(--gold); padding-right: 1.2rem; }
+.p-fig-num { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; font-weight: 700; color: var(--white); line-height: 1; }
+.p-fig-label { font-size: 11px; color: rgba(255,255,255,0.42); text-transform: uppercase; letter-spacing: 1px; font-weight: 300; }
+
+/* ─── GOVERNANCE ─────────────────────── */
+.governance { padding: 7rem 0; background: var(--green-deep); }
+.governance .section-tag { color: var(--gold); }
+.gov-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: end; margin-bottom: 3.5rem; }
+.gov-intro-right p { font-size: 15px; color: rgba(255,255,255,0.55); line-height: 1.75; text-align: right; }
+.gov-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+.gov-card {
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px; padding: 1.3rem 1.2rem;
+  transition: background 0.25s, border-color 0.25s, transform 0.25s; cursor: default;
+}
+.gov-card:hover { background: rgba(201,146,43,0.12); border-color: rgba(201,146,43,0.35); transform: translateY(-2px); }
+.gov-tier { font-size: 10px; font-weight: 600; color: var(--gold); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 5px; opacity: 0.9; }
+.gov-title { font-size: 13px; font-weight: 400; color: rgba(255,255,255,0.78); line-height: 1.5; }
+
+/* ─── OBJECTIVES ─────────────────────── */
+.objectives-section { padding: 7rem 0; background: var(--cream-dark); }
+.obj-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 6rem; align-items: start; }
+.obj-list { margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem; }
+.obj-item {
+  display: flex; gap: 1.2rem; align-items: flex-start;
+  padding: 1.1rem 1.3rem; background: var(--white); border-radius: 14px;
+  border: 1px solid var(--border); transition: border-color 0.2s, box-shadow 0.2s;
+}
+.obj-item:hover { border-color: var(--green-mid); box-shadow: 0 4px 20px rgba(44,107,56,0.1); }
+.obj-num { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 700; color: var(--green-bright); min-width: 26px; line-height: 1.5; opacity: 0.65; }
+.obj-text { font-size: 13.5px; line-height: 1.7; color: var(--text-mid); }
+.obj-right { position: sticky; top: 7rem; }
+.obj-image-wrap { border-radius: 20px; overflow: hidden; height: 300px; margin-bottom: 1.5rem; position: relative; }
+.obj-image-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+.obj-image-wrap:hover img { transform: scale(1.04); }
+.info-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.info-card { background: var(--white); border-radius: 14px; padding: 1.1rem; border: 1px solid var(--border); }
+.info-card-label { font-size: 10px; font-weight: 600; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 5px; }
+.info-card-val { font-size: 13px; font-weight: 600; color: var(--text-dark); line-height: 1.4; }
+.info-card-sub { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+
+/* ─── ACTIVITIES ─────────────────────── */
+.activities-section { padding: 7rem 0; background: var(--white); }
+.activities-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+.activity-card {
+  background: var(--cream); border-radius: 16px; padding: 1.8rem;
+  border: 1px solid var(--border); transition: all 0.3s; position: relative; overflow: hidden;
+}
+.activity-card::after {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(to right, var(--green-mid), var(--gold));
+  transform: scaleX(0); transform-origin: left; transition: transform 0.3s;
+}
+.activity-card:hover { box-shadow: 0 8px 30px rgba(0,0,0,0.1); transform: translateY(-3px); border-color: transparent; }
+.activity-card:hover::after { transform: scaleX(1); }
+.activity-icon { font-size: 28px; margin-bottom: 1rem; display: block; }
+.activity-title { font-size: 15px; font-weight: 600; color: var(--text-dark); margin-bottom: 0.5rem; }
+.activity-desc { font-size: 13px; color: var(--text-muted); line-height: 1.65; }
+
+/* ─── PARALLAX 2 - CHALLENGES ─────────── */
+.challenges-banner { position: relative; height: 380px; overflow: hidden; }
+.challenges-bg {
+  position: absolute; inset: -60px 0;
+  background: linear-gradient(160deg, #1a1a0e 0%, #2e3810 50%, #1a2a0e 100%);
+}
+.challenges-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(10,18,6,0.92) 40%, rgba(10,18,6,0.55) 100%); }
+.challenges-content { position: relative; z-index: 2; height: 100%; display: flex; align-items: center; }
+.challenges-inner { max-width: 1280px; margin: 0 auto; padding: 0 2.5rem; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+.challenge-list { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
+.challenge-item {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.55;
+}
+.challenge-bullet { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); margin-top: 6px; flex-shrink: 0; }
+
+/* ─── PARTNERS ───────────────────────── */
+.partners-section { padding: 5rem 0; background: var(--cream); }
+.partners-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 2.5rem; }
+.partner-pill {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--white); border: 1px solid var(--border); border-radius: 100px;
+  padding: 9px 18px; font-size: 13px; font-weight: 500; color: var(--text-mid);
+  transition: all 0.2s;
+}
+.partner-pill:hover { border-color: var(--green-mid); color: var(--green-dark); background: var(--green-light); }
+.partner-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green-mid); }
+
+/* ─── GALLERY STRIP ──────────────────── */
+.gallery-strip { display: flex; height: 260px; overflow: hidden; }
+.gallery-panel { flex: 1; overflow: hidden; }
+.gallery-panel img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s, filter 0.5s; filter: brightness(0.8) saturate(0.9); }
+.gallery-panel:hover img { transform: scale(1.06); filter: brightness(1) saturate(1.1); }
+
+/* ─── GROWTH / CTA ───────────────────── */
+.growth-section { padding: 7rem 0; background: var(--cream-dark); }
+.growth-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+.growth-item {
+  display: flex; gap: 1.2rem; align-items: flex-start;
+  padding: 1.2rem 1.4rem; background: var(--white); border-radius: 14px;
+  border: 1px solid var(--border); margin-bottom: 10px;
+  transition: all 0.2s;
+}
+.growth-item:hover { border-color: var(--gold); box-shadow: 0 4px 20px rgba(201,146,43,0.1); }
+.growth-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+.growth-text { font-size: 14px; line-height: 1.7; color: var(--text-mid); }
+.growth-right { background: var(--green-deep); border-radius: 24px; padding: 3rem; display: flex; flex-direction: column; gap: 1.5rem; }
+.growth-cta-title { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 700; color: var(--white); line-height: 1.2; }
+.growth-cta-body { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.75; }
+.cta-divider { height: 1px; background: rgba(255,255,255,0.1); }
+.contact-item { display: flex; align-items: center; gap: 10px; font-size: 13px; color: rgba(255,255,255,0.65); text-decoration: none; padding: 8px 0; transition: color 0.2s; }
+.contact-item:hover { color: var(--gold-light); }
+.contact-icon { width: 30px; height: 30px; border-radius: 8px; background: rgba(255,255,255,0.07); display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0; }
+.btn-block { display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--gold); color: var(--green-deep); padding: 15px 30px; border-radius: 100px; font-weight: 600; font-size: 14px; text-decoration: none; transition: background 0.2s, transform 0.2s; margin-top: 0.5rem; }
+.btn-block:hover { background: #dba030; transform: translateY(-2px); }
+
+/* ─── FOOTER ─────────────────────────── */
+footer { background: var(--green-deep); color: rgba(255,255,255,0.5); }
+.footer-upper { padding: 5rem 0 3rem; border-bottom: 1px solid rgba(255,255,255,0.07); }
+.footer-grid { display: grid; grid-template-columns: 2.2fr 1fr 1fr 1.4fr; gap: 4rem; }
+.footer-logo-row { display: flex; align-items: center; gap: 12px; margin-bottom: 1.2rem; }
+.footer-badge { width: 40px; height: 40px; border-radius: 50%; border: 1.5px solid rgba(201,146,43,0.6); display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 11px; color: var(--gold); flex-shrink: 0; text-align: center; line-height: 1.2; }
+.footer-brand-name { font-family: 'Cormorant Garamond', serif; font-size: 0.95rem; font-weight: 700; color: var(--white); line-height: 1.25; }
+.footer-brand-name small { display: block; font-family: 'Outfit', sans-serif; font-size: 9px; font-weight: 300; color: rgba(255,255,255,0.3); letter-spacing: 2px; text-transform: uppercase; }
+.footer-desc { font-size: 13px; line-height: 1.75; max-width: 260px; margin-bottom: 1.5rem; }
+.footer-contact { display: flex; align-items: center; gap: 8px; font-size: 12px; color: rgba(255,255,255,0.45); margin-bottom: 6px; text-decoration: none; transition: color 0.2s; }
+.footer-contact:hover { color: var(--gold); }
+.f-icon { width: 22px; height: 22px; border-radius: 6px; background: rgba(255,255,255,0.07); display: flex; align-items: center; justify-content: center; font-size: 10px; flex-shrink: 0; }
+.footer-col-title { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.85); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 1.2rem; }
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+.footer-links a { font-size: 13px; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: var(--gold-light); }
+.footer-products { display: flex; flex-wrap: wrap; gap: 6px; }
+.f-product { font-size: 11px; padding: 4px 10px; border-radius: 100px; border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.04); transition: all 0.2s; }
+.f-product:hover { border-color: rgba(201,146,43,0.4); color: var(--gold-light); }
+.footer-lower { padding: 1.5rem 0; }
+.footer-lower-inner { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.footer-copy { font-size: 12px; }
+.footer-reg { font-size: 11px; color: rgba(255,255,255,0.22); font-family: 'Cormorant Garamond', serif; }
+
+/* ─── ANIMATIONS ─────────────────────── */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ─── RESPONSIVE ─────────────────────── */
+@media (max-width: 1100px) {
+  .hero-images { display: none; }
+  .products-grid { grid-template-columns: repeat(3, 1fr); }
+  .gov-grid { grid-template-columns: repeat(3, 1fr); }
+  .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+  .obj-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .obj-right { position: relative; top: auto; }
+  .growth-grid { grid-template-columns: 1fr; }
+  .challenges-inner { grid-template-columns: 1fr; gap: 2rem; }
+  .parallax-content .container { flex-direction: column; text-align: center; }
+  .parallax-figures { flex-direction: row; gap: 2.5rem; }
+  .p-fig { text-align: center; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.2); padding-right: 0; padding-bottom: 0.8rem; }
+  .stats-inner { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 768px) {
+  .products-grid { grid-template-columns: repeat(2, 1fr); }
+  .gov-grid { grid-template-columns: repeat(2, 1fr); }
+  .activities-grid { grid-template-columns: 1fr; }
+  .gov-intro { grid-template-columns: 1fr; gap: 1rem; }
+  .gov-intro-right p { text-align: left; }
+  .products-header { flex-direction: column; }
+  .products-header p { text-align: left; }
+  .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .footer-lower-inner { flex-direction: column; text-align: center; }
+  .info-cards { grid-template-columns: 1fr; }
+  .stats-inner { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+  .products-grid { grid-template-columns: 1fr; }
+  .hero-title { font-size: 2.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ HEADER ══════════════════════════════════ -->
+<header id="site-header">
+  <div class="nav-inner">
+    <a class="nav-logo" href="#">
+      <div class="logo-badge">MOV<br>FAC</div>
+      <div class="logo-label">
+        <strong>MOVFACOS</strong>
+        <small>Kasese, Uganda · Est. 2013</small>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#products">Products</a></li>
+      <li><a href="#governance">Governance</a></li>
+      <li><a href="#objectives">Mission</a></li>
+      <li><a href="#activities">Activities</a></li>
+      <li><a href="#contact" class="btn-nav-gold">Get in Touch</a></li>
+    </ul>
+  </div>
+</header>
+
+<!-- ═══ HERO ═════════════════════════════════════ -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-pattern"></div>
+  <div class="hero-botanicals">
+    <div class="botanical botanical-1"></div>
+    <div class="botanical botanical-2"></div>
+    <div class="botanical botanical-3"></div>
+  </div>
+
+  <!-- Right-side image panels with real agricultural imagery -->
+  <div class="hero-images">
+    <div class="hero-img-panel">
+      <img src="https://images.unsplash.com/photo-1536782376847-5c9d14d97cc0?w=800&q=80" alt="Vanilla farming Uganda">
+    </div>
+    <div class="hero-img-panel">
+      <img src="https://images.unsplash.com/photo-1591154669695-5f2a8d20c089?w=800&q=80" alt="Cocoa farming">
+    </div>
+  </div>
+
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content container">
+    <div class="hero-eyebrow">
+      <div class="eyebrow-bar"></div>
+      <span class="eyebrow-text">Est. 2013 · Reg. 2021 · Kasese District, Uganda</span>
+    </div>
+    <h1 class="hero-title">
+      Organic <em>vanilla</em>,<br>
+      cocoa &amp; crops for<br>
+      a better future
+    </h1>
+    <p class="hero-sub">Margharita Organic Vanilla Farmers' Cooperative Society Ltd — uniting 2,551 farmers across 25 community groups to produce, process and market premium agricultural goods from the Rwenzori region.</p>
+    <div class="hero-ctas">
+      <a href="#products" class="btn-gold">
+        Our Products
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="#about" class="btn-ghost">Learn About Us</a>
+    </div>
+  </div>
+
+  <div class="hero-stats-bar">
+    <div class="stats-inner">
+      <div class="stat-cell"><div class="stat-icon">🌿</div><div><div class="stat-num">2,551</div><div class="stat-label">Members</div></div></div>
+      <div class="stat-cell"><div class="stat-icon">🤝</div><div><div class="stat-num">25</div><div class="stat-label">Community Groups</div></div></div>
+      <div class="stat-cell"><div class="stat-icon">🌺</div><div><div class="stat-num">2013</div><div class="stat-label">Year Founded</div></div></div>
+      <div class="stat-cell"><div class="stat-icon">👩‍🌾</div><div><div class="stat-num">1,057</div><div class="stat-label">Women Members</div></div></div>
+      <div class="stat-cell"><div class="stat-icon">🌍</div><div><div class="stat-num">EAC</div><div class="stat-label">Market Reach</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TICKER ═══════════════════════════════════ -->
+<div class="ticker-wrap" aria-hidden="true">
+  <div class="ticker-track">
+    <div class="t-item"><span class="t-dot"></span>Organic Vanilla</div>
+    <div class="t-item"><span class="t-dot"></span>Cocoa Beans</div>
+    <div class="t-item"><span class="t-dot"></span>Arabica Coffee</div>
+    <div class="t-item"><span class="t-dot"></span>Maize &amp; Cereals</div>
+    <div class="t-item"><span class="t-dot"></span>Groundnuts</div>
+    <div class="t-item"><span class="t-dot"></span>Soya Beans</div>
+    <div class="t-item"><span class="t-dot"></span>Honey &amp; Apiculture</div>
+    <div class="t-item"><span class="t-dot"></span>Fish Farming</div>
+    <div class="t-item"><span class="t-dot"></span>Simsim</div>
+    <div class="t-item"><span class="t-dot"></span>Hand Crafts</div>
+    <div class="t-item"><span class="t-dot"></span>Biomass Briquettes</div>
+    <div class="t-item"><span class="t-dot"></span>Kasese, Uganda</div>
+    <div class="t-item"><span class="t-dot"></span>Organic Vanilla</div>
+    <div class="t-item"><span class="t-dot"></span>Cocoa Beans</div>
+    <div class="t-item"><span class="t-dot"></span>Arabica Coffee</div>
+    <div class="t-item"><span class="t-dot"></span>Maize &amp; Cereals</div>
+    <div class="t-item"><span class="t-dot"></span>Groundnuts</div>
+    <div class="t-item"><span class="t-dot"></span>Soya Beans</div>
+    <div class="t-item"><span class="t-dot"></span>Honey &amp; Apiculture</div>
+    <div class="t-item"><span class="t-dot"></span>Fish Farming</div>
+    <div class="t-item"><span class="t-dot"></span>Simsim</div>
+    <div class="t-item"><span class="t-dot"></span>Hand Crafts</div>
+    <div class="t-item"><span class="t-dot"></span>Biomass Briquettes</div>
+    <div class="t-item"><span class="t-dot"></span>Kasese, Uganda</div>
+  </div>
+</div>
+
+<!-- ═══ ABOUT ═════════════════════════════════════ -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <div class="section-tag"><span class="tag-rule"></span>Who We Are</div>
+        <h2 class="section-title">Rooted in community,<br>growing for the world</h2>
+        <div class="about-reg">✅ Reg. No. P.22105/RCS · Cooperative Societies of Uganda</div>
+        <p class="about-body">Margharita Organic Vanilla Farmers' Cooperative Society Ltd (MOVFACOS) is a farmer-initiated cooperative started in 2013, formally registered on 07/07/2021. From a small community-based organisation, it has grown to 2,551 members across 25 farmer groups.</p>
+        <p class="about-body">Headquartered in Kisanga B, Nyamwamba Division, Kasese Municipality — 200 metres from Nyakasanga Highway — MOVFACOS provides technical support, collective marketing, value-chain processing and capacity building to the rural farming communities of the Rwenzori region.</p>
+        <div class="about-meta">
+          <div><div class="meta-val">2,551</div><div class="meta-key">Total Members</div></div>
+          <div><div class="meta-val">1,057</div><div class="meta-key">Women</div></div>
+          <div><div class="meta-val">793</div><div class="meta-key">Youth</div></div>
+          <div><div class="meta-val">25</div><div class="meta-key">Groups</div></div>
+        </div>
+      </div>
+      <div class="photo-mosaic reveal" style="transition-delay:0.15s;">
+        <div class="mosaic-img tall">
+          <img src="https://images.unsplash.com/photo-1536782376847-5c9d14d97cc0?w=600&q=80" alt="Vanilla processing Uganda">
+          <div class="mosaic-badge">Kasese District<span>Rwenzori Region, Uganda</span></div>
+        </div>
+        <div class="mosaic-img">
+          <img src="https://images.unsplash.com/photo-1591154669695-5f2a8d20c089?w=400&q=80" alt="Cocoa drying">
+        </div>
+        <div class="mosaic-img">
+          <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=400&q=80" alt="Community farming">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PRODUCTS ══════════════════════════════════ -->
+<section class="products-section" id="products">
+  <div class="container">
+    <div class="products-header reveal">
+      <div>
+        <div class="section-tag"><span class="tag-rule"></span>What We Produce</div>
+        <h2 class="section-title">Premium Organic Products</h2>
+      </div>
+      <p>From certified organic vanilla to artisan honey — our integrated value chains deliver quality from farm to market.</p>
+    </div>
+    <div class="products-grid reveal" style="transition-delay:0.1s;">
+      <div class="prod-card">
+        <div class="prod-icon-bg">🌺</div>
+        <div class="prod-name">Organic Vanilla</div>
+        <div class="prod-desc">Certified premium vanilla cured to international export standards — our flagship product.</div>
+      </div>
+      <div class="prod-card">
+        <div class="prod-icon-bg">🍫</div>
+        <div class="prod-name">Cocoa Beans</div>
+        <div class="prod-desc">Sun-dried, fermented cocoa beans for domestic processing and international buyers.</div>
+      </div>
+      <div class="prod-card">
+        <div class="prod-icon-bg">☕</div>
+        <div class="prod-name">Coffee</div>
+        <div class="prod-desc">Rwenzori-grown arabica coffee processed for specialty and commodity markets.</div>
+      </div>
+      <div class="prod-card">
+        <div class="prod-icon-bg">🌽</div>
+        <div class="prod-name">Maize &amp; Cereals</div>
+        <div class="prod-desc">Bulk maize, sorghum and soya bean supply with on-site drying and storage.</div>
+      </div>
+      <div class="prod-card">
+        <div class="prod-icon-bg">🥜</div>
+        <div class="prod-name">Groundnuts</div>
+        <div class="prod-desc">High-quality shelled groundnuts and soya bean from smallholder plots.</div>
+      </div>
+      <div class="prod-card">
+        <div class="prod-icon-bg">🍯</div>
+        <div class="prod-name">Organic Honey</div>
+        <div class="prod-desc">Processed along Queen Elizabeth National Park — certified wild and organic honey.</div>
+      </div>
+      <div class="prod-card">
+        <div class="prod-icon-bg">🐟</div>
+        <div class="prod-name">Fish Farming</div>
+        <div class="prod-desc">Tilapia and catfish production supplying fresh fish to local and regional markets.</div>
+      </div>
+      <div class="prod-card">
+        <div class="prod-icon-bg">🌿</div>
+        <div class="prod-name">Simsim &amp; Herbs</div>
+        <div class="prod-desc">Sesame and medicinal herbs for value-added processing into oils and herbal products.</div>
+      </div>
+      <div class="prod-card">
+        <div class="prod-icon-bg">🪵</div>
+        <div class="prod-name">Biomass Briquettes</div>
+        <div class="prod-desc">Clean cooking fuel from matooke peels and agricultural waste byproducts.</div>
+      </div>
+      <div class="prod-card">
+        <div class="prod-icon-bg">🧼</div>
+        <div class="prod-name">Herbal Soap</div>
+        <div class="prod-desc">Natural medicinal and laundry soaps crafted from locally sourced plant materials.</div>
+      </div>
+      <div class="prod-card">
+        <div class="prod-icon-bg">🌳</div>
+        <div class="prod-name">Tree Seedlings</div>
+        <div class="prod-desc">Fruit tree seedlings from our nursery beds supporting environmental conservation.</div>
+      </div>
+      <div class="prod-card">
+        <div class="prod-icon-bg">🎨</div>
+        <div class="prod-name">Hand Crafts</div>
+        <div class="prod-desc">Artisan hand crafts, tailoring and skills-based products from youth vocational programmes.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PARALLAX VISION BANNER ═══════════════════ -->
+<div class="parallax-banner">
+  <div class="parallax-bg"></div>
+  <div class="parallax-art"></div>
+  <div class="parallax-overlay"></div>
+  <div class="parallax-content">
+    <div class="container">
+      <div class="parallax-text">
+        <blockquote>"To become a sustainable model of excellence — eradicating poverty and achieving the best prices for agricultural products in the Rwenzori region and the global community."</blockquote>
+        <cite>— MOVFACOS Vision Statement, Kasese District</cite>
+      </div>
+      <div class="parallax-figures">
+        <div class="p-fig"><div class="p-fig-num">2013</div><div class="p-fig-label">Founded</div></div>
+        <div class="p-fig"><div class="p-fig-num">215→</div><div class="p-fig-label">Members at start</div></div>
+        <div class="p-fig"><div class="p-fig-num">2,551</div><div class="p-fig-label">Members today</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ GOVERNANCE ════════════════════════════════ -->
+<section class="governance" id="governance">
+  <div class="container">
+    <div class="gov-intro reveal">
+      <div>
+        <div class="section-tag"><span class="tag-rule"></span>Governing Structure</div>
+        <h2 class="section-title light">Five tiers.<br>One cooperative.</h2>
+      </div>
+      <div class="gov-intro-right">
+        <p>MOVFACOS is governed through a transparent structure that places members at the centre — from the general assembly down to the communities where services are delivered.</p>
+      </div>
+    </div>
+    <div class="gov-grid reveal" style="transition-delay:0.1s;">
+      <div class="gov-card">
+        <div class="gov-tier">Tier 1 — Membership</div>
+        <div class="gov-title">General Assembly — the sovereign body of all cooperative members</div>
+      </div>
+      <div class="gov-card">
+        <div class="gov-tier">Tier 2 — Executive</div>
+        <div class="gov-title">Chairperson, Vice, Secretary, Treasurer &amp; 5 Committee Members</div>
+      </div>
+      <div class="gov-card">
+        <div class="gov-tier">Tier 3 — Sub-Committees</div>
+        <div class="gov-title">Specialist committees overseeing implementation of society activities</div>
+      </div>
+      <div class="gov-card">
+        <div class="gov-tier">Tier 4 — Administration</div>
+        <div class="gov-title">Technical management team headed by the Manager — planning &amp; operations</div>
+      </div>
+      <div class="gov-card">
+        <div class="gov-tier">Tier 5 — Communities</div>
+        <div class="gov-title">25 affiliate community farmer groups — where production and marketing happen</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ OBJECTIVES ════════════════════════════════ -->
+<section class="objectives-section" id="objectives">
+  <div class="container">
+    <div class="obj-grid">
+      <div class="reveal">
+        <div class="section-tag"><span class="tag-rule"></span>Our Mission &amp; Objectives</div>
+        <h2 class="section-title">What we are<br>building together</h2>
+        <ul class="obj-list" style="margin-top:1.8rem;">
+          <li class="obj-item"><span class="obj-num">01</span><span class="obj-text">Bring farmers together for a common goal of sustainable livelihoods</span></li>
+          <li class="obj-item"><span class="obj-num">02</span><span class="obj-text">Strengthen collective marketing for increased bargaining power and better prices</span></li>
+          <li class="obj-item"><span class="obj-num">03</span><span class="obj-text">Add value to farm produce to create financial sustainability through processing</span></li>
+          <li class="obj-item"><span class="obj-num">04</span><span class="obj-text">Empower women, youth and persons with disabilities with technical &amp; health skills</span></li>
+          <li class="obj-item"><span class="obj-num">05</span><span class="obj-text">Promote crop and animal husbandry to fight rural poverty, malnutrition and hunger</span></li>
+          <li class="obj-item"><span class="obj-num">06</span><span class="obj-text">Conserve the environment through flora, fauna and tree nursery programmes</span></li>
+          <li class="obj-item"><span class="obj-num">07</span><span class="obj-text">Provide affordable nutritive processed foods to rural schools for sustainability</span></li>
+          <li class="obj-item"><span class="obj-num">08</span><span class="obj-text">Co-work with development partners sharing related objectives to achieve our vision</span></li>
+        </ul>
+      </div>
+      <div class="obj-right reveal" style="transition-delay:0.15s;">
+        <div class="obj-image-wrap">
+          <img src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?w=600&q=80" alt="Women farmers Uganda">
+        </div>
+        <div class="info-cards">
+          <div class="info-card"><div class="info-card-label">Headquarters</div><div class="info-card-val">Kisinga B, Nyamwamba</div><div class="info-card-sub">Kasese Municipality, Uganda</div></div>
+          <div class="info-card"><div class="info-card-label">Registration</div><div class="info-card-val">P.22105/RCS</div><div class="info-card-sub">Registered 07/07/2021</div></div>
+          <div class="info-card"><div class="info-card-label">Phone</div><div class="info-card-val">+256 787 783 892</div><div class="info-card-sub">+256 743 602 069</div></div>
+          <div class="info-card"><div class="info-card-label">Email</div><div class="info-card-val" style="font-size:11px;">margharitaorganicvanilla<br>@gmail.com</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ACTIVITIES ═════════════════════════════════ -->
+<section class="activities-section" id="activities">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-tag"><span class="tag-rule"></span>Our Activities</div>
+      <h2 class="section-title">How we work<br>on the ground</h2>
+    </div>
+    <div class="activities-grid">
+      <div class="activity-card reveal" style="transition-delay:0.05s;">
+        <span class="activity-icon">📦</span>
+        <div class="activity-title">Procurement &amp; Marketing</div>
+        <div class="activity-desc">Bulk purchase of raw materials — vanilla, cocoa, coffee, maize, groundnuts, soya bean and fish — from farmers at official buying dates with fair pricing.</div>
+      </div>
+      <div class="activity-card reveal" style="transition-delay:0.1s;">
+        <span class="activity-icon">🎓</span>
+        <div class="activity-title">Farmer Training</div>
+        <div class="activity-desc">Training in production, postharvest handling, good agronomic practices and record keeping across all value chains.</div>
+      </div>
+      <div class="activity-card reveal" style="transition-delay:0.15s;">
+        <span class="activity-icon">🌳</span>
+        <div class="activity-title">Tree Nursery Project</div>
+        <div class="activity-desc">Nursery bed management and fruit tree seedling production for environmental protection and combating malnutrition.</div>
+      </div>
+      <div class="activity-card reveal" style="transition-delay:0.2s;">
+        <span class="activity-icon">💰</span>
+        <div class="activity-title">Village Savings &amp; Loans</div>
+        <div class="activity-desc">VSLA promotion and the KanjwengeWomen SACCO — enabling financial inclusion and savings for future investment.</div>
+      </div>
+      <div class="activity-card reveal" style="transition-delay:0.25s;">
+        <span class="activity-icon">👩‍🔬</span>
+        <div class="activity-title">Value Chain Processing</div>
+        <div class="activity-desc">Post-harvest processing, quality assurance, packaging and distribution of agricultural products for premium pricing.</div>
+      </div>
+      <div class="activity-card reveal" style="transition-delay:0.3s;">
+        <span class="activity-icon">🛠️</span>
+        <div class="activity-title">Youth Vocational Skills</div>
+        <div class="activity-desc">Training school dropouts in tailoring, carpentry, hairdressing, mechanics, welding, computer skills, catering and more.</div>
+      </div>
+      <div class="activity-card reveal" style="transition-delay:0.05s;">
+        <span class="activity-icon">🐝</span>
+        <div class="activity-title">Apiculture &amp; Bee Products</div>
+        <div class="activity-desc">Community beekeeping knowledge, hive management and honey processing for domestic and international markets.</div>
+      </div>
+      <div class="activity-card reveal" style="transition-delay:0.1s;">
+        <span class="activity-icon">🪵</span>
+        <div class="activity-title">Briquettes &amp; Soap Making</div>
+        <div class="activity-desc">Charcoal briquette production from agri-waste and herbal soap manufacturing using locally sourced plants.</div>
+      </div>
+      <div class="activity-card reveal" style="transition-delay:0.15s;">
+        <span class="activity-icon">🏗️</span>
+        <div class="activity-title">Staff Capacity Building</div>
+        <div class="activity-desc">Ongoing staff development in grain processing, quality assurance, packaging, marketing and records management.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ GALLERY STRIP ══════════════════════════════ -->
+<div class="gallery-strip" aria-hidden="true">
+  <div class="gallery-panel">
+    <img src="https://images.unsplash.com/photo-1536782376847-5c9d14d97cc0?w=500&q=80" alt="Vanilla curing">
+  </div>
+  <div class="gallery-panel">
+    <img src="https://images.unsplash.com/photo-1591154669695-5f2a8d20c089?w=500&q=80" alt="Cocoa harvest">
+  </div>
+  <div class="gallery-panel">
+    <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=500&q=80" alt="Farming community">
+  </div>
+  <div class="gallery-panel">
+    <img src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?w=500&q=80" alt="Women farmers">
+  </div>
+  <div class="gallery-panel">
+    <img src="https://images.unsplash.com/photo-1499529112087-3cb3b73cec95?w=500&q=80" alt="Honey production">
+  </div>
+</div>
+
+<!-- ═══ CHALLENGES PARALLAX ══════════════════════ -->
+<div class="challenges-banner">
+  <div class="challenges-bg"></div>
+  <div class="challenges-overlay"></div>
+  <div class="challenges-content">
+    <div class="challenges-inner">
+      <div>
+        <div class="section-tag" style="color:var(--gold);"><span style="width:24px;height:2px;background:var(--gold);display:inline-block;"></span>&nbsp;Current Challenges</div>
+        <h2 class="section-title light" style="font-size:clamp(1.8rem,3vw,2.5rem);">Where we need<br>support to grow</h2>
+        <p style="margin-top:1rem;font-size:14px;color:rgba(255,255,255,0.5);line-height:1.75;max-width:400px;">MOVFACOS has identified key gaps that — with the right investment — would unlock significant growth for member farmers.</p>
+      </div>
+      <ul class="challenge-list">
+        <li class="challenge-item"><span class="challenge-bullet"></span>Working capital for timely payment of farmers on delivery</li>
+        <li class="challenge-item"><span class="challenge-bullet"></span>Limited high-yielding seed varieties to increase farm-level production</li>
+        <li class="challenge-item"><span class="challenge-bullet"></span>Only one tractor — constraining raw material production targets</li>
+        <li class="challenge-item"><span class="challenge-bullet"></span>Insufficient storage space for seasonal produce volumes</li>
+        <li class="challenge-item"><span class="challenge-bullet"></span>No transport truck for moving raw materials to central stores</li>
+        <li class="challenge-item"><span class="challenge-bullet"></span>Need for animal feed processing equipment for poultry and pig farmers</li>
+        <li class="challenge-item"><span class="challenge-bullet"></span>Inadequate land for commercial-scale production</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PARTNERS ══════════════════════════════════ -->
+<section class="partners-section">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-tag"><span class="tag-rule"></span>Our Partners</div>
+      <h2 class="section-title">Partnerships driving progress</h2>
+    </div>
+    <div class="partners-row reveal" style="transition-delay:0.1s;">
+      <div class="partner-pill"><span class="partner-dot"></span>Rwenzori Farmers Cooperative Union (RFCU)</div>
+      <div class="partner-pill"><span class="partner-dot"></span>Tecno Serve</div>
+      <div class="partner-pill"><span class="partner-dot"></span>Tuton Uganda Ltd</div>
+      <div class="partner-pill"><span class="partner-dot"></span>Agri-evolve Uganda Ltd</div>
+      <div class="partner-pill"><span class="partner-dot"></span>Diamond Seeds Company Ltd</div>
+      <div class="partner-pill"><span class="partner-dot"></span>Kasese District Farmers Association (KADIFA)</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ GROWTH & CONTACT ════════════════════════ -->
+<section class="growth-section" id="contact">
+  <div class="container">
+    <div class="reveal" style="margin-bottom:3rem;">
+      <div class="section-tag"><span class="tag-rule"></span>Growth Features &amp; Next Steps</div>
+      <h2 class="section-title">Our roadmap<br>for expansion</h2>
+    </div>
+    <div class="growth-grid">
+      <div class="reveal">
+        <div class="growth-item"><span class="growth-icon">🏪</span><span class="growth-text">Construct a warehouse to accommodate required raw material storage capacity</span></div>
+        <div class="growth-item"><span class="growth-icon">🚜</span><span class="growth-text">Procure additional tractors to increase farm production and create new income sources</span></div>
+        <div class="growth-item"><span class="growth-icon">☀️</span><span class="growth-text">Procure solar tarpaulin driers distributed to lead farmers for improved postharvest quality</span></div>
+        <div class="growth-item"><span class="growth-icon">🚛</span><span class="growth-text">Procure transport trucks for raw materials and processed products distribution</span></div>
+        <div class="growth-item"><span class="growth-icon">🐄</span><span class="growth-text">Procure animal feed mixing equipment — supplying livestock feeds to poultry and pig farmers</span></div>
+        <div class="growth-item"><span class="growth-icon">🪵</span><span class="growth-text">Procure a briquette manufacturing machine to fully utilise matooke peel byproducts</span></div>
+        <div class="growth-item"><span class="growth-icon">🏦</span><span class="growth-text">Establish a Farmers' Savings Centre (SACCO) for long-term financial empowerment</span></div>
+      </div>
+      <div class="growth-right reveal" style="transition-delay:0.15s;">
+        <div class="growth-cta-title">Partner with MOVFACOS</div>
+        <div class="growth-cta-body">Whether you are a buyer seeking premium organic vanilla or cocoa, an investor exploring agricultural opportunities, a development partner, or a prospective member group — we welcome your engagement.</div>
+        <div class="cta-divider"></div>
+        <a href="tel:+256787783892" class="contact-item">
+          <span class="contact-icon">📞</span> +256 787 783 892
+        </a>
+        <a href="tel:+256743602069" class="contact-item">
+          <span class="contact-icon">📞</span> +256 743 602 069
+        </a>
+        <a href="mailto:margharitaorganicvanilla@gmail.com" class="contact-item">
+          <span class="contact-icon">✉️</span> margharitaorganicvanilla@gmail.com
+        </a>
+        <a class="contact-item" href="#">
+          <span class="contact-icon">📮</span> P.O. Box 530, Kasese, Uganda
+        </a>
+        <div class="cta-divider"></div>
+        <a href="mailto:margharitaorganicvanilla@gmail.com" class="btn-block">
+          Send an Enquiry
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═════════════════════════════════════ -->
+<footer>
+  <div class="footer-upper">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo-row">
+            <div class="footer-badge" style="font-size:9px;text-align:center;line-height:1.3;">MOV<br>FAC</div>
+            <div class="footer-brand-name">
+              Margharita Organic Vanilla<br>Farmers' Cooperative Society Ltd
+              <small>Kasese · Uganda · Est. 2013</small>
+            </div>
+          </div>
+          <p class="footer-desc">Uniting 2,551 farmers across 25 community groups in Kasese District — producing organic vanilla, cocoa, coffee and more for local and international markets since 2013.</p>
+          <a href="tel:+256787783892" class="footer-contact"><span class="f-icon">📞</span>+256 787 783 892</a>
+          <a href="tel:+256743602069" class="footer-contact"><span class="f-icon">📞</span>+256 743 602 069</a>
+          <a href="mailto:margharitaorganicvanilla@gmail.com" class="footer-contact"><span class="f-icon">✉</span>margharitaorganicvanilla@gmail.com</a>
+          <a href="#" class="footer-contact"><span class="f-icon">📮</span>P.O. Box 530, Kasese, Uganda</a>
+        </div>
+        <div>
+          <div class="footer-col-title">Navigate</div>
+          <ul class="footer-links">
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#products">Our Products</a></li>
+            <li><a href="#governance">Governance</a></li>
+            <li><a href="#objectives">Mission &amp; Objectives</a></li>
+            <li><a href="#activities">Activities</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Organisation</div>
+          <ul class="footer-links">
+            <li><a href="#">Cooperative Rules</a></li>
+            <li><a href="#">Annual Reports</a></li>
+            <li><a href="#">Registration Docs</a></li>
+            <li><a href="#">Partner Programme</a></li>
+            <li><a href="#">Buyer Enquiries</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Products</div>
+          <div class="footer-products">
+            <span class="f-product">Vanilla</span>
+            <span class="f-product">Cocoa</span>
+            <span class="f-product">Coffee</span>
+            <span class="f-product">Maize</span>
+            <span class="f-product">Honey</span>
+            <span class="f-product">Fish</span>
+            <span class="f-product">Simsim</span>
+            <span class="f-product">G.nuts</span>
+            <span class="f-product">Soya</span>
+            <span class="f-product">Briquettes</span>
+            <span class="f-product">Soap</span>
+            <span class="f-product">Crafts</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-lower">
+    <div class="container">
+      <div class="footer-lower-inner">
+        <span class="footer-copy">© 2025 Margharita Organic Vanilla Farmers' Cooperative Society Ltd. All rights reserved.</span>
+        <span class="footer-reg">Reg. No. P.22105/RCS · Cooperative Societies of Uganda · Est. 2013</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Sticky header
+  const header = document.getElementById('site-header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 50);
+  });
+  header.classList.toggle('scrolled', window.scrollY > 50);
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

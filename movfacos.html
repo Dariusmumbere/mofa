@@ -1,0 +1,2254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MOFA — Margharita Organic Farmers Association</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600;1,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ── DESIGN TOKENS ── */
+:root {
+  --cream:         #F5EFE3;
+  --cream-dark:    #EDE4D2;
+  --parchment:     #FAF7F1;
+  --vanilla:       #D4A853;
+  --vanilla-light: #E8C87A;
+  --vanilla-pale:  #F3E4BE;
+  --forest:        #1E3A24;
+  --forest-mid:    #2B5234;
+  --forest-light:  #3D7047;
+  --forest-pale:   #BDD4C0;
+  --bark:          #2C1A0E;
+  --bark-mid:      #4A2E1A;
+  --bark-light:    #7A5533;
+  --white:         #FDFCF8;
+  --ink:           #1A1208;
+
+  /* Card radius */
+  --r-sm:  6px;
+  --r-md:  10px;
+  --r-lg:  16px;
+  --r-xl:  22px;
+
+  /* Shadows */
+  --shadow-card:   0 2px 12px rgba(26,18,8,.07), 0 8px 32px rgba(26,18,8,.06);
+  --shadow-hover:  0 8px 40px rgba(26,18,8,.14), 0 2px 8px rgba(26,18,8,.08);
+  --shadow-deep:   0 24px 80px rgba(26,18,8,.22);
+
+  /* Transitions */
+  --ease: cubic-bezier(.22,.68,0,1.2);
+}
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{font-family:'Inter',sans-serif;background:var(--parchment);color:var(--ink);overflow-x:hidden}
+img{display:block;max-width:100%}
+
+/* ─────────────────────────────────────────
+   NAV
+───────────────────────────────────────── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  background:rgba(245,239,227,.88);
+  backdrop-filter:blur(20px) saturate(1.4);
+  -webkit-backdrop-filter:blur(20px) saturate(1.4);
+  border-bottom:1px solid rgba(212,168,83,.18);
+  transition:box-shadow .3s;
+}
+.nav-inner{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 48px;height:68px;max-width:1440px;margin:0 auto;
+}
+.nav-logo{display:flex;align-items:center;gap:14px;text-decoration:none;flex-shrink:0}
+.nav-logo-mark{
+  width:36px;height:36px;background:var(--forest);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Cormorant Garamond',serif;color:var(--vanilla);font-size:18px;font-weight:700;
+  box-shadow:0 2px 12px rgba(30,58,36,.3);
+  transition:transform .3s var(--ease);
+}
+.nav-logo:hover .nav-logo-mark{transform:scale(1.08)}
+.nav-logo-text{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:500;
+  letter-spacing:.16em;color:var(--bark-mid);text-transform:uppercase;line-height:1.4}
+.nav-links{display:flex;gap:4px;list-style:none;align-items:center}
+.nav-links a{
+  text-decoration:none;font-size:12px;font-weight:500;letter-spacing:.06em;
+  color:var(--bark-mid);text-transform:uppercase;padding:8px 12px;border-radius:6px;
+  transition:color .2s,background .2s;
+}
+.nav-links a:hover{color:var(--forest);background:rgba(30,58,36,.07)}
+.nav-cta{
+  background:var(--forest)!important;color:var(--cream)!important;
+  padding:9px 18px!important;border-radius:8px!important;font-weight:600!important;
+  box-shadow:0 2px 12px rgba(30,58,36,.25);
+  transition:transform .2s var(--ease),box-shadow .2s!important;
+}
+.nav-cta:hover{background:var(--forest-mid)!important;color:var(--cream)!important;
+  transform:translateY(-1px);box-shadow:0 6px 20px rgba(30,58,36,.3)!important}
+.nav-donate{
+  background:var(--vanilla)!important;color:var(--ink)!important;
+  padding:9px 18px!important;border-radius:8px!important;font-weight:700!important;
+  box-shadow:0 2px 12px rgba(212,168,83,.3);
+  transition:transform .2s var(--ease),box-shadow .2s!important;
+}
+.nav-donate:hover{background:var(--vanilla-light)!important;
+  transform:translateY(-1px);box-shadow:0 6px 20px rgba(212,168,83,.4)!important}
+
+/* Hamburger */
+.nav-hamburger{
+  display:none;flex-direction:column;justify-content:center;align-items:center;
+  width:40px;height:40px;background:none;border:1.5px solid rgba(44,26,14,.15);
+  border-radius:8px;cursor:pointer;gap:5px;padding:8px;
+  transition:border-color .2s;flex-shrink:0;
+}
+.nav-hamburger:hover{border-color:var(--vanilla)}
+.nav-hamburger span{display:block;width:20px;height:1.5px;background:var(--bark);
+  border-radius:2px;transition:transform .3s,opacity .3s;transform-origin:center}
+.nav-hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.nav-hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+
+/* Mobile menu */
+.nav-mobile-menu{
+  display:none;overflow:hidden;max-height:0;
+  transition:max-height .4s ease;
+  background:rgba(245,239,227,.97);
+  backdrop-filter:blur(20px);
+  border-top:1px solid rgba(212,168,83,.15);
+}
+.nav-mobile-menu.open{max-height:600px}
+.nav-mobile-links{list-style:none;padding:8px 20px 20px}
+.nav-mobile-links li{border-bottom:1px solid rgba(212,168,83,.12)}
+.nav-mobile-links li:last-child{border-bottom:none}
+.nav-mobile-links a{
+  display:block;text-decoration:none;font-size:13px;font-weight:500;
+  letter-spacing:.06em;color:var(--bark-mid);text-transform:uppercase;
+  padding:14px 4px;transition:color .2s;
+}
+.nav-mobile-links a:hover{color:var(--forest)}
+.nav-mobile-links .mobile-cta{color:var(--forest)!important;font-weight:600}
+.nav-mobile-links .mobile-donate{color:var(--vanilla)!important;font-weight:700}
+
+/* ─────────────────────────────────────────
+   HERO
+───────────────────────────────────────── */
+.hero{
+  min-height:100vh;display:grid;grid-template-columns:1fr 1fr;
+  position:relative;overflow:hidden;
+}
+.hero-left{
+  background:var(--forest);display:flex;flex-direction:column;
+  justify-content:center;padding:140px 72px 80px;position:relative;z-index:2;
+}
+/* Elegant diagonal divider */
+.hero-left::after{
+  content:'';position:absolute;top:0;right:-56px;bottom:0;width:112px;
+  background:var(--forest);
+  clip-path:polygon(0 0,50% 0,100% 50%,50% 100%,0 100%);
+  z-index:3;
+}
+.hero-eyebrow{
+  font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--vanilla);margin-bottom:28px;
+  opacity:0;animation:fadeUp .9s .2s ease forwards;
+  display:flex;align-items:center;gap:12px;
+}
+.hero-eyebrow::before{content:'';width:28px;height:1px;background:var(--vanilla);opacity:.6}
+.hero-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(46px,5.5vw,80px);font-weight:700;line-height:1.02;
+  color:var(--cream);margin-bottom:28px;
+  opacity:0;animation:fadeUp .9s .4s ease forwards;
+}
+.hero-title em{font-style:italic;color:var(--vanilla)}
+.hero-desc{
+  font-size:15px;line-height:1.85;color:rgba(245,239,227,.68);
+  max-width:400px;margin-bottom:44px;font-weight:300;
+  opacity:0;animation:fadeUp .9s .6s ease forwards;
+}
+.hero-buttons{
+  display:flex;gap:14px;opacity:0;
+  animation:fadeUp .9s .8s ease forwards;flex-wrap:wrap;
+}
+.btn-primary{
+  background:var(--vanilla);color:var(--ink);padding:14px 32px;
+  font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  text-decoration:none;border-radius:var(--r-md);
+  transition:background .2s,transform .2s var(--ease),box-shadow .2s;
+  box-shadow:0 4px 20px rgba(212,168,83,.35);
+}
+.btn-primary:hover{background:var(--vanilla-light);transform:translateY(-2px);
+  box-shadow:0 8px 32px rgba(212,168,83,.45)}
+.btn-outline{
+  border:1.5px solid rgba(245,239,227,.25);color:var(--cream);
+  padding:14px 32px;font-size:12px;font-weight:500;letter-spacing:.1em;
+  text-transform:uppercase;text-decoration:none;border-radius:var(--r-md);
+  backdrop-filter:blur(8px);
+  transition:border-color .2s,background .2s,transform .2s var(--ease);
+}
+.btn-outline:hover{border-color:var(--vanilla);background:rgba(212,168,83,.1);transform:translateY(-2px)}
+.hero-stats{
+  display:flex;gap:44px;margin-top:64px;padding-top:36px;
+  border-top:1px solid rgba(245,239,227,.1);
+  opacity:0;animation:fadeUp .9s 1s ease forwards;flex-wrap:wrap;
+}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:40px;font-weight:700;
+  color:var(--vanilla);line-height:1}
+.stat-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;
+  text-transform:uppercase;color:rgba(245,239,227,.4);margin-top:6px}
+
+/* Hero right — slideshow */
+.hero-right{position:relative;overflow:hidden}
+.hero-slideshow{position:absolute;inset:0;z-index:1}
+.hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.4s ease}
+.hero-slide.active{opacity:1}
+.hero-slide img{width:100%;height:100%;object-fit:cover;display:block}
+.hero-slide-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(140deg,rgba(30,58,36,.5) 0%,rgba(44,26,14,.2) 100%);
+}
+.hero-slide-caption{
+  position:absolute;bottom:36px;left:100px;right:28px;z-index:3;
+  opacity:0;transform:translateY(12px);
+  transition:opacity .7s .9s ease,transform .7s .9s ease;
+}
+.hero-slide.active .hero-slide-caption{opacity:1;transform:none}
+.hero-slide-caption-tag{
+  font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--vanilla);display:block;margin-bottom:5px;
+}
+.hero-slide-caption-title{
+  font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;
+  color:var(--cream);line-height:1.3;
+}
+.hero-slide-dots{position:absolute;bottom:36px;right:22px;z-index:4;
+  display:flex;flex-direction:column;gap:7px}
+.slide-dot{
+  width:5px;height:5px;border-radius:50%;background:rgba(245,239,227,.3);
+  cursor:pointer;transition:background .3s,transform .3s;border:none;padding:0;
+}
+.slide-dot.active{background:var(--vanilla);transform:scale(1.5)}
+.hero-slide-counter{
+  position:absolute;top:110px;right:22px;z-index:4;
+  font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;
+  color:rgba(245,239,227,.4);
+}
+.hero-slide-counter span{color:var(--vanilla)}
+
+/* ─────────────────────────────────────────
+   TICKER
+───────────────────────────────────────── */
+.ticker{background:var(--vanilla);padding:13px 0;overflow:hidden;white-space:nowrap}
+.ticker-inner{display:inline-flex;animation:ticker 32s linear infinite}
+.ticker-item{
+  font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--bark);padding:0 28px;
+}
+.ticker-item::before{content:'✦';margin-right:28px;color:var(--bark-mid);opacity:.5}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ─────────────────────────────────────────
+   ARTISAN SKILLS PROGRAM — SLIDING GALLERY
+───────────────────────────────────────── */
+.artisan-section{background:var(--forest);padding:108px 0 116px;position:relative;overflow:hidden}
+.artisan-section::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 50% at 15% 0%,rgba(212,168,83,.14),transparent 60%),
+             radial-gradient(ellipse 50% 40% at 100% 100%,rgba(212,168,83,.10),transparent 60%);
+  pointer-events:none;
+}
+.artisan-header{
+  max-width:1440px;margin:0 auto;padding:0 80px 56px;position:relative;z-index:2;
+  display:flex;justify-content:space-between;align-items:flex-end;gap:40px;flex-wrap:wrap;
+}
+.artisan-header .section-tag{color:var(--vanilla)}
+.artisan-header .section-title{color:var(--cream)}
+.artisan-header .section-title em{color:var(--vanilla)}
+.artisan-header-desc{max-width:400px;color:rgba(245,239,227,.62);font-size:14px;line-height:1.75;font-weight:300}
+.artisan-stats{display:flex;gap:36px;flex-wrap:wrap;position:relative;z-index:2}
+.artisan-stats .stat-num{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:700;color:var(--vanilla)}
+.artisan-stats .stat-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;
+  text-transform:uppercase;color:rgba(245,239,227,.4);margin-top:5px}
+.artisan-slider{
+  width:100%;overflow:hidden;position:relative;z-index:2;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
+}
+.artisan-track{
+  display:flex;gap:20px;width:max-content;
+  animation:artisanSlide 70s linear infinite;
+}
+.artisan-slider:hover .artisan-track{animation-play-state:paused}
+.artisan-track figure{
+  position:relative;flex-shrink:0;width:260px;height:320px;border-radius:var(--r-lg);
+  overflow:hidden;box-shadow:var(--shadow-card);
+}
+.artisan-track figure img{
+  width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease);
+}
+.artisan-track figure:hover img{transform:scale(1.08)}
+.artisan-track figure::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(26,18,8,.55) 0%,transparent 45%);
+}
+@keyframes artisanSlide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media(max-width:860px){
+  .artisan-header{padding:0 24px 40px}
+  .artisan-track figure{width:190px;height:240px}
+}
+
+/* ─────────────────────────────────────────
+   SHARED SECTION ELEMENTS
+───────────────────────────────────────── */
+.section-tag{
+  font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--vanilla);
+  display:flex;align-items:center;gap:12px;margin-bottom:18px;
+}
+.section-tag::before{content:'';width:28px;height:1px;background:currentColor;opacity:.7}
+.section-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(34px,3.8vw,56px);font-weight:700;line-height:1.1;
+  color:var(--ink);margin-bottom:22px;
+}
+.section-title em{font-style:italic;color:var(--forest)}
+.section-body{font-size:15px;line-height:1.85;color:var(--bark-mid);margin-bottom:18px;font-weight:300}
+
+/* ─────────────────────────────────────────
+   ABOUT
+───────────────────────────────────────── */
+.about{
+  padding:128px 80px;display:grid;grid-template-columns:1fr 1.15fr;
+  gap:88px;align-items:center;max-width:1440px;margin:0 auto;
+}
+.about-pillars{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:44px}
+.pillar{
+  background:var(--white);border:1px solid rgba(212,168,83,.15);
+  padding:24px 22px;border-radius:var(--r-lg);
+  box-shadow:var(--shadow-card);
+  transition:border-color .3s,transform .3s var(--ease),box-shadow .3s;
+}
+.pillar:hover{border-color:rgba(212,168,83,.45);transform:translateY(-3px);box-shadow:var(--shadow-hover)}
+.pillar-icon{font-size:22px;margin-bottom:10px}
+.pillar-title{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:700;
+  color:var(--ink);margin-bottom:7px}
+.pillar-text{font-size:13px;line-height:1.7;color:var(--bark-light);font-weight:300}
+.about-visual{position:relative}
+.about-big-card{
+  background:var(--forest);border-radius:var(--r-xl);padding:52px 48px;
+  color:var(--cream);position:relative;overflow:hidden;
+  box-shadow:var(--shadow-deep);
+}
+.about-big-card::before{
+  content:'';position:absolute;top:-80px;right:-80px;width:240px;height:240px;
+  border-radius:50%;background:rgba(212,168,83,.09);
+}
+.about-big-card::after{
+  content:'';position:absolute;bottom:-50px;left:-50px;width:180px;height:180px;
+  border-radius:50%;background:rgba(212,168,83,.06);
+}
+.about-quote{
+  font-family:'Cormorant Garamond',serif;font-size:22px;font-style:italic;
+  line-height:1.55;color:var(--cream);margin-bottom:24px;position:relative;z-index:2;
+}
+.about-quote::before{
+  content:'\201C';font-size:96px;color:var(--vanilla);opacity:.22;
+  position:absolute;top:-28px;left:-14px;font-style:normal;line-height:1;
+}
+.about-sub{font-size:12px;color:rgba(245,239,227,.5);letter-spacing:.06em;position:relative;z-index:2}
+.about-tag-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px;position:relative;z-index:2}
+.about-tag{
+  background:rgba(212,168,83,.15);border:1px solid rgba(212,168,83,.3);
+  color:var(--vanilla);font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  padding:6px 13px;border-radius:99px;
+}
+
+/* ─────────────────────────────────────────
+   PRODUCTS
+───────────────────────────────────────── */
+.products{background:var(--forest);padding:108px 80px}
+.products-header{
+  display:flex;align-items:flex-end;justify-content:space-between;
+  margin-bottom:56px;max-width:1280px;margin-left:auto;margin-right:auto;
+}
+.products-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:14px;max-width:1280px;margin:0 auto;
+}
+.product-card{
+  background:rgba(245,239,227,.05);border:1px solid rgba(212,168,83,.12);
+  padding:36px 28px;border-radius:var(--r-lg);
+  transition:background .3s,border-color .3s,transform .3s var(--ease);
+  position:relative;overflow:hidden;
+}
+.product-card::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--forest-light),var(--vanilla));
+  transform:scaleX(0);transform-origin:left;transition:transform .4s ease;
+}
+.product-card:hover{background:rgba(245,239,227,.09);border-color:rgba(212,168,83,.35);
+  transform:translateY(-4px)}
+.product-card:hover::after{transform:scaleX(1)}
+.product-card:first-child{
+  grid-column:span 2;
+  background:linear-gradient(135deg,var(--vanilla) 0%,var(--vanilla-light) 100%);
+  border-color:transparent;
+  box-shadow:0 8px 32px rgba(212,168,83,.3);
+}
+.product-card:first-child:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(212,168,83,.4)}
+.product-card:first-child::after{display:none}
+.product-card:first-child .product-name{color:var(--ink);font-size:28px}
+.product-card:first-child .product-desc{color:var(--bark-mid)}
+.product-card:first-child .product-num{color:rgba(44,26,14,.25)}
+.product-num{
+  font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;
+  color:rgba(245,239,227,.2);margin-bottom:18px;
+}
+.product-icon{font-size:30px;margin-bottom:14px}
+.product-name{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;
+  color:var(--cream);margin-bottom:10px}
+.product-desc{font-size:13px;color:rgba(245,239,227,.5);line-height:1.65;font-weight:300}
+
+/* ─────────────────────────────────────────
+   MISSION BAND
+───────────────────────────────────────── */
+.mission-band{
+  background:var(--cream-dark);padding:88px 80px;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+}
+.mission-item{
+  padding:52px 44px;border-right:1px solid rgba(212,168,83,.18);position:relative;
+}
+.mission-item:last-child{border-right:none}
+.mission-num{
+  font-family:'Cormorant Garamond',serif;font-size:88px;font-weight:700;
+  color:rgba(212,168,83,.1);position:absolute;top:20px;right:24px;line-height:1;
+}
+.mission-icon{font-size:26px;margin-bottom:18px}
+.mission-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;
+  color:var(--ink);margin-bottom:12px}
+.mission-text{font-size:14px;line-height:1.8;color:var(--bark-light);font-weight:300}
+
+/* ─────────────────────────────────────────
+   ACTIVITIES / IMAGE CARDS
+───────────────────────────────────────── */
+.activities{background:var(--forest);padding:108px 80px}
+.activities-header{max-width:1280px;margin:0 auto 56px}
+.activities-header .section-title{color:var(--cream)}
+.activities-header .section-title em{color:var(--vanilla-light)}
+
+.activities-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:14px;max-width:1280px;margin:0 auto 64px;
+}
+.activity-card{
+  background:rgba(245,239,227,.055);border:1px solid rgba(245,239,227,.1);
+  border-radius:var(--r-lg);padding:30px 26px;
+  transition:background .3s,border-color .3s,transform .3s var(--ease),box-shadow .3s;
+}
+.activity-card:hover{
+  background:rgba(245,239,227,.09);border-color:rgba(212,168,83,.35);
+  transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.2);
+}
+.activity-icon{font-size:26px;margin-bottom:12px}
+.activity-title{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:700;
+  color:var(--cream);margin-bottom:8px}
+.activity-text{font-size:13px;line-height:1.7;color:rgba(245,239,227,.55);font-weight:300}
+
+/* Gallery label */
+.activities-gallery-label{max-width:1280px;margin:0 auto 24px}
+.activities-gallery-label-text{
+  font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;
+  text-transform:uppercase;color:rgba(212,168,83,.6);
+  display:flex;align-items:center;gap:12px;
+}
+.activities-gallery-label-text::before{content:'';width:28px;height:1px;background:rgba(212,168,83,.5)}
+
+/* ── UNIFORM IMAGE CARD SYSTEM ── */
+.img-card{
+  position:relative;border-radius:var(--r-lg);overflow:hidden;cursor:pointer;
+  box-shadow:var(--shadow-card);
+  transition:transform .45s var(--ease),box-shadow .4s;
+}
+.img-card:hover{transform:translateY(-6px) scale(1.01);box-shadow:var(--shadow-hover)}
+.img-card img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .7s ease;
+}
+.img-card:hover img{transform:scale(1.07)}
+.img-card-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(14,28,14,.88) 0%,rgba(14,28,14,.12) 55%,transparent 100%);
+  opacity:.7;transition:opacity .4s;
+}
+.img-card:hover .img-card-overlay{opacity:1}
+.img-card-label{
+  position:absolute;bottom:0;left:0;right:0;padding:24px 20px 18px;z-index:2;
+}
+.img-card-tag{
+  font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--vanilla);display:block;margin-bottom:4px;
+}
+.img-card-title{
+  font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:600;
+  color:var(--cream);line-height:1.3;
+}
+.img-card-desc{
+  font-size:12px;color:rgba(245,239,227,.75);line-height:1.55;margin-top:5px;
+  opacity:0;transform:translateY(6px);transition:opacity .35s .05s,transform .35s .05s;
+}
+.img-card:hover .img-card-desc{opacity:1;transform:none}
+
+/* Activity image grid */
+.activities-image-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  grid-auto-rows:220px;gap:14px;max-width:1280px;margin:0 auto;
+}
+.act-img-card{grid-column:span 1;grid-row:span 1}
+.act-img-card.span-2-col{grid-column:span 2}
+.act-img-card.span-2-row{grid-row:span 2}
+
+/* ─────────────────────────────────────────
+   PHOTO FEATURE
+───────────────────────────────────────── */
+.photo-feature{display:grid;grid-template-columns:1fr 1fr}
+.photo-feature-img{
+  position:relative;overflow:hidden;min-height:480px;
+}
+.photo-feature-img img{width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .7s ease}
+.photo-feature-img:hover img{transform:scale(1.04)}
+.photo-feature-img .photo-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(30,58,36,.7) 0%,transparent 60%);
+}
+.photo-feature-img .photo-caption{
+  position:absolute;bottom:28px;left:28px;
+  font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--vanilla);
+}
+.photo-feature-content{
+  background:var(--bark);display:flex;flex-direction:column;
+  justify-content:center;padding:80px 72px;
+}
+.photo-feature-content.light{background:var(--cream)}
+.photo-feature-content .section-title{color:var(--cream);margin-bottom:16px}
+.photo-feature-content.light .section-title{color:var(--ink)}
+.photo-feature-content .section-body{color:rgba(245,239,227,.62);margin-bottom:0}
+.photo-feature-content.light .section-body{color:var(--bark-mid)}
+
+/* ─────────────────────────────────────────
+   HEALTH & TREES
+───────────────────────────────────────── */
+.health-trees{background:var(--white);padding:108px 80px}
+.health-trees-inner{max-width:1280px;margin:0 auto}
+.health-trees-header{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;margin-bottom:60px}
+.health-trees-header .section-title em{color:var(--forest)}
+.health-trees-grid{
+  display:grid;grid-template-columns:1.4fr 1fr;
+  grid-template-rows:210px 210px;gap:14px;
+}
+.health-img-main{grid-row:span 2;border-radius:var(--r-lg);overflow:hidden;
+  position:relative;box-shadow:var(--shadow-card)}
+.health-img-main img{width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .7s ease}
+.health-img-main:hover img{transform:scale(1.04)}
+.health-img-side{border-radius:var(--r-lg);overflow:hidden;position:relative;
+  box-shadow:var(--shadow-card)}
+.health-img-side img{width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .6s ease}
+.health-img-side:hover img{transform:scale(1.05)}
+.health-img-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(30,58,36,.82) 0%,transparent 60%);
+  pointer-events:none;
+}
+.health-img-caption{position:absolute;bottom:14px;left:16px;right:16px;z-index:2}
+.health-img-caption-tag{
+  font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--vanilla);display:block;margin-bottom:3px;
+}
+.health-img-caption-title{
+  font-family:'Cormorant Garamond',serif;font-size:14px;font-weight:600;
+  color:var(--cream);line-height:1.3;
+}
+.health-benefits{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:44px}
+.health-benefit-card{
+  background:var(--cream);border:1px solid rgba(212,168,83,.18);
+  border-radius:var(--r-lg);padding:26px 22px;
+  box-shadow:var(--shadow-card);
+  transition:border-color .3s,transform .3s var(--ease),box-shadow .3s;
+}
+.health-benefit-card:hover{border-color:rgba(212,168,83,.45);transform:translateY(-4px);box-shadow:var(--shadow-hover)}
+.health-benefit-icon{font-size:24px;margin-bottom:10px}
+.health-benefit-title{font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:700;
+  color:var(--ink);margin-bottom:7px}
+.health-benefit-text{font-size:13px;line-height:1.7;color:var(--bark-light);font-weight:300}
+
+/* ─────────────────────────────────────────
+   CLIMATE
+───────────────────────────────────────── */
+.climate{background:var(--bark);padding:108px 80px;position:relative;overflow:hidden}
+.climate::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 10% 30%,rgba(61,112,71,.15) 0%,transparent 55%),
+             radial-gradient(ellipse at 90% 70%,rgba(212,168,83,.07) 0%,transparent 55%);
+  pointer-events:none;
+}
+.climate-inner{max-width:1280px;margin:0 auto;position:relative;z-index:2}
+.climate-header{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;margin-bottom:72px}
+.climate-header .section-tag{color:var(--vanilla)}
+.climate-header .section-title{color:var(--cream)}
+.climate-header .section-title em{color:var(--forest-light);font-style:italic}
+.climate-header .section-body{color:rgba(245,239,227,.6)}
+.climate-stat-row{display:flex;gap:40px;margin-top:36px;flex-wrap:wrap}
+.climate-stat{display:flex;flex-direction:column}
+.climate-stat-num{font-family:'Cormorant Garamond',serif;font-size:40px;font-weight:700;
+  color:var(--forest-light);line-height:1}
+.climate-stat-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.15em;
+  text-transform:uppercase;color:rgba(245,239,227,.35);margin-top:6px}
+
+/* Videos */
+.climate-videos{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.climate-video-card{
+  position:relative;border-radius:var(--r-xl);overflow:hidden;
+  background:#080f08;cursor:pointer;
+  box-shadow:0 8px 40px rgba(0,0,0,.4);
+  transition:transform .3s var(--ease),box-shadow .3s;
+}
+.climate-video-card:hover{transform:translateY(-4px);box-shadow:0 16px 60px rgba(0,0,0,.5)}
+.climate-video-card video{width:100%;display:block;aspect-ratio:16/9;object-fit:cover;
+  opacity:.7;transition:opacity .4s ease}
+.climate-video-card:hover video,.climate-video-card.playing video{opacity:1}
+.climate-video-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(8,15,8,.92) 0%,rgba(8,15,8,.2) 55%,transparent 100%);
+  transition:background .4s;pointer-events:none;
+}
+.climate-video-card.playing .climate-video-overlay{
+  background:linear-gradient(to top,rgba(8,15,8,.65) 0%,transparent 50%);
+}
+.climate-play-btn{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:64px;height:64px;border-radius:50%;background:rgba(212,168,83,.92);
+  border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:transform .25s var(--ease),background .25s,opacity .35s;z-index:3;
+  box-shadow:0 8px 32px rgba(0,0,0,.45);
+}
+.climate-play-btn svg{width:22px;height:22px;fill:var(--ink);transition:opacity .2s}
+.climate-play-btn:hover{background:var(--vanilla-light);transform:translate(-50%,-50%) scale(1.12)}
+.climate-video-card.playing .climate-play-btn{opacity:0;pointer-events:none}
+.climate-video-card.playing:hover .climate-play-btn{opacity:1;pointer-events:auto}
+.climate-play-btn .icon-pause{display:none}
+.climate-video-card.playing .climate-play-btn .icon-play{display:none}
+.climate-video-card.playing .climate-play-btn .icon-pause{display:block}
+.climate-video-caption{position:absolute;bottom:0;left:0;right:0;padding:32px 26px 22px;z-index:2;pointer-events:none}
+.climate-video-tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--vanilla);display:block;margin-bottom:5px}
+.climate-video-title{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:700;
+  color:var(--cream);line-height:1.3;margin-bottom:7px}
+.climate-video-desc{font-size:12px;line-height:1.65;color:rgba(245,239,227,.6);font-weight:300}
+
+/* Impact cards */
+.climate-impacts{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:14px}
+.climate-impact-card{
+  background:rgba(245,239,227,.04);border:1px solid rgba(212,168,83,.1);
+  padding:28px 22px;border-radius:var(--r-lg);
+  transition:background .3s,border-color .3s,transform .3s var(--ease);position:relative;
+}
+.climate-impact-card::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:var(--forest-light);border-radius:0 0 var(--r-lg) var(--r-lg);
+  transform:scaleX(0);transform-origin:left;transition:transform .35s ease;
+}
+.climate-impact-card:hover{background:rgba(61,112,71,.1);border-color:rgba(61,112,71,.3);transform:translateY(-3px)}
+.climate-impact-card:hover::after{transform:scaleX(1)}
+.climate-impact-icon{font-size:24px;margin-bottom:12px}
+.climate-impact-title{font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:700;
+  color:var(--cream);margin-bottom:7px;line-height:1.3}
+.climate-impact-text{font-size:12px;line-height:1.7;color:rgba(245,239,227,.45);font-weight:300}
+
+/* ─────────────────────────────────────────
+   FORUM
+───────────────────────────────────────── */
+.forum{background:var(--bark);padding:108px 80px;position:relative;overflow:hidden}
+.forum::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 80% 20%,rgba(212,168,83,.07) 0%,transparent 60%);
+  pointer-events:none;
+}
+.forum-inner{max-width:1280px;margin:0 auto;position:relative;z-index:2}
+.forum-header{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;margin-bottom:64px}
+.forum-header .section-tag{color:var(--vanilla)}
+.forum-header .section-title{color:var(--cream)}
+.forum-header .section-title em{color:var(--vanilla);font-style:italic}
+.forum-header .section-body{color:rgba(245,239,227,.6)}
+.forum-image-block{
+  position:relative;border-radius:var(--r-xl);overflow:hidden;
+  box-shadow:var(--shadow-deep);
+  transition:transform .4s var(--ease),box-shadow .4s;
+}
+.forum-image-block:hover{transform:translateY(-6px);box-shadow:0 32px 88px rgba(0,0,0,.5)}
+.forum-image-block img{width:100%;height:400px;object-fit:cover;display:block;
+  transition:transform .7s ease}
+.forum-image-block:hover img{transform:scale(1.04)}
+.forum-image-block .forum-img-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(30,58,36,.88) 0%,rgba(30,58,36,.12) 50%,transparent 100%);
+}
+.forum-image-caption{position:absolute;bottom:0;left:0;right:0;padding:36px 28px 26px;z-index:2}
+.forum-image-caption-tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--vanilla);display:block;margin-bottom:7px}
+.forum-image-caption-title{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:700;
+  color:var(--cream);line-height:1.3;margin-bottom:4px}
+.forum-image-caption-loc{font-size:12px;color:rgba(245,239,227,.6);letter-spacing:.04em}
+
+.forum-details{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.forum-detail-card{
+  background:rgba(245,239,227,.05);border:1px solid rgba(212,168,83,.12);
+  padding:32px 28px;border-radius:var(--r-lg);
+  transition:background .3s,border-color .3s,transform .3s var(--ease);position:relative;overflow:hidden;
+}
+.forum-detail-card::before{
+  content:'';position:absolute;top:0;left:0;width:2px;height:100%;
+  background:var(--vanilla);opacity:0;transition:opacity .3s;
+}
+.forum-detail-card:hover{background:rgba(245,239,227,.09);border-color:rgba(212,168,83,.3);transform:translateY(-3px)}
+.forum-detail-card:hover::before{opacity:1}
+.forum-detail-icon{font-size:24px;margin-bottom:14px}
+.forum-detail-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--vanilla);margin-bottom:8px}
+.forum-detail-value{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:700;
+  color:var(--cream);line-height:1.4;margin-bottom:7px}
+.forum-detail-sub{font-size:12px;color:rgba(245,239,227,.45);line-height:1.6;font-weight:300}
+
+.forum-quote-band{
+  background:var(--vanilla);padding:52px 64px;margin-top:14px;border-radius:var(--r-lg);
+  position:relative;overflow:hidden;
+  box-shadow:0 8px 32px rgba(212,168,83,.25);
+}
+.forum-quote-band::before{
+  content:'\201C';position:absolute;top:-20px;left:24px;
+  font-family:'Cormorant Garamond',serif;font-size:180px;color:rgba(44,26,14,.08);
+  line-height:1;pointer-events:none;
+}
+.forum-quote-text{
+  font-family:'Cormorant Garamond',serif;font-size:20px;font-style:italic;
+  color:var(--ink);line-height:1.65;max-width:800px;position:relative;z-index:2;margin-bottom:16px;
+}
+.forum-quote-attr{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--bark-mid);position:relative;z-index:2}
+
+/* ─────────────────────────────────────────
+   KAMPALA MEETING
+───────────────────────────────────────── */
+.kampala-meeting{background:var(--forest-mid);padding:108px 80px;position:relative;overflow:hidden}
+.kampala-meeting::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 20% 80%,rgba(212,168,83,.09) 0%,transparent 55%);
+  pointer-events:none;
+}
+.kampala-inner{max-width:1280px;margin:0 auto;position:relative;z-index:2}
+.kampala-layout{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.kampala-content .section-tag{color:var(--vanilla)}
+.kampala-content .section-title{color:var(--cream)}
+.kampala-content .section-title em{color:var(--vanilla);font-style:italic}
+.kampala-content .section-body{color:rgba(245,239,227,.65);margin-bottom:16px}
+.kampala-highlights{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:32px}
+.kampala-highlight{
+  background:rgba(245,239,227,.07);border:1px solid rgba(212,168,83,.18);
+  border-radius:var(--r-md);padding:18px 16px;
+  transition:background .3s,border-color .3s,transform .3s var(--ease);
+}
+.kampala-highlight:hover{background:rgba(245,239,227,.12);border-color:rgba(212,168,83,.42);transform:translateY(-3px)}
+.kampala-highlight-icon{font-size:18px;margin-bottom:7px}
+.kampala-highlight-title{font-family:'Cormorant Garamond',serif;font-size:14px;font-weight:700;
+  color:var(--cream);margin-bottom:4px}
+.kampala-highlight-text{font-size:12px;line-height:1.6;color:rgba(245,239,227,.5);font-weight:300}
+.kampala-image-wrap{position:relative}
+.kampala-img-main{
+  position:relative;border-radius:var(--r-xl);overflow:hidden;
+  box-shadow:var(--shadow-deep);
+  transition:transform .4s var(--ease),box-shadow .4s;
+}
+.kampala-img-main:hover{transform:translateY(-6px);box-shadow:0 32px 88px rgba(0,0,0,.45)}
+.kampala-img-main img{width:100%;height:460px;object-fit:cover;display:block;
+  transition:transform .7s ease}
+.kampala-img-main:hover img{transform:scale(1.04)}
+.kampala-img-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(14,28,14,.92) 0%,rgba(14,28,14,.18) 55%,transparent 100%);
+}
+.kampala-img-caption{position:absolute;bottom:0;left:0;right:0;padding:36px 28px 26px;z-index:2}
+.kampala-img-caption-tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--vanilla);display:block;margin-bottom:6px}
+.kampala-img-caption-title{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:700;
+  color:var(--cream);line-height:1.3;margin-bottom:4px}
+.kampala-img-caption-loc{font-size:12px;color:rgba(245,239,227,.6);letter-spacing:.04em}
+.kampala-badge{
+  position:absolute;top:-22px;right:-18px;width:96px;height:96px;border-radius:50%;
+  background:var(--vanilla);display:flex;flex-direction:column;align-items:center;
+  justify-content:center;text-align:center;padding:12px;
+  box-shadow:0 8px 28px rgba(212,168,83,.4);z-index:3;
+}
+.kampala-badge-text{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--bark);line-height:1.6;font-weight:500}
+
+/* ─────────────────────────────────────────
+   GALLERY
+───────────────────────────────────────── */
+.gallery-section{background:var(--cream);padding:108px 80px}
+.gallery-header{
+  max-width:1280px;margin:0 auto 48px;
+  display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;
+}
+.gallery-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:14px;max-width:1280px;margin:0 auto;
+}
+.gallery-item{
+  position:relative;border-radius:var(--r-lg);overflow:hidden;cursor:pointer;
+  box-shadow:var(--shadow-card);
+  transition:transform .4s var(--ease),box-shadow .4s;
+}
+.gallery-item:hover{transform:translateY(-6px) scale(1.01);box-shadow:var(--shadow-hover)}
+.gallery-item img{
+  width:100%;height:210px;object-fit:cover;display:block;
+  transition:transform .6s ease;filter:saturate(.9);
+}
+.gallery-item:hover img{transform:scale(1.07);filter:saturate(1.1)}
+.gallery-item-overlay{
+  position:absolute;inset:0;background:rgba(30,58,36,0);
+  transition:background .35s;display:flex;align-items:center;justify-content:center;
+  border-radius:var(--r-lg);
+}
+.gallery-item:hover .gallery-item-overlay{background:rgba(30,58,36,.32)}
+.gallery-zoom-icon{color:var(--cream);font-size:20px;opacity:0;
+  transform:scale(.6);transition:opacity .3s,transform .3s}
+.gallery-item:hover .gallery-zoom-icon{opacity:1;transform:scale(1)}
+
+/* ─────────────────────────────────────────
+   EVENTS
+───────────────────────────────────────── */
+.events{background:var(--white);padding:108px 80px}
+.events-inner{max-width:1280px;margin:0 auto}
+.events-header{margin-bottom:52px}
+.events-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.event-card{
+  background:var(--cream);border:1px solid rgba(212,168,83,.18);
+  border-radius:var(--r-xl);overflow:hidden;
+  box-shadow:var(--shadow-card);
+  transition:box-shadow .35s,transform .35s var(--ease),border-color .3s;
+}
+.event-card:hover{box-shadow:var(--shadow-hover);transform:translateY(-5px);border-color:rgba(212,168,83,.4)}
+.event-card-top{
+  background:var(--forest);padding:22px 26px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.event-date-block{display:flex;flex-direction:column}
+.event-day{font-family:'Cormorant Garamond',serif;font-size:40px;font-weight:700;
+  color:var(--vanilla);line-height:1}
+.event-month-year{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.15em;
+  text-transform:uppercase;color:rgba(245,239,227,.55);margin-top:4px}
+.event-type-badge{
+  background:rgba(212,168,83,.18);border:1px solid rgba(212,168,83,.35);color:var(--vanilla);
+  font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.15em;
+  text-transform:uppercase;padding:5px 11px;border-radius:99px;
+}
+.event-card-body{padding:26px}
+.event-title{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:700;
+  color:var(--ink);margin-bottom:10px;line-height:1.3}
+.event-meta{font-size:12px;color:var(--bark-light);line-height:1.8;font-weight:300}
+.event-meta span{display:block}
+.event-meta-icon{margin-right:5px}
+
+/* ─────────────────────────────────────────
+   PARTNERS
+───────────────────────────────────────── */
+.partners{background:var(--white);padding:80px;text-align:center}
+.partners .section-tag{justify-content:center}
+.partners-list{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:10px;
+  margin-top:40px;max-width:960px;margin-left:auto;margin-right:auto;
+}
+.partner-chip{
+  background:var(--cream);border:1px solid rgba(212,168,83,.25);
+  padding:12px 24px;border-radius:99px;font-size:13px;font-weight:500;
+  color:var(--bark-mid);letter-spacing:.02em;
+  box-shadow:var(--shadow-card);
+  transition:border-color .2s,color .2s,transform .2s var(--ease),box-shadow .2s;
+}
+.partner-chip:hover{border-color:var(--vanilla);color:var(--ink);
+  transform:translateY(-2px);box-shadow:var(--shadow-hover)}
+
+/* ─────────────────────────────────────────
+   ACHIEVEMENTS
+───────────────────────────────────────── */
+.achievements{padding:108px 80px;background:var(--cream)}
+.achievements-inner{
+  max-width:1280px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 2fr;gap:88px;align-items:start;
+}
+.achievements-left .section-title{font-size:44px}
+.achievements-right{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.achievement-item{
+  display:flex;align-items:flex-start;gap:16px;padding:20px;
+  background:var(--white);border:1px solid rgba(212,168,83,.14);border-radius:var(--r-lg);
+  box-shadow:var(--shadow-card);
+  transition:border-color .3s,transform .3s var(--ease),box-shadow .3s;
+}
+.achievement-item:hover{border-color:rgba(212,168,83,.4);transform:translateY(-3px);box-shadow:var(--shadow-hover)}
+.achievement-dot{width:7px;height:7px;border-radius:50%;background:var(--vanilla);
+  margin-top:7px;flex-shrink:0}
+.achievement-text{font-size:13px;line-height:1.65;color:var(--bark-mid);font-weight:300}
+
+/* ─────────────────────────────────────────
+   DONATE BAND
+───────────────────────────────────────── */
+.donate-band{
+  background:linear-gradient(135deg,var(--vanilla) 0%,var(--vanilla-light) 100%);
+  padding:72px 80px;display:grid;grid-template-columns:1fr auto;
+  gap:60px;align-items:center;
+  position:relative;overflow:hidden;
+}
+.donate-band::before{
+  content:'';position:absolute;right:-80px;top:-80px;width:300px;height:300px;
+  border-radius:50%;background:rgba(255,255,255,.12);
+}
+.donate-band-title{
+  font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3vw,44px);font-weight:700;
+  color:var(--ink);line-height:1.15;margin-bottom:10px;position:relative;z-index:2;
+}
+.donate-band-sub{font-size:15px;color:var(--bark-mid);line-height:1.7;
+  max-width:620px;font-weight:300;position:relative;z-index:2;
+}
+.btn-earth{
+  background:var(--ink);color:var(--cream);padding:16px 40px;
+  font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  text-decoration:none;border-radius:var(--r-md);white-space:nowrap;
+  box-shadow:0 4px 24px rgba(26,18,8,.3);position:relative;z-index:2;
+  transition:background .2s,transform .2s var(--ease),box-shadow .2s;
+}
+.btn-earth:hover{background:var(--bark-mid);transform:translateY(-2px);
+  box-shadow:0 8px 36px rgba(26,18,8,.4)}
+
+/* ─────────────────────────────────────────
+   CTA / CONTACT
+───────────────────────────────────────── */
+.cta{background:var(--forest);padding:108px 80px;text-align:center;position:relative;overflow:hidden}
+.cta::before{
+  content:'MOFA';position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  font-family:'Cormorant Garamond',serif;font-size:200px;font-weight:700;
+  color:rgba(255,255,255,.02);white-space:nowrap;letter-spacing:.1em;
+}
+.cta-inner{position:relative;z-index:2}
+.cta .section-tag{justify-content:center;color:var(--vanilla)}
+.cta-title{font-family:'Cormorant Garamond',serif;font-size:clamp(38px,4.5vw,66px);
+  color:var(--cream);margin-bottom:20px;line-height:1.08}
+.cta-title em{font-style:italic;color:var(--vanilla)}
+.cta-sub{font-size:15px;color:rgba(245,239,227,.58);margin-bottom:52px;
+  max-width:480px;margin-left:auto;margin-right:auto;font-weight:300}
+.cta-buttons{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn-gold{
+  background:var(--vanilla);color:var(--ink);padding:16px 44px;
+  font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  text-decoration:none;border-radius:var(--r-md);
+  box-shadow:0 4px 24px rgba(212,168,83,.3);
+  transition:background .2s,transform .2s var(--ease),box-shadow .2s;
+}
+.btn-gold:hover{background:var(--vanilla-light);transform:translateY(-2px);
+  box-shadow:0 8px 36px rgba(212,168,83,.45)}
+.btn-ghost{
+  border:1.5px solid rgba(245,239,227,.2);color:var(--cream);
+  padding:16px 44px;font-size:12px;font-weight:500;letter-spacing:.1em;
+  text-transform:uppercase;text-decoration:none;border-radius:var(--r-md);
+  backdrop-filter:blur(8px);
+  transition:border-color .2s,background .2s,transform .2s var(--ease);
+}
+.btn-ghost:hover{border-color:var(--vanilla);background:rgba(212,168,83,.08);transform:translateY(-2px)}
+.cta-contact{
+  margin-top:64px;padding-top:48px;
+  border-top:1px solid rgba(245,239,227,.1);
+  display:grid;grid-template-columns:repeat(3,1fr);gap:2px;
+  max-width:800px;margin-left:auto;margin-right:auto;position:relative;z-index:2;
+}
+.contact-item{padding:28px;text-align:center}
+.contact-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--vanilla);margin-bottom:9px}
+.contact-value{font-size:13px;color:rgba(245,239,227,.65);line-height:1.65;font-weight:300}
+
+/* ─────────────────────────────────────────
+   FOOTER
+───────────────────────────────────────── */
+footer{
+  background:#0D0906;padding:36px 80px;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:16px;
+}
+.footer-left{font-family:'JetBrains Mono',monospace;font-size:10px;
+  letter-spacing:.12em;color:rgba(245,239,227,.25)}
+.footer-right{font-size:12px;color:rgba(245,239,227,.2);font-weight:300}
+.footer-reg{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.1em;
+  color:rgba(212,168,83,.35);margin-top:4px}
+
+/* ─────────────────────────────────────────
+   ANIMATIONS
+───────────────────────────────────────── */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(28px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .75s ease,transform .75s ease}
+.reveal.visible{opacity:1;transform:none}
+
+/* ─────────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────────── */
+@media(max-width:1100px){
+  .products-grid{grid-template-columns:1fr 1fr}
+  .products-grid .product-card:first-child{grid-column:span 2}
+  .forum-header{grid-template-columns:1fr;gap:40px}
+  .forum-details{grid-template-columns:1fr 1fr}
+  .gallery-grid{grid-template-columns:repeat(3,1fr)}
+  .events-grid{grid-template-columns:1fr 1fr}
+  .donate-band{grid-template-columns:1fr;gap:32px}
+  .health-trees-header{grid-template-columns:1fr;gap:40px}
+  .health-benefits{grid-template-columns:1fr 1fr}
+  .kampala-layout{grid-template-columns:1fr;gap:48px}
+  .kampala-img-main img{height:360px}
+  .climate-header{grid-template-columns:1fr;gap:40px}
+  .climate-impacts{grid-template-columns:1fr 1fr}
+  .about{gap:56px;padding:100px 48px}
+}
+@media(max-width:900px){
+  .nav-inner{padding:0 20px}
+  .nav-links{display:none}
+  .nav-hamburger{display:flex}
+  .nav-mobile-menu{display:block}
+  .hero{grid-template-columns:1fr}
+  .hero-left{padding:116px 28px 64px}
+  .hero-left::after{display:none}
+  .hero-right{min-height:340px}
+  .hero-slide-caption{left:18px}
+  .about{grid-template-columns:1fr;gap:40px;padding:64px 24px}
+  .about-pillars{grid-template-columns:1fr 1fr}
+  .products{padding:64px 24px}
+  .products-header{flex-direction:column;gap:16px;margin-bottom:32px}
+  .mission-band{grid-template-columns:1fr;padding:48px 24px}
+  .mission-item{border-right:none;border-bottom:1px solid rgba(212,168,83,.15)}
+  .mission-item:last-child{border-bottom:none}
+  .activities{padding:64px 24px}
+  .activities-grid{grid-template-columns:1fr 1fr}
+  .activities-image-grid{grid-template-columns:1fr 1fr;grid-auto-rows:180px}
+  .act-img-card.span-2-col{grid-column:span 2}
+  .act-img-card.span-2-row{grid-row:span 1}
+  .health-trees{padding:64px 24px}
+  .health-trees-header{grid-template-columns:1fr}
+  .health-trees-grid{grid-template-columns:1fr;grid-template-rows:auto}
+  .health-img-main{grid-row:span 1;min-height:280px}
+  .health-benefits{grid-template-columns:1fr}
+  .climate{padding:64px 24px}
+  .climate-videos{grid-template-columns:1fr;gap:14px}
+  .climate-impacts{grid-template-columns:1fr 1fr}
+  .forum{padding:64px 24px}
+  .forum-header{grid-template-columns:1fr}
+  .forum-details{grid-template-columns:1fr}
+  .forum-quote-band{padding:36px 28px}
+  .kampala-meeting{padding:64px 24px}
+  .kampala-layout{grid-template-columns:1fr}
+  .kampala-highlights{grid-template-columns:1fr 1fr}
+  .photo-feature{grid-template-columns:1fr}
+  .photo-feature-img{min-height:300px}
+  .photo-feature-content{padding:52px 28px}
+  .photo-feature.reverse .photo-feature-img{order:-1}
+  .gallery-section{padding:64px 24px}
+  .gallery-grid{grid-template-columns:1fr 1fr}
+  .events{padding:64px 24px}
+  .events-grid{grid-template-columns:1fr}
+  .partners{padding:64px 24px}
+  .achievements{padding:64px 24px}
+  .achievements-inner{grid-template-columns:1fr;gap:40px}
+  .achievements-right{grid-template-columns:1fr}
+  .donate-band{padding:52px 24px}
+  .cta{padding:64px 24px}
+  .cta-contact{grid-template-columns:1fr}
+  .cta-buttons{flex-direction:column;align-items:center}
+  footer{flex-direction:column;gap:12px;padding:32px 24px;text-align:center}
+}
+@media(max-width:600px){
+  .about-pillars{grid-template-columns:1fr}
+  .activities-image-grid{grid-template-columns:1fr;grid-auto-rows:200px}
+  .act-img-card.span-2-col{grid-column:span 1}
+  .gallery-grid{grid-template-columns:1fr 1fr}
+  .hero-stats{gap:24px}
+  .forum-details{grid-template-columns:1fr}
+  .kampala-highlights{grid-template-columns:1fr}
+  .health-trees-grid{grid-template-columns:1fr;grid-template-rows:auto}
+  .climate-impacts{grid-template-columns:1fr}
+  .climate-stat-row{gap:22px}
+  .health-benefits{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-mark">M</div>
+      <div class="nav-logo-text">MOFA<br>Est. 2013 · Uganda</div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#about">Who We Are</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="#climate">Climate</a></li>
+      <li><a href="#artisan">Artisans</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
+      <li><a href="donate.html" class="nav-donate">Donate</a></li>
+    </ul>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav-mobile-menu" id="nav-mobile-menu" aria-hidden="true">
+    <ul class="nav-mobile-links">
+      <li><a href="#" onclick="closeMenu()">Home</a></li>
+      <li><a href="#about" onclick="closeMenu()">Who We Are</a></li>
+      <li><a href="projects.html" onclick="closeMenu()">Projects</a></li>
+      <li><a href="#climate" onclick="closeMenu()">Climate</a></li>
+      <li><a href="#artisan" onclick="closeMenu()">Artisans</a></li>
+      <li><a href="events.html" onclick="closeMenu()">Events</a></li>
+      <li><a href="gallery.html" onclick="closeMenu()">Gallery</a></li>
+      <li><a href="contact.html" onclick="closeMenu()" class="mobile-cta">Contact Us</a></li>
+      <li><a href="donate.html" onclick="closeMenu()" class="mobile-donate">♥ Donate</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Kasese, Uganda · Est. 2013</div>
+    <h1 class="hero-title">
+      Growing<br><em>Organically,</em><br>Thriving<br>Together
+    </h1>
+    <p class="hero-desc">
+      Margharita Organic Farmers Association empowers over 2,500 smallholder farmers in Western Uganda through sustainable agriculture and collective marketing.
+    </p>
+    <div class="hero-buttons">
+      <a href="#products" class="btn-primary">Our Products</a>
+      <a href="#about" class="btn-outline">Learn More</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">2,551</div>
+        <div class="stat-label">Members</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">25</div>
+        <div class="stat-label">Farmer Groups</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">2013</div>
+        <div class="stat-label">Founded</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-slideshow" id="heroSlideshow">
+      <div class="hero-slide active">
+        <img src="vanilla1.jpg" alt="Organic Vanilla — MOFA Kasese Uganda">
+        <div class="hero-slide-overlay"></div>
+        <div class="hero-slide-caption">
+          <span class="hero-slide-caption-tag">Flagship Crop</span>
+          <div class="hero-slide-caption-title">Certified Organic Vanilla</div>
+        </div>
+      </div>
+      <div class="hero-slide">
+        <img src="women.jpg" alt="Women farming passion fruit on Mt Rwenzori slopes">
+        <div class="hero-slide-overlay"></div>
+        <div class="hero-slide-caption">
+          <span class="hero-slide-caption-tag">Women's Empowerment</span>
+          <div class="hero-slide-caption-title">Passion Fruit on the Rwenzori Slopes</div>
+        </div>
+      </div>
+      <div class="hero-slide">
+        <img src="health.jpg" alt="Health and nutrition tree planting — MOFA Uganda">
+        <div class="hero-slide-overlay"></div>
+        <div class="hero-slide-caption">
+          <span class="hero-slide-caption-tag">Environmental &amp; Health</span>
+          <div class="hero-slide-caption-title">Tree Planting for Health &amp; Environment</div>
+        </div>
+      </div>
+      <div class="hero-slide">
+        <img src="kla.jpg" alt="MOFA delegation meeting Prime Minister in Kampala">
+        <div class="hero-slide-overlay"></div>
+        <div class="hero-slide-caption">
+          <span class="hero-slide-caption-tag">National Advocacy</span>
+          <div class="hero-slide-caption-title">Meeting the Prime Minister — Kampala</div>
+        </div>
+      </div>
+      <div class="hero-slide">
+        <img src="mango.jpg" alt="Mango Nursery — MOFA Uganda">
+        <div class="hero-slide-overlay"></div>
+        <div class="hero-slide-caption">
+          <span class="hero-slide-caption-tag">Tree Nursery</span>
+          <div class="hero-slide-caption-title">Mango Cultivation Program</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-slide-dots" id="slideDots"></div>
+    <div class="hero-slide-counter" id="slideCounter">
+      <span id="slideCurrentNum">1</span> / <span id="slideTotalNum">6</span>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item">Vanilla</span>
+    <span class="ticker-item">Cocoa</span>
+    <span class="ticker-item">Coffee</span>
+    <span class="ticker-item">Maize</span>
+    <span class="ticker-item">Groundnuts</span>
+    <span class="ticker-item">Soya Bean</span>
+    <span class="ticker-item">Sorghum</span>
+    <span class="ticker-item">Fish Farming</span>
+    <span class="ticker-item">Organic Honey</span>
+    <span class="ticker-item">Simsim</span>
+    <span class="ticker-item">Handcraft</span>
+    <span class="ticker-item">Passion Fruit</span>
+    <span class="ticker-item">Vanilla</span>
+    <span class="ticker-item">Cocoa</span>
+    <span class="ticker-item">Coffee</span>
+    <span class="ticker-item">Maize</span>
+    <span class="ticker-item">Groundnuts</span>
+    <span class="ticker-item">Soya Bean</span>
+    <span class="ticker-item">Sorghum</span>
+    <span class="ticker-item">Fish Farming</span>
+    <span class="ticker-item">Organic Honey</span>
+    <span class="ticker-item">Simsim</span>
+    <span class="ticker-item">Handcraft</span>
+    <span class="ticker-item">Passion Fruit</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="reveal">
+    <div class="section-tag">Our Story</div>
+    <h2 class="section-title">Farmer-led,<br><em>Community</em><br>Powered</h2>
+    <p class="section-body">
+      Founded in 2013 as a farmer-initiated community-based organization, MOFA officially registered on July 7, 2021. From 215 founding members, we have grown to a cooperative of over 2,551 farmers in Kasese, Uganda.
+    </p>
+    <p class="section-body">
+      Headquartered in Kajwenge parish, Kisinga sub county, Kasese District, Western Uganda, we provide technical training, collective marketing, financial services, and value-addition support to marginalized farming communities in the Rwenzori region.
+    </p>
+    <div class="about-pillars">
+      <div class="pillar">
+        <div class="pillar-icon">🎯</div>
+        <div class="pillar-title">Vision</div>
+        <div class="pillar-text">A sustainable model to eradicate poverty and promote research for agricultural products and fair prices.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">💡</div>
+        <div class="pillar-title">Mission</div>
+        <div class="pillar-text">Providing technical support to poor, marginalized communities for capacity building to fight poverty and disease.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">📈</div>
+        <div class="pillar-title">Goal</div>
+        <div class="pillar-text">Improve household incomes through production, processing, and marketing of farm produce.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">🌱</div>
+        <div class="pillar-title">Impact</div>
+        <div class="pillar-text">Empowering women, youth, and the disabled through gender-inclusive agriculture and vocational training.</div>
+      </div>
+    </div>
+  </div>
+  <div class="about-visual reveal">
+    <div class="about-big-card">
+      <div class="about-quote">
+        To become a sustainable model that eradicates poverty and promotes research for agricultural products and good prices.
+      </div>
+      <div class="about-sub">— MOFA Vision Statement</div>
+      <div class="about-tag-row">
+        <span class="about-tag">Organic</span>
+        <span class="about-tag">Fair Trade</span>
+        <span class="about-tag">Women-Led</span>
+        <span class="about-tag">Youth</span>
+        <span class="about-tag">Rwenzori Region</span>
+        <span class="about-tag">SACCO</span>
+        <span class="about-tag">Value Addition</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products" id="products">
+  <div class="products-header reveal">
+    <div>
+      <div class="section-tag" style="color:var(--vanilla)">What We Grow</div>
+      <h2 class="section-title" style="color:var(--cream)">Our <em style="color:var(--vanilla)">Products</em></h2>
+    </div>
+  </div>
+  <div class="products-grid reveal">
+    <div class="product-card">
+      <div class="product-num">01</div>
+      <div class="product-icon">🌿</div>
+      <div class="product-name">Organic Vanilla</div>
+      <div class="product-desc">Certified organic vanilla beans from the Rwenzori foothills, cured and processed to international quality standards.</div>
+    </div>
+    <div class="product-card">
+      <div class="product-num">02</div>
+      <div class="product-icon">🍫</div>
+      <div class="product-name">Cocoa</div>
+      <div class="product-desc">Sun-dried premium cocoa beans with traceable, single-origin provenance.</div>
+    </div>
+    <div class="product-card">
+      <div class="product-num">03</div>
+      <div class="product-icon">☕</div>
+      <div class="product-name">Coffee</div>
+      <div class="product-desc">Arabica and robusta varieties grown in the rich volcanic soils of Western Uganda.</div>
+    </div>
+    <div class="product-card">
+      <div class="product-num">04</div>
+      <div class="product-icon">🌽</div>
+      <div class="product-name">Cereals</div>
+      <div class="product-desc">Maize, sorghum, soya bean and groundnuts procured collectively for better market access.</div>
+    </div>
+    <div class="product-card">
+      <div class="product-num">05</div>
+      <div class="product-icon">🍯</div>
+      <div class="product-name">Organic Honey</div>
+      <div class="product-desc">Pure honey from beehives near Queen Elizabeth National Park, processed through our apiculture program.</div>
+    </div>
+    <div class="product-card">
+      <div class="product-num">06</div>
+      <div class="product-icon">🐟</div>
+      <div class="product-name">Fish Farming</div>
+      <div class="product-desc">Freshwater fish raised in community pond projects, supplementing protein and household income.</div>
+    </div>
+    <div class="product-card">
+      <div class="product-num">07</div>
+      <div class="product-icon">🪡</div>
+      <div class="product-name">Handcraft</div>
+      <div class="product-desc">Artisanal products from women and youth vocational programs: weaving, tailoring, and craft items.</div>
+    </div>
+    <div class="product-card">
+      <div class="product-num">08</div>
+      <div class="product-icon">🪨</div>
+      <div class="product-name">Briquettes</div>
+      <div class="product-desc">Eco-friendly charcoal briquettes from agricultural waste — a green energy solution for local communities.</div>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION PILLARS -->
+<div class="mission-band">
+  <div class="mission-item reveal">
+    <div class="mission-num">01</div>
+    <div class="mission-icon">🤝</div>
+    <div class="mission-title">Collective Marketing</div>
+    <div class="mission-text">We aggregate produce across our farmer groups to negotiate better prices, reduce transport costs, and reach premium export markets together.</div>
+  </div>
+  <div class="mission-item reveal">
+    <div class="mission-num">02</div>
+    <div class="mission-icon">📚</div>
+    <div class="mission-title">Capacity Building</div>
+    <div class="mission-text">Farmer training in agronomy, post-harvest handling, record keeping, and vocational skills empowers communities to break the cycle of poverty.</div>
+  </div>
+  <div class="mission-item reveal">
+    <div class="mission-num">03</div>
+    <div class="mission-icon">♀️</div>
+    <div class="mission-title">Gender &amp; Inclusion</div>
+    <div class="mission-text">Women, youth, and persons with disabilities are central to our programs — from leadership in the executive committee to access to SACCO savings.</div>
+  </div>
+</div>
+
+<!-- ACTIVITIES / PROJECTS -->
+<section class="activities" id="activities">
+  <div class="activities-header reveal">
+    <div class="section-tag">What We Do</div>
+    <h2 class="section-title">Programs &amp;<br><em>Activities</em></h2>
+  </div>
+
+  <div class="activities-grid">
+    <div class="activity-card reveal">
+      <div class="activity-icon">🌾</div>
+      <div class="activity-title">Farmer Training</div>
+      <div class="activity-text">Agronomic best practices, post-harvest handling, and record keeping workshops delivered directly to community groups.</div>
+    </div>
+    <div class="activity-card reveal">
+      <div class="activity-icon">🌳</div>
+      <div class="activity-title">Tree Nursery Projects</div>
+      <div class="activity-text">Establishing tree nurseries and fruit orchards to promote environmental conservation and household nutrition.</div>
+    </div>
+    <div class="activity-card reveal">
+      <div class="activity-icon">💰</div>
+      <div class="activity-title">Village Savings (VSLA)</div>
+      <div class="activity-text">Village Savings and Loan Associations giving rural farmers access to credit and financial planning tools.</div>
+    </div>
+    <div class="activity-card reveal">
+      <div class="activity-icon">⚗️</div>
+      <div class="activity-title">Value Addition</div>
+      <div class="activity-text">Processing vanilla, making soap, and crafting charcoal briquettes to increase margins beyond raw commodity sales.</div>
+    </div>
+    <div class="activity-card reveal">
+      <div class="activity-icon">🧑‍💼</div>
+      <div class="activity-title">Youth Development</div>
+      <div class="activity-text">Vocational training in tailoring, carpentry, welding, computer skills, and catering for school dropouts and unemployed youth.</div>
+    </div>
+    <div class="activity-card reveal">
+      <div class="activity-icon">🐝</div>
+      <div class="activity-title">Apiculture</div>
+      <div class="activity-text">Beekeeping and honey processing near Queen Elizabeth National Park, generating income and supporting pollinator ecosystems.</div>
+    </div>
+  </div>
+
+  <div class="activities-gallery-label reveal" style="margin-top:64px">
+    <div class="activities-gallery-label-text">Field Photography · Our Work in Action</div>
+  </div>
+
+  <div class="activities-image-grid reveal">
+    <div class="img-card act-img-card span-2-row">
+      <img src="vanilla1.jpg" alt="Vanilla growing — MOFA organic vanilla farmers, Kasese Uganda">
+      <div class="img-card-overlay"></div>
+      <div class="img-card-label">
+        <span class="img-card-tag">Flagship Crop</span>
+        <div class="img-card-title">Organic Vanilla</div>
+        <p class="img-card-desc">Certified organic vanilla beans grown and cured by our 2,551 member farmers.</p>
+      </div>
+    </div>
+    <div class="img-card act-img-card">
+      <img src="cocoa.jpg" alt="Cocoa drying — MOFA sun-dried cocoa, Rwenzori region Uganda">
+      <div class="img-card-overlay"></div>
+      <div class="img-card-label">
+        <span class="img-card-tag">Value Addition</span>
+        <div class="img-card-title">Cocoa Drying</div>
+        <p class="img-card-desc">Sun-drying fermented cocoa beans to international quality standards for premium export markets.</p>
+      </div>
+    </div>
+    <div class="img-card act-img-card span-2-col">
+      <img src="vanilla3.jpg" alt="Vanilla farming — MOFA cooperative farmers in the field, Kasese Uganda">
+      <div class="img-card-overlay"></div>
+      <div class="img-card-label">
+        <span class="img-card-tag">Farmer Training</span>
+        <div class="img-card-title">Vanilla in the Field</div>
+        <p class="img-card-desc">Hands-on agronomic training ensures our farmers apply best practices for maximum yield and quality.</p>
+      </div>
+    </div>
+    <div class="img-card act-img-card">
+      <img src="sorghum.jpg" alt="Sorghum farming — MOFA cereals program, Kasese Uganda">
+      <div class="img-card-overlay"></div>
+      <div class="img-card-label">
+        <span class="img-card-tag">Cereals</span>
+        <div class="img-card-title">Sorghum Farming</div>
+        <p class="img-card-desc">Collective sorghum procurement through MOFA gives smallholders better market access.</p>
+      </div>
+    </div>
+    <div class="img-card act-img-card">
+      <img src="vanilla4.jpg" alt="Vanilla pods — MOFA organic vanilla, Rwenzori foothills Uganda">
+      <div class="img-card-overlay"></div>
+      <div class="img-card-label">
+        <span class="img-card-tag">Organic Vanilla</span>
+        <div class="img-card-title">Vanilla Pods</div>
+        <p class="img-card-desc">Premium vanilla pods ready for curing — harvested from the rich soils of the Rwenzori foothills.</p>
+      </div>
+    </div>
+    <div class="img-card act-img-card span-2-row">
+      <img src="vanilla5.jpg" alt="Vanilla harvest — MOFA cooperative vanilla farmers, Western Uganda">
+      <div class="img-card-overlay"></div>
+      <div class="img-card-label">
+        <span class="img-card-tag">Harvest Season</span>
+        <div class="img-card-title">Vanilla Harvest</div>
+        <p class="img-card-desc">MOFA farmers during the vanilla harvest season — the cooperative's most celebrated time of year.</p>
+      </div>
+    </div>
+    <div class="img-card act-img-card span-2-col">
+      <img src="passion1.jpg" alt="Passion fruit farming — MOFA diversified agriculture, Kasese Uganda">
+      <div class="img-card-overlay"></div>
+      <div class="img-card-label">
+        <span class="img-card-tag">Diversification</span>
+        <div class="img-card-title">Passion Fruit Farming</div>
+        <p class="img-card-desc">Diversified fruit farming strengthens household nutrition and opens new market opportunities for members.</p>
+      </div>
+    </div>
+    <div class="img-card act-img-card">
+      <img src="vanilla6.jpg" alt="Vanilla vines — MOFA organic vanilla cultivation, Kasese Uganda">
+      <div class="img-card-overlay"></div>
+      <div class="img-card-label">
+        <span class="img-card-tag">Cultivation</span>
+        <div class="img-card-title">Vanilla Vines</div>
+        <p class="img-card-desc">Vanilla vines trained on shade trees — a signature sight across MOFA member farms in Kasese.</p>
+      </div>
+    </div>
+    <div class="img-card act-img-card span-2-col">
+      <img src="sorghum2.jpg" alt="Sorghum field — MOFA collective cereals procurement, Western Uganda">
+      <div class="img-card-overlay"></div>
+      <div class="img-card-label">
+        <span class="img-card-tag">Cereals Program</span>
+        <div class="img-card-title">Sorghum Fields</div>
+        <p class="img-card-desc">Expansive sorghum fields managed collectively, reducing costs and improving quality across our farmer groups.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHOTO FEATURE 1: Handcraft -->
+<div class="photo-feature">
+  <div class="photo-feature-img reveal">
+    <img src="mov1.jpg" alt="MOFA woman weaving baskets — handcraft program, Kasese Uganda">
+    <div class="photo-overlay"></div>
+    <div class="photo-caption">Handcraft Program · Kasese, Uganda</div>
+  </div>
+  <div class="photo-feature-content reveal">
+    <div class="section-tag">Women's Empowerment</div>
+    <h2 class="section-title">Hands That<br><em style="color:var(--vanilla)">Build Futures</em></h2>
+    <p class="section-body">
+      Through our vocational handcraft training program, women across Kasese are learning basket weaving, tailoring, knitting, and artisanal crafts — transforming traditional skills into sustainable household income. MOFA provides tools, market linkages, and mentorship so every artisan can thrive.
+    </p>
+    <div style="margin-top:36px;display:flex;gap:36px;flex-wrap:wrap;">
+      <div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:700;color:var(--vanilla)">500+</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(245,239,227,.38);margin-top:5px">Women Trained</div>
+      </div>
+      <div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:700;color:var(--vanilla)">25</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(245,239,227,.38);margin-top:5px">Community Groups</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WOMEN PASSION FRUIT ON MT RWENZORI SLOPES -->
+<div class="photo-feature reverse">
+  <div class="photo-feature-content light reveal">
+    <div class="section-tag">Women in Agriculture</div>
+    <h2 class="section-title">Women Farming<br><em>Passion Fruit</em><br>on Mt Rwenzori</h2>
+    <p class="section-body">
+      On the fertile slopes of the Rwenzori Mountains, MOFA women farmers are cultivating passion fruit in a remarkable display of resilience and enterprise. Working in community groups, these women have transformed steep hillside plots into productive orchards — growing passion fruit that nourishes families and generates vital household income.
+    </p>
+    <p class="section-body">
+      The high altitude and volcanic soils of the Rwenzori foothills produce passion fruit of exceptional quality. MOFA supports these farmers with training in trellis construction, pest management, and post-harvest handling — connecting their harvest to markets across the region.
+    </p>
+    <div style="margin-top:32px;display:flex;gap:10px;flex-wrap:wrap;">
+      <span style="background:var(--forest-pale);border:1px solid rgba(30,58,36,.2);color:var(--forest);font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:8px 16px;border-radius:99px;">Rwenzori Slopes</span>
+      <span style="background:var(--forest-pale);border:1px solid rgba(30,58,36,.2);color:var(--forest);font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:8px 16px;border-radius:99px;">Women-Led</span>
+      <span style="background:var(--forest-pale);border:1px solid rgba(30,58,36,.2);color:var(--forest);font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:8px 16px;border-radius:99px;">Nutrition &amp; Income</span>
+    </div>
+  </div>
+  <div class="photo-feature-img reveal">
+    <img src="women.jpg" alt="Women farming passion fruit on the slopes of Mt Rwenzori — MOFA Uganda">
+    <div class="photo-overlay"></div>
+    <div class="photo-caption">Passion Fruit · Mt Rwenzori Slopes</div>
+  </div>
+</div>
+
+<!-- ARTISAN SKILLS DEVELOPMENT PROGRAM -->
+<section class="artisan-section" id="artisan">
+  <div class="artisan-header reveal">
+    <div>
+      <div class="section-tag">Youth &amp; Women Empowerment</div>
+      <h2 class="section-title">Artisan Skills<br><em>Development Program</em></h2>
+      <p class="artisan-header-desc" style="margin-top:18px;">
+        MOFA runs a dedicated vocational skills program equipping youth and women across Kasese with basket weaving, tailoring, knitting, and craft-making abilities — building confidence, creativity, and sustainable income beyond the farm.
+      </p>
+    </div>
+    <div class="artisan-stats">
+      <div>
+        <div class="stat-num">500+</div>
+        <div class="stat-label">Youth &amp; Women Trained</div>
+      </div>
+      <div>
+        <div class="stat-num">12+</div>
+        <div class="stat-label">Craft Disciplines</div>
+      </div>
+    </div>
+  </div>
+  <div class="artisan-slider">
+    <div class="artisan-track">
+      <figure><img src="art1.jpg" alt="Basket weaving training — MOFA Artisan Skills Program, Kasese Uganda" loading="lazy"></figure>
+      <figure><img src="art2.jpg" alt="Tailoring skills workshop — MOFA Artisan Skills Program, Kasese Uganda" loading="lazy"></figure>
+      <figure><img src="art3.jpg" alt="Youth vocational training — MOFA Artisan Skills Program, Kasese Uganda" loading="lazy"></figure>
+      <figure><img src="art4.jpg" alt="Women artisan craft group — MOFA Artisan Skills Program, Kasese Uganda" loading="lazy"></figure>
+      <figure><img src="art5.jpg" alt="Knitting and textile skills — MOFA Artisan Skills Program, Kasese Uganda" loading="lazy"></figure>
+      <figure><img src="art6.jpg" alt="Handmade craft products — MOFA Artisan Skills Program, Kasese Uganda" loading="lazy"></figure>
+      <figure><img src="art7.jpg" alt="Artisan mentorship session — MOFA Artisan Skills Program, Kasese Uganda" loading="lazy"></figure>
+      <figure><img src="art8.jpg" alt="Skills development workshop — MOFA Artisan Skills Program, Kasese Uganda" loading="lazy"></figure>
+      <figure><img src="art9.jpg" alt="Young artisans at work — MOFA Artisan Skills Program, Kasese Uganda" loading="lazy"></figure>
+      <figure><img src="art10.jpg" alt="Women learning tailoring — MOFA Artisan Skills Program, Kasese Uganda" loading="lazy"></figure>
+      <figure><img src="art11.jpg" alt="Craft market linkage day — MOFA Artisan Skills Program, Kasese Uganda" loading="lazy"></figure>
+      <figure><img src="art12.jpg" alt="Handwoven basket display — MOFA Artisan Skills Program, Kasese Uganda" loading="lazy"></figure>
+      <figure><img src="art13.jpg" alt="Youth entrepreneurship training — MOFA Artisan Skills Program, Kasese Uganda" loading="lazy"></figure>
+      <figure><img src="art14.jpg" alt="Artisan tools and materials — MOFA Artisan Skills Program, Kasese Uganda" loading="lazy"></figure>
+      <figure><img src="art15.jpg" alt="Community craft circle — MOFA Artisan Skills Program, Kasese Uganda" loading="lazy"></figure>
+      <figure><img src="art16.jpg" alt="Women's cooperative craft group — MOFA Artisan Skills Program, Kasese Uganda" loading="lazy"></figure>
+      <figure><img src="art17.jpg" alt="Traditional weaving techniques — MOFA Artisan Skills Program, Kasese Uganda" loading="lazy"></figure>
+      <figure><img src="art18.jpg" alt="Sewing skills training — MOFA Artisan Skills Program, Kasese Uganda" loading="lazy"></figure>
+      <figure><img src="art19.jpg" alt="Finished artisan products — MOFA Artisan Skills Program, Kasese Uganda" loading="lazy"></figure>
+      <figure><img src="art20.jpg" alt="Youth skills graduation — MOFA Artisan Skills Program, Kasese Uganda" loading="lazy"></figure>
+      <figure><img src="art21.jpg" alt="Artisan trainer demonstration — MOFA Artisan Skills Program, Kasese Uganda" loading="lazy"></figure>
+      <figure><img src="art22.jpg" alt="Craft product display table — MOFA Artisan Skills Program, Kasese Uganda" loading="lazy"></figure>
+      <figure><img src="art23.jpg" alt="Women artisans collaborating — MOFA Artisan Skills Program, Kasese Uganda" loading="lazy"></figure>
+      <figure><img src="art24.jpg" alt="Youth learning new trade — MOFA Artisan Skills Program, Kasese Uganda" loading="lazy"></figure>
+      <figure><img src="art25.jpg" alt="Handcraft training session — MOFA Artisan Skills Program, Kasese Uganda" loading="lazy"></figure>
+      <figure><img src="art1.jpg" alt="Basket weaving training — MOFA Artisan Skills Program, Kasese Uganda" loading="lazy"></figure>
+      <figure><img src="art2.jpg" alt="Tailoring skills workshop — MOFA Artisan Skills Program, Kasese Uganda" loading="lazy"></figure>
+      <figure><img src="art3.jpg" alt="Youth vocational training — MOFA Artisan Skills Program, Kasese Uganda" loading="lazy"></figure>
+      <figure><img src="art4.jpg" alt="Women artisan craft group — MOFA Artisan Skills Program, Kasese Uganda" loading="lazy"></figure>
+      <figure><img src="art5.jpg" alt="Knitting and textile skills — MOFA Artisan Skills Program, Kasese Uganda" loading="lazy"></figure>
+      <figure><img src="art6.jpg" alt="Handmade craft products — MOFA Artisan Skills Program, Kasese Uganda" loading="lazy"></figure>
+      <figure><img src="art7.jpg" alt="Artisan mentorship session — MOFA Artisan Skills Program, Kasese Uganda" loading="lazy"></figure>
+      <figure><img src="art8.jpg" alt="Skills development workshop — MOFA Artisan Skills Program, Kasese Uganda" loading="lazy"></figure>
+      <figure><img src="art9.jpg" alt="Young artisans at work — MOFA Artisan Skills Program, Kasese Uganda" loading="lazy"></figure>
+      <figure><img src="art10.jpg" alt="Women learning tailoring — MOFA Artisan Skills Program, Kasese Uganda" loading="lazy"></figure>
+      <figure><img src="art11.jpg" alt="Craft market linkage day — MOFA Artisan Skills Program, Kasese Uganda" loading="lazy"></figure>
+      <figure><img src="art12.jpg" alt="Handwoven basket display — MOFA Artisan Skills Program, Kasese Uganda" loading="lazy"></figure>
+      <figure><img src="art13.jpg" alt="Youth entrepreneurship training — MOFA Artisan Skills Program, Kasese Uganda" loading="lazy"></figure>
+      <figure><img src="art14.jpg" alt="Artisan tools and materials — MOFA Artisan Skills Program, Kasese Uganda" loading="lazy"></figure>
+      <figure><img src="art15.jpg" alt="Community craft circle — MOFA Artisan Skills Program, Kasese Uganda" loading="lazy"></figure>
+      <figure><img src="art16.jpg" alt="Women's cooperative craft group — MOFA Artisan Skills Program, Kasese Uganda" loading="lazy"></figure>
+      <figure><img src="art17.jpg" alt="Traditional weaving techniques — MOFA Artisan Skills Program, Kasese Uganda" loading="lazy"></figure>
+      <figure><img src="art18.jpg" alt="Sewing skills training — MOFA Artisan Skills Program, Kasese Uganda" loading="lazy"></figure>
+      <figure><img src="art19.jpg" alt="Finished artisan products — MOFA Artisan Skills Program, Kasese Uganda" loading="lazy"></figure>
+      <figure><img src="art20.jpg" alt="Youth skills graduation — MOFA Artisan Skills Program, Kasese Uganda" loading="lazy"></figure>
+      <figure><img src="art21.jpg" alt="Artisan trainer demonstration — MOFA Artisan Skills Program, Kasese Uganda" loading="lazy"></figure>
+      <figure><img src="art22.jpg" alt="Craft product display table — MOFA Artisan Skills Program, Kasese Uganda" loading="lazy"></figure>
+      <figure><img src="art23.jpg" alt="Women artisans collaborating — MOFA Artisan Skills Program, Kasese Uganda" loading="lazy"></figure>
+      <figure><img src="art24.jpg" alt="Youth learning new trade — MOFA Artisan Skills Program, Kasese Uganda" loading="lazy"></figure>
+      <figure><img src="art25.jpg" alt="Handcraft training session — MOFA Artisan Skills Program, Kasese Uganda" loading="lazy"></figure>
+    </div>
+  </div>
+</section>
+
+<!-- HEALTH & TREE PLANTING SECTION -->
+<section class="health-trees" id="health">
+  <div class="health-trees-inner">
+    <div class="health-trees-header">
+      <div class="reveal">
+        <div class="section-tag">Environmental Health</div>
+        <h2 class="section-title">Tree Planting for<br><em>Health, Nutrition</em><br>&amp; Environment</h2>
+        <p class="section-body">
+          MOFA champions a holistic vision of wellbeing — one that links healthy forests to healthy communities. Our tree planting program combines environmental protection with nutrition security and economic development, placing fruit trees and indigenous species at the heart of our cooperative's land management strategy.
+        </p>
+        <p class="section-body">
+          By establishing community nurseries and distributing seedlings across our farmer groups, we are restoring the Rwenzori landscape while putting nutritious fruit, medicinal plants, and a cleaner environment within reach of every member household.
+        </p>
+      </div>
+      <div class="reveal">
+        <div class="about-big-card">
+          <div class="about-quote" style="font-size:19px;">
+            A tree planted today is medicine, food, and income for the family tomorrow — and clean air and water for the community forever.
+          </div>
+          <div class="about-sub">— MOFA Tree Nursery Program</div>
+          <div class="about-tag-row">
+            <span class="about-tag">Agroforestry</span>
+            <span class="about-tag">Nutrition Security</span>
+            <span class="about-tag">Carbon Sequestration</span>
+            <span class="about-tag">Watershed Protection</span>
+            <span class="about-tag">Fruit Orchards</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="health-trees-grid reveal">
+      <div class="health-img-main">
+        <img src="health.jpg" alt="Tree planting for health and environment — MOFA Uganda">
+        <div class="health-img-overlay"></div>
+        <div class="health-img-caption">
+          <span class="health-img-caption-tag">Environmental Protection</span>
+          <div class="health-img-caption-title">Tree Planting Program — Kasese District</div>
+        </div>
+      </div>
+      <div class="health-img-side">
+        <img src="passion1.jpg" alt="Passion fruit — nutrition and income for MOFA farmers, Uganda">
+        <div class="health-img-overlay"></div>
+        <div class="health-img-caption">
+          <span class="health-img-caption-tag">Nutrition &amp; Income</span>
+          <div class="health-img-caption-title">Passion Fruit Cultivation</div>
+        </div>
+      </div>
+      <div class="health-img-side">
+        <img src="mango.jpg" alt="Mango nursery — MOFA tree planting and nutrition program, Uganda">
+        <div class="health-img-overlay"></div>
+        <div class="health-img-caption">
+          <span class="health-img-caption-tag">Fruit Trees</span>
+          <div class="health-img-caption-title">Mango Orchard Development</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="health-benefits reveal">
+      <div class="health-benefit-card">
+        <div class="health-benefit-icon">🌿</div>
+        <div class="health-benefit-title">Environmental Protection</div>
+        <div class="health-benefit-text">Reforestation of the Rwenzori foothills restores biodiversity, prevents soil erosion, and protects critical watershed areas that communities depend on.</div>
+      </div>
+      <div class="health-benefit-card">
+        <div class="health-benefit-icon">🍎</div>
+        <div class="health-benefit-title">Nutrition &amp; Food Security</div>
+        <div class="health-benefit-text">Fruit trees — mango, passion fruit, avocado, and papaya — provide year-round vitamins and minerals, directly improving household dietary diversity.</div>
+      </div>
+      <div class="health-benefit-card">
+        <div class="health-benefit-icon">💵</div>
+        <div class="health-benefit-title">Economic Development</div>
+        <div class="health-benefit-text">Fruit orchards generate additional income streams for farmer households, reducing dependency on single cash crops and building long-term economic resilience.</div>
+      </div>
+      <div class="health-benefit-card">
+        <div class="health-benefit-icon">🌡️</div>
+        <div class="health-benefit-title">Climate Resilience</div>
+        <div class="health-benefit-text">Indigenous shade trees planted alongside cash crops moderate soil temperatures, retain moisture, and buffer MOFA farms against increasingly erratic rainfall patterns.</div>
+      </div>
+      <div class="health-benefit-card">
+        <div class="health-benefit-icon">💧</div>
+        <div class="health-benefit-title">Clean Water Access</div>
+        <div class="health-benefit-text">Restored forest cover along streams and hillsides protects clean water sources that are vital to farming communities and households across Kasese District.</div>
+      </div>
+      <div class="health-benefit-card">
+        <div class="health-benefit-icon">🏘️</div>
+        <div class="health-benefit-title">Community Nurseries</div>
+        <div class="health-benefit-text">Community-run tree nurseries give every farmer group ownership of seedling production, creating local green jobs and building lasting environmental stewardship.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLIMATE MITIGATION SECTION -->
+<section class="climate" id="climate">
+  <div class="climate-inner">
+    <div class="climate-header">
+      <div class="reveal">
+        <div class="section-tag">Environmental Stewardship</div>
+        <h2 class="section-title">Climate<br><em>Mitigation</em><br>in Action</h2>
+        <p class="section-body">
+          MOFA farmers are active stewards of the Rwenzori landscape. From managing animal waste to nurturing dense forest cover, our cooperative directly tackles two of agriculture's biggest climate challenges — methane emissions and carbon sequestration — at the community level.
+        </p>
+        <p class="section-body">
+          By transforming livestock waste into biogas and compost, and by planting thousands of trees across member farms, MOFA turns everyday farming practice into measurable climate action.
+        </p>
+        <div class="climate-stat-row">
+          <div class="climate-stat">
+            <div class="climate-stat-num">10k+</div>
+            <div class="climate-stat-label">Trees Planted</div>
+          </div>
+          <div class="climate-stat">
+            <div class="climate-stat-num">↓ CH₄</div>
+            <div class="climate-stat-label">Methane Reduced</div>
+          </div>
+          <div class="climate-stat">
+            <div class="climate-stat-num">25</div>
+            <div class="climate-stat-label">Farmer Groups</div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal" style="background:rgba(61,112,71,.1);border:1px solid rgba(61,112,71,.22);border-radius:var(--r-xl);padding:44px 40px;">
+        <div class="section-tag" style="margin-bottom:14px">Why It Matters</div>
+        <p style="font-family:'Cormorant Garamond',serif;font-size:20px;font-style:italic;color:var(--cream);line-height:1.6;margin-bottom:20px;">
+          Agriculture contributes nearly 20% of global greenhouse gas emissions — but it also holds the greatest potential for reversal.
+        </p>
+        <p style="font-size:13px;line-height:1.85;color:rgba(245,239,227,.55);font-weight:300">
+          Through responsible waste management and large-scale reforestation, MOFA demonstrates that smallholder cooperatives can be powerful climate actors — not just economic ones.
+        </p>
+        <div style="margin-top:28px;display:flex;flex-wrap:wrap;gap:8px;">
+          <span class="about-tag" style="background:rgba(61,112,71,.2);border-color:rgba(61,112,71,.4);color:#8fc88f;">Biogas &amp; Compost</span>
+          <span class="about-tag" style="background:rgba(61,112,71,.2);border-color:rgba(61,112,71,.4);color:#8fc88f;">Agroforestry</span>
+          <span class="about-tag" style="background:rgba(61,112,71,.2);border-color:rgba(61,112,71,.4);color:#8fc88f;">Carbon Sinks</span>
+          <span class="about-tag" style="background:rgba(61,112,71,.2);border-color:rgba(61,112,71,.4);color:#8fc88f;">Clean Energy</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="climate-videos reveal">
+      <div class="climate-video-card" id="climateCard1">
+        <video id="climateVideo1" src="methane.mp4" preload="metadata" playsinline loop></video>
+        <div class="climate-video-overlay"></div>
+        <button class="climate-play-btn" id="climateBtn1" aria-label="Play methane video">
+          <svg class="icon-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+        </button>
+        <div class="climate-video-caption">
+          <span class="climate-video-tag">Carbon &amp; Methane Reduction · Youth-Led Initiative</span>
+          <div class="climate-video-title">Turning Waste into Clean Energy</div>
+          <div class="climate-video-desc">Animal waste from MOFA livestock is captured and converted into biogas for cooking and compost for crops — cutting methane emissions and reducing dependence on charcoal.</div>
+        </div>
+      </div>
+      <div class="climate-video-card" id="climateCard2">
+        <video id="climateVideo2" src="climate.mp4" preload="metadata" playsinline loop></video>
+        <div class="climate-video-overlay"></div>
+        <button class="climate-play-btn" id="climateBtn2" aria-label="Play carbon sequestration video">
+          <svg class="icon-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+        </button>
+        <div class="climate-video-caption">
+          <span class="climate-video-tag">Carbon Sequestration · Soya Bean Cultivation</span>
+          <div class="climate-video-title">Soya Beans Locking in Carbon</div>
+          <div class="climate-video-desc">The thriving soya bean fields you see here are part of MOFA' youth-led climate action — growing nitrogen-fixing legumes that enrich the soil, absorb CO₂, and support healthy living across our farming communities.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="climate-impacts reveal">
+      <div class="climate-impact-card">
+        <div class="climate-impact-icon">🐄</div>
+        <div class="climate-impact-title">Waste-to-Biogas</div>
+        <div class="climate-impact-text">Livestock waste is channelled into biogas digesters, producing clean cooking fuel and eliminating open methane release from animal dung.</div>
+      </div>
+      <div class="climate-impact-card">
+        <div class="climate-impact-icon">🌿</div>
+        <div class="climate-impact-title">Carbon Sequestration</div>
+        <div class="climate-impact-text">Over 10,000 trees planted across member farms store carbon in biomass and soil, contributing measurably to regional climate targets.</div>
+      </div>
+      <div class="climate-impact-card">
+        <div class="climate-impact-icon">♻️</div>
+        <div class="climate-impact-title">Organic Compost</div>
+        <div class="climate-impact-text">Processed animal waste becomes nutrient-rich compost, replacing chemical fertilisers and closing the nutrient loop on MOFA farms.</div>
+      </div>
+      <div class="climate-impact-card">
+        <div class="climate-impact-icon">💨</div>
+        <div class="climate-impact-title">Reduced Deforestation</div>
+        <div class="climate-impact-text">Biogas and briquette programs cut demand for firewood and charcoal, directly protecting forest cover in the ecologically critical Rwenzori region.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORUM / NATIONAL EXECUTIVE DIRECTOR VISIT -->
+<section class="forum" id="forum">
+  <div class="forum-inner">
+    <div class="forum-header reveal">
+      <div>
+        <div class="section-tag">Community Leadership</div>
+        <h2 class="section-title">Uganda Development<br><em>Forum at MENODA</em></h2>
+        <p class="section-body">
+          MOFA and the community leadership hosted the National Executive Director of the Uganda Development Forum at the MENODA SITE — a landmark visit to our grassroots operations in Kanyughunya village, honouring the cooperative's work and deepening national partnerships for agricultural development.
+        </p>
+      </div>
+      <div class="forum-image-block reveal">
+        <img src="forum.jpg" alt="MOFA and community leadership hosting the National Executive Director Uganda Development Forum at MENODA SITE">
+        <div class="forum-img-overlay"></div>
+        <div class="forum-image-caption">
+          <span class="forum-image-caption-tag">National Executive Director · Uganda Development Forum</span>
+          <div class="forum-image-caption-title">MOFA &amp; Community Leadership at MENODA SITE</div>
+          <div class="forum-image-caption-loc">📍 Kanyughunya Village, Kajwenge Parish, Kisinga Sub County, Kasese District, Western Uganda</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="forum-details reveal">
+      <div class="forum-detail-card">
+        <div class="forum-detail-icon">🏛️</div>
+        <div class="forum-detail-label">Event</div>
+        <div class="forum-detail-value">Uganda Development Forum</div>
+        <div class="forum-detail-sub">National executive-level engagement bringing government and community leadership together at MOFA' MENODA SITE.</div>
+      </div>
+      <div class="forum-detail-card">
+        <div class="forum-detail-icon">👥</div>
+        <div class="forum-detail-label">Host</div>
+        <div class="forum-detail-value">MOFA &amp; Community Leadership</div>
+        <div class="forum-detail-sub">The cooperative and local community leaders jointly hosted the National Executive Director, representing the voice of 2,551 member farmers.</div>
+      </div>
+      <div class="forum-detail-card">
+        <div class="forum-detail-icon">📍</div>
+        <div class="forum-detail-label">Location</div>
+        <div class="forum-detail-value">MENODA SITE</div>
+        <div class="forum-detail-sub">Kanyughunya Village · Kajwenge Parish · Kisinga Sub County · Kasese District · Western Uganda</div>
+      </div>
+    </div>
+
+    <div class="forum-quote-band reveal">
+      <div class="forum-quote-text">
+        Community leadership and cooperative strength go hand in hand — when farmers organize, development follows. MOFA stands as proof that grassroots agriculture can command national attention.
+      </div>
+      <div class="forum-quote-attr">— Uganda Development Forum, MENODA SITE Visit · Kasese District</div>
+    </div>
+  </div>
+</section>
+
+<!-- KAMPALA — PRIME MINISTER MEETING -->
+<section class="kampala-meeting" id="kampala">
+  <div class="kampala-inner">
+    <div class="kampala-layout">
+      <div class="kampala-content reveal">
+        <div class="section-tag">National Advocacy · Kampala</div>
+        <h2 class="section-title">Meeting the<br><em>Prime Minister</em></h2>
+        <p class="section-body">
+          A delegation from MOFA travelled to Kampala to meet Uganda's Prime Minister in a landmark engagement focused on securing government funding and policy support for the cooperative's expanding programs in Kasese District.
+        </p>
+        <p class="section-body">
+          The meeting brought the voices of over 2,551 smallholder farmers directly to the highest levels of national government — presenting MOFA' track record, development needs, and the potential of the Rwenzori region as an agricultural powerhouse deserving of sustained public investment.
+        </p>
+        <div class="kampala-highlights">
+          <div class="kampala-highlight">
+            <div class="kampala-highlight-icon">🏛️</div>
+            <div class="kampala-highlight-title">Office of the Prime Minister</div>
+            <div class="kampala-highlight-text">High-level meeting on agricultural development funding for Western Uganda cooperative projects.</div>
+          </div>
+          <div class="kampala-highlight">
+            <div class="kampala-highlight-icon">💼</div>
+            <div class="kampala-highlight-title">Project Funding Agenda</div>
+            <div class="kampala-highlight-text">Presentation of MOFA programs for government grant consideration and rural development partnerships.</div>
+          </div>
+          <div class="kampala-highlight">
+            <div class="kampala-highlight-icon">🌍</div>
+            <div class="kampala-highlight-title">Rwenzori Region Advocacy</div>
+            <div class="kampala-highlight-text">Raising the profile of Kasese District farmers on the national development agenda.</div>
+          </div>
+          <div class="kampala-highlight">
+            <div class="kampala-highlight-icon">🤝</div>
+            <div class="kampala-highlight-title">Government Partnership</div>
+            <div class="kampala-highlight-text">Building lasting linkages between MOFA and national institutions for long-term cooperative growth.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="kampala-image-wrap reveal">
+        <div class="kampala-img-main">
+          <img src="kla.jpg" alt="MOFA delegation meeting the Prime Minister of Uganda in Kampala">
+          <div class="kampala-img-overlay"></div>
+          <div class="kampala-img-caption">
+            <span class="kampala-img-caption-tag">National Advocacy · Kampala, Uganda</span>
+            <div class="kampala-img-caption-title">MOFA Delegation Meets the Prime Minister</div>
+            <div class="kampala-img-caption-loc">📍 Kampala, Uganda — Funding &amp; Policy Engagement</div>
+          </div>
+        </div>
+        <div class="kampala-badge">
+          <div class="kampala-badge-text">Kampala<br>Uganda<br>National<br>Level</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERS -->
+<section class="partners" id="partners">
+  <div class="section-tag reveal">Collaborators</div>
+  <h2 class="section-title reveal" style="font-size:44px;">Our <em>Partners</em></h2>
+  <p style="color:var(--bark-light);font-size:14px;margin-top:12px;font-weight:300" class="reveal">Working with leading organizations to grow our impact across the Rwenzori region.</p>
+  <div class="partners-list reveal">
+    <div class="partner-chip">Rwenzori Farmers Cooperative Union</div>
+    <div class="partner-chip">Tecno Serve</div>
+    <div class="partner-chip">Tuton Uganda Ltd</div>
+    <div class="partner-chip">Agri Evolve Uganda Ltd</div>
+    <div class="partner-chip">Diamond Seeds Company Ltd</div>
+    <div class="partner-chip">Kasese District Farmers Association</div>
+  </div>
+</section>
+
+<!-- PHOTO FEATURE 2: Cocoa -->
+<div class="photo-feature reverse">
+  <div class="photo-feature-content light reveal">
+    <div class="section-tag">Premium Produce</div>
+    <h2 class="section-title">Sun-Dried<br><em>Rwenzori Cocoa</em></h2>
+    <p class="section-body">
+      Our cocoa is carefully harvested, fermented, and sun-dried by smallholder farmers in the Rwenzori foothills. Collective procurement through MOFA ensures farmers receive fair prices while buyers access traceable, high-quality beans direct from source. Every batch carries the story of the families who grew it.
+    </p>
+    <div style="margin-top:32px;display:flex;gap:10px;flex-wrap:wrap;">
+      <span style="background:var(--forest-pale);border:1px solid rgba(30,58,36,.2);color:var(--forest);font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:8px 16px;border-radius:99px;">Sun-Dried</span>
+      <span style="background:var(--forest-pale);border:1px solid rgba(30,58,36,.2);color:var(--forest);font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:8px 16px;border-radius:99px;">Traceable Origin</span>
+      <span style="background:var(--forest-pale);border:1px solid rgba(30,58,36,.2);color:var(--forest);font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:8px 16px;border-radius:99px;">Farmer-Owned</span>
+    </div>
+  </div>
+  <div class="photo-feature-img reveal">
+    <img src="mov2.jpg" alt="MOFA cocoa drying — premium Rwenzori region cocoa beans, Kasese Uganda">
+    <div class="photo-overlay"></div>
+    <div class="photo-caption">Cocoa Drying · Rwenzori Region</div>
+  </div>
+</div>
+
+<!-- GALLERY SECTION -->
+<section class="gallery-section" id="gallery">
+  <div class="gallery-header reveal">
+    <div>
+      <div class="section-tag">Visual Stories</div>
+      <h2 class="section-title">Photo <em>Gallery</em></h2>
+    </div>
+    <p style="font-size:14px;color:var(--bark-light);max-width:320px;line-height:1.75;font-weight:300;">A visual journey through our farms, communities, and the people behind MOFA.</p>
+  </div>
+  <div class="gallery-grid reveal">
+    <div class="gallery-item">
+      <img src="vanilla1.jpg" alt="Organic Vanilla — MOFA Kasese Uganda">
+      <div class="gallery-item-overlay"><span class="gallery-zoom-icon">⊕</span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="mango.jpg" alt="Mango Nursery — MOFA Uganda">
+      <div class="gallery-item-overlay"><span class="gallery-zoom-icon">⊕</span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="sorghum.jpg" alt="Sorghum — MOFA Cereals Program">
+      <div class="gallery-item-overlay"><span class="gallery-zoom-icon">⊕</span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="health.jpg" alt="Tree Planting for Health — MOFA Uganda">
+      <div class="gallery-item-overlay"><span class="gallery-zoom-icon">⊕</span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="women.jpg" alt="Women Passion Fruit Farming — Mt Rwenzori Slopes">
+      <div class="gallery-item-overlay"><span class="gallery-zoom-icon">⊕</span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="kla.jpg" alt="Kampala — Prime Minister Meeting — MOFA Delegation">
+      <div class="gallery-item-overlay"><span class="gallery-zoom-icon">⊕</span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="forum.jpg" alt="Uganda Development Forum at MENODA SITE — MOFA">
+      <div class="gallery-item-overlay"><span class="gallery-zoom-icon">⊕</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTS SECTION -->
+<section class="events" id="events">
+  <div class="events-inner">
+    <div class="events-header reveal">
+      <div class="section-tag">Upcoming &amp; Recent</div>
+      <h2 class="section-title">Events &amp;<br><em>Forums</em></h2>
+    </div>
+    <div class="events-grid">
+      <div class="event-card reveal">
+        <div class="event-card-top">
+          <div class="event-date-block">
+            <div class="event-day">12</div>
+            <div class="event-month-year">May 2026</div>
+          </div>
+          <div class="event-type-badge">Forum</div>
+        </div>
+        <div class="event-card-body">
+          <div class="event-title">Uganda Development Forum — MENODA SITE Visit</div>
+          <div class="event-meta">
+            <span><span class="event-meta-icon">📍</span>Kanyughunya Village, Kajwenge Parish, Kisinga Sub County, Kasese District</span>
+            <span style="margin-top:6px;"><span class="event-meta-icon">👥</span>MOFA &amp; Community Leadership hosting National Executive Director, Uganda Development Forum</span>
+          </div>
+        </div>
+      </div>
+      <div class="event-card reveal">
+        <div class="event-card-top">
+          <div class="event-date-block">
+            <div class="event-day">20</div>
+            <div class="event-month-year">Jun 2026</div>
+          </div>
+          <div class="event-type-badge">Training</div>
+        </div>
+        <div class="event-card-body">
+          <div class="event-title">Quarterly Farmer Agronomy Training</div>
+          <div class="event-meta">
+            <span><span class="event-meta-icon">📍</span>MOFA Main Office, Kajwenge Parish, Kasese</span>
+            <span style="margin-top:6px;"><span class="event-meta-icon">👥</span>All community farmer groups — post-harvest handling &amp; vanilla curing workshops</span>
+          </div>
+        </div>
+      </div>
+      <div class="event-card reveal">
+        <div class="event-card-top">
+          <div class="event-date-block">
+            <div class="event-day">14</div>
+            <div class="event-month-year">Jul 2026</div>
+          </div>
+          <div class="event-type-badge">AGM</div>
+        </div>
+        <div class="event-card-body">
+          <div class="event-title">Annual General Meeting 2026</div>
+          <div class="event-meta">
+            <span><span class="event-meta-icon">📍</span>Kisinga Sub County, Kasese District, Western Uganda</span>
+            <span style="margin-top:6px;"><span class="event-meta-icon">👥</span>2,551 cooperative members — annual review, elections, and harvest season planning</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section class="achievements">
+  <div class="achievements-inner">
+    <div class="reveal">
+      <div class="section-tag">Track Record</div>
+      <h2 class="section-title">Key<br><em>Achievements</em></h2>
+      <p class="section-body">Since our founding in 2013, MOFA has built real infrastructure and tangible impact for farming communities in Kasese District.</p>
+    </div>
+    <div class="achievements-right reveal">
+      <div class="achievement-item"><div class="achievement-dot"></div><div class="achievement-text">Grew membership from 215 to 2,551 active farmers</div></div>
+      <div class="achievement-item"><div class="achievement-dot"></div><div class="achievement-text">Acquired land and established permanent office</div></div>
+      <div class="achievement-item"><div class="achievement-dot"></div><div class="achievement-text">Successfully processed and sold certified organic vanilla</div></div>
+      <div class="achievement-item"><div class="achievement-dot"></div><div class="achievement-text">Launched cocoa drying and cereals procurement programs</div></div>
+      <div class="achievement-item"><div class="achievement-dot"></div><div class="achievement-text">Established fish farming and apiculture units</div></div>
+      <div class="achievement-item"><div class="achievement-dot"></div><div class="achievement-text">Active SACCO savings groups across multiple communities</div></div>
+      <div class="achievement-item"><div class="achievement-dot"></div><div class="achievement-text">Delegation to Kampala — Prime Minister meeting on project funding</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- DONATE BAND -->
+<div class="donate-band" id="donate">
+  <div class="reveal">
+    <div class="donate-band-title">Support Ugandan<br>Farmers — Donate Today</div>
+    <p class="donate-band-sub">Your contribution helps us expand training programs, provide farming inputs, and connect more smallholder farmers in Kasese District to fair markets. Every shilling makes a difference.</p>
+  </div>
+  <div class="reveal">
+    <a href="mailto:margharitaorganicvanilla@gmail.com?subject=Donation%20Inquiry%20-%20MOFA" class="btn-earth">♥ Make a Donation</a>
+  </div>
+</div>
+
+<!-- CTA / CONTACT -->
+<section class="cta" id="contact">
+  <div class="cta-inner">
+    <div class="section-tag">Get In Touch</div>
+    <h2 class="cta-title">Partner With<br><em>MOFA</em></h2>
+    <p class="cta-sub">Whether you're a buyer, development partner, donor, or investor — we'd love to hear from you.</p>
+    <div class="cta-buttons">
+      <a href="mailto:margharitaorganicvanilla@gmail.com" class="btn-gold">Email Us</a>
+      <a href="tel:+256787783892" class="btn-ghost">Call Us</a>
+    </div>
+    <div class="cta-contact">
+      <div class="contact-item">
+        <div class="contact-label">Email</div>
+        <div class="contact-value">margharitaorganicvanilla<br>@gmail.com</div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-label">Phone</div>
+        <div class="contact-value">+256 787 783 892<br>+256 743 602 069</div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-label">Address</div>
+        <div class="contact-value">Kajwenge Parish, Kisinga Sub County<br>Kasese District, Western Uganda</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">
+    © 2026 Margharita Organic Farmers Association (MOFA)
+    <div class="footer-reg">P.O. Box 530, Kasese, Uganda</div>
+  </div>
+  <div class="footer-right">
+    Empowering farmers · Building communities · Growing sustainably
+  </div>
+</footer>
+
+<script>
+// ── Hamburger / mobile menu ──
+const hamburger = document.getElementById('nav-hamburger');
+const mobileMenu = document.getElementById('nav-mobile-menu');
+let menuOpen = false;
+hamburger.addEventListener('click', () => {
+  menuOpen = !menuOpen;
+  hamburger.classList.toggle('open', menuOpen);
+  mobileMenu.classList.toggle('open', menuOpen);
+  hamburger.setAttribute('aria-expanded', menuOpen);
+  mobileMenu.setAttribute('aria-hidden', !menuOpen);
+});
+function closeMenu() {
+  menuOpen = false;
+  hamburger.classList.remove('open');
+  mobileMenu.classList.remove('open');
+  hamburger.setAttribute('aria-expanded', false);
+  mobileMenu.setAttribute('aria-hidden', true);
+}
+document.addEventListener('click', (e) => {
+  if (menuOpen && !e.target.closest('nav')) closeMenu();
+});
+
+// ── Hero Slideshow ──
+const slides = document.querySelectorAll('.hero-slide');
+const dotsContainer = document.getElementById('slideDots');
+const currentNumEl = document.getElementById('slideCurrentNum');
+const totalNumEl = document.getElementById('slideTotalNum');
+let currentSlide = 0;
+let slideInterval;
+totalNumEl.textContent = slides.length;
+slides.forEach((_, i) => {
+  const dot = document.createElement('button');
+  dot.className = 'slide-dot' + (i === 0 ? ' active' : '');
+  dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+  dot.addEventListener('click', () => { goToSlide(i); resetSlideshow(); });
+  dotsContainer.appendChild(dot);
+});
+function goToSlide(n) {
+  slides[currentSlide].classList.remove('active');
+  dotsContainer.children[currentSlide].classList.remove('active');
+  currentSlide = (n + slides.length) % slides.length;
+  slides[currentSlide].classList.add('active');
+  dotsContainer.children[currentSlide].classList.add('active');
+  currentNumEl.textContent = currentSlide + 1;
+}
+function nextSlide() { goToSlide(currentSlide + 1); }
+function startSlideshow() { slideInterval = setInterval(nextSlide, 4800); }
+function resetSlideshow() { clearInterval(slideInterval); startSlideshow(); }
+startSlideshow();
+
+// ── Scroll reveal ──
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 55);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08 });
+reveals.forEach(el => observer.observe(el));
+
+// ── Nav scroll shadow ──
+const nav = document.getElementById('main-nav');
+window.addEventListener('scroll', () => {
+  nav.style.boxShadow = window.scrollY > 32
+    ? '0 4px 32px rgba(26,18,8,.1)'
+    : 'none';
+}, { passive: true });
+
+// ── Animated counters ──
+function animateCount(el, target) {
+  const duration = 2000;
+  const step = (ts) => {
+    if (!step.t) step.t = ts;
+    const progress = Math.min((ts - step.t) / duration, 1);
+    const ease = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.floor(ease * target).toLocaleString();
+    if (progress < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+const statsObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.querySelectorAll('.stat-num').forEach(num => {
+        const val = parseInt(num.textContent.replace(/,/g, ''));
+        if (!isNaN(val) && val > 100) animateCount(num, val);
+      });
+      statsObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.5 });
+const statsEl = document.querySelector('.hero-stats');
+if (statsEl) statsObserver.observe(statsEl);
+
+// ── Climate video play/pause ──
+function setupClimateVideo(cardId, videoId, btnId) {
+  const card = document.getElementById(cardId);
+  const video = document.getElementById(videoId);
+  const btn = document.getElementById(btnId);
+  if (!card || !video || !btn) return;
+  function togglePlay() {
+    if (video.paused) { video.play(); card.classList.add('playing'); }
+    else { video.pause(); card.classList.remove('playing'); }
+  }
+  btn.addEventListener('click', (e) => { e.stopPropagation(); togglePlay(); });
+  card.addEventListener('click', togglePlay);
+  video.addEventListener('ended', () => card.classList.remove('playing'));
+}
+setupClimateVideo('climateCard1', 'climateVideo1', 'climateBtn1');
+setupClimateVideo('climateCard2', 'climateVideo2', 'climateBtn2');
+</script>
+</body>
+</html>
