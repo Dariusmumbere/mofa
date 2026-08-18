@@ -1,0 +1,1804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects — MOVFACOS Uganda</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F7F2E8;
+    --vanilla: #E8D5A0;
+    --vanilla-dark: #C9A84C;
+    --earth: #3D2B1F;
+    --earth-mid: #5C3D2E;
+    --earth-light: #8B6347;
+    --green: #2D4A2D;
+    --green-light: #4A7A4A;
+    --green-pale: #C8D8B8;
+    --white: #FEFDF9;
+    --gold: #C9A84C;
+    --gold-light: #E8D5A0;
+    --ink: #1A120C;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--earth);
+    overflow-x: hidden;
+  }
+
+  /* ══════════════════════════════
+     NAV
+  ══════════════════════════════ */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    background: rgba(247,242,232,0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,168,76,0.3);
+    transition: box-shadow 0.3s;
+  }
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 48px;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  .nav-logo-mark {
+    width: 38px; height: 38px;
+    background: var(--green);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    color: var(--gold);
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  .nav-logo-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    color: var(--earth);
+    text-transform: uppercase;
+    line-height: 1.3;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+    align-items: center;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--earth-mid);
+    text-transform: uppercase;
+    transition: color 0.2s;
+    white-space: nowrap;
+  }
+
+  .nav-links a:hover,
+  .nav-links a.active { color: var(--gold); }
+
+  .nav-cta {
+    background: var(--green) !important;
+    color: var(--cream) !important;
+    padding: 9px 20px;
+    border-radius: 2px;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--green-light) !important; }
+
+  .nav-donate {
+    background: var(--gold) !important;
+    color: var(--earth) !important;
+    padding: 9px 20px;
+    border-radius: 2px;
+    font-weight: 600 !important;
+    transition: background 0.2s !important;
+  }
+  .nav-donate:hover { background: var(--vanilla-dark) !important; }
+
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40px; height: 40px;
+    background: none;
+    border: 1px solid rgba(61,43,31,0.2);
+    border-radius: 3px;
+    cursor: pointer;
+    gap: 5px;
+    padding: 8px;
+    transition: border-color 0.2s;
+    flex-shrink: 0;
+  }
+
+  .nav-hamburger:hover { border-color: var(--gold); }
+
+  .nav-hamburger span {
+    display: block;
+    width: 22px; height: 2px;
+    background: var(--earth);
+    border-radius: 2px;
+    transition: transform 0.3s, opacity 0.3s;
+    transform-origin: center;
+  }
+
+  .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .nav-mobile-menu {
+    display: none;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.4s ease;
+    background: rgba(247,242,232,0.98);
+    border-top: 1px solid rgba(201,168,76,0.2);
+  }
+
+  .nav-mobile-menu.open { max-height: 520px; }
+
+  .nav-mobile-links {
+    list-style: none;
+    padding: 12px 24px 20px;
+  }
+
+  .nav-mobile-links li { border-bottom: 1px solid rgba(201,168,76,0.15); }
+  .nav-mobile-links li:last-child { border-bottom: none; }
+
+  .nav-mobile-links a {
+    display: block;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: var(--earth-mid);
+    text-transform: uppercase;
+    padding: 14px 0;
+    transition: color 0.2s;
+  }
+
+  .nav-mobile-links a:hover { color: var(--gold); }
+  .nav-mobile-links .mobile-cta { color: var(--green) !important; font-weight: 600; }
+  .nav-mobile-links .mobile-donate { color: var(--gold) !important; font-weight: 700; }
+
+  /* ══════════════════════════════
+     PAGE HERO
+  ══════════════════════════════ */
+  .page-hero {
+    background: var(--green);
+    padding: 160px 80px 90px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .page-hero::before {
+    content: 'PROJECTS';
+    position: absolute;
+    bottom: -40px; right: -10px;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(90px, 17vw, 210px);
+    font-weight: 900;
+    color: rgba(255,255,255,0.04);
+    letter-spacing: 0.05em;
+    line-height: 1;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  .page-hero::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      radial-gradient(ellipse at 85% 25%, rgba(201,168,76,0.13) 0%, transparent 55%),
+      radial-gradient(ellipse at 10% 80%, rgba(201,168,76,0.06) 0%, transparent 45%);
+    pointer-events: none;
+  }
+
+  .page-hero-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 1240px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: end;
+  }
+
+  .page-hero-left {}
+
+  .page-hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s ease forwards;
+  }
+
+  .page-hero-eyebrow::before {
+    content: '';
+    width: 40px; height: 1px;
+    background: var(--gold);
+  }
+
+  .page-hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(48px, 6.5vw, 88px);
+    font-weight: 900;
+    line-height: 0.95;
+    color: var(--cream);
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.4s ease forwards;
+  }
+
+  .page-hero-title em {
+    font-style: italic;
+    color: var(--gold);
+    display: block;
+  }
+
+  .page-hero-desc {
+    font-size: 15px;
+    line-height: 1.85;
+    color: rgba(247,242,232,0.65);
+    max-width: 480px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.6s ease forwards;
+  }
+
+  /* Hero right — stat cards */
+  .page-hero-right {
+    opacity: 0;
+    animation: fadeUp 0.8s 0.7s ease forwards;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    align-self: end;
+    padding-bottom: 4px;
+  }
+
+  .hero-stat-card {
+    background: rgba(247,242,232,0.06);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 4px;
+    padding: 24px 20px;
+    transition: background 0.3s, border-color 0.3s;
+  }
+
+  .hero-stat-card:hover {
+    background: rgba(201,168,76,0.1);
+    border-color: rgba(201,168,76,0.45);
+  }
+
+  .hero-stat-card:first-child {
+    grid-column: span 2;
+    background: rgba(201,168,76,0.12);
+    border-color: rgba(201,168,76,0.35);
+  }
+
+  .hero-stat-icon { font-size: 22px; margin-bottom: 10px; }
+
+  .hero-stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .hero-stat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(247,242,232,0.45);
+  }
+
+  /* ══════════════════════════════
+     TICKER
+  ══════════════════════════════ */
+  .ticker {
+    background: var(--gold);
+    padding: 11px 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .ticker-inner {
+    display: inline-flex;
+    animation: ticker 32s linear infinite;
+  }
+
+  .ticker-item {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--earth);
+    padding: 0 28px;
+  }
+
+  .ticker-item::before {
+    content: '✦';
+    margin-right: 28px;
+    opacity: 0.5;
+  }
+
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ══════════════════════════════
+     INTRO BAND
+  ══════════════════════════════ */
+  .intro-band {
+    background: var(--white);
+    padding: 72px 80px;
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+  }
+
+  .intro-band-inner {
+    max-width: 1240px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+  }
+
+  .intro-pillar {
+    padding: 0 40px;
+    border-right: 1px solid rgba(201,168,76,0.2);
+    position: relative;
+  }
+
+  .intro-pillar:first-child { padding-left: 0; }
+  .intro-pillar:last-child { border-right: none; }
+
+  .intro-pillar-icon { font-size: 28px; margin-bottom: 16px; }
+
+  .intro-pillar-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--earth);
+    margin-bottom: 10px;
+  }
+
+  .intro-pillar-text {
+    font-size: 13px;
+    line-height: 1.8;
+    color: var(--earth-light);
+  }
+
+  /* ══════════════════════════════
+     PROJECTS MAIN BODY
+  ══════════════════════════════ */
+  .projects-body {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 80px 48px 120px;
+  }
+
+  /* ── Section header ── */
+  .section-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 48px;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .section-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+
+  .section-tag::before {
+    content: '';
+    width: 28px; height: 1px;
+    background: var(--gold);
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 3vw, 44px);
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--earth);
+  }
+
+  .section-title em { font-style: italic; color: var(--green); }
+
+  .section-count {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(61,43,31,0.35);
+    padding-bottom: 4px;
+  }
+
+  /* ══════════════════════════════
+     PROJECT CARD — FEATURED (large)
+  ══════════════════════════════ */
+  .project-featured {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 0;
+    margin-bottom: 6px;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 20px 64px rgba(61,43,31,0.14);
+  }
+
+  .pf-img {
+    position: relative;
+    overflow: hidden;
+    min-height: 500px;
+  }
+
+  .pf-img img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.8s ease;
+    filter: saturate(0.9);
+  }
+
+  .project-featured:hover .pf-img img {
+    transform: scale(1.04);
+    filter: saturate(1.05);
+  }
+
+  .pf-img-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(45,74,45,0.35) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .pf-num {
+    position: absolute;
+    top: 24px; left: 28px;
+    font-family: 'Playfair Display', serif;
+    font-size: 100px;
+    font-weight: 900;
+    color: rgba(247,242,232,0.12);
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .pf-badge {
+    position: absolute;
+    bottom: 24px; left: 24px;
+    background: var(--gold);
+    color: var(--earth);
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 2px;
+    font-weight: 500;
+  }
+
+  .pf-content {
+    background: var(--earth);
+    padding: 56px 52px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+  }
+
+  .pf-content::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: var(--gold);
+  }
+
+  .pf-cat {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .pf-cat::before {
+    content: '';
+    width: 20px; height: 1px;
+    background: var(--gold);
+  }
+
+  .pf-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 2.5vw, 34px);
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+
+  .pf-title em { font-style: italic; color: var(--gold); }
+
+  .pf-text {
+    font-size: 14px;
+    line-height: 1.9;
+    color: rgba(247,242,232,0.62);
+    margin-bottom: 32px;
+  }
+
+  .pf-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 36px;
+  }
+
+  .ptag {
+    background: rgba(201,168,76,0.12);
+    border: 1px solid rgba(201,168,76,0.28);
+    color: var(--gold);
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 2px;
+  }
+
+  .pf-impact {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: rgba(201,168,76,0.12);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .pf-impact-item {
+    background: rgba(247,242,232,0.03);
+    padding: 16px 18px;
+    transition: background 0.2s;
+  }
+
+  .pf-impact-item:hover { background: rgba(201,168,76,0.08); }
+
+  .pf-impact-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .pf-impact-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(247,242,232,0.35);
+  }
+
+  /* ══════════════════════════════
+     PROJECT CARD — STANDARD GRID
+  ══════════════════════════════ */
+
+  /* 2-col */
+  .p-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    margin-bottom: 6px;
+  }
+
+  /* 3-col */
+  .p-3col {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    margin-bottom: 6px;
+  }
+
+  /* Asymmetric: wide + narrow */
+  .p-asym {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 6px;
+    margin-bottom: 6px;
+  }
+
+  .p-asym.reverse { grid-template-columns: 1fr 1.4fr; }
+
+  /* Standard project card */
+  .project-card {
+    background: var(--earth);
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+    transition: box-shadow 0.35s;
+  }
+
+  .project-card:hover {
+    box-shadow: 0 16px 48px rgba(26,18,12,0.28);
+  }
+
+  .pc-img {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pc-img img {
+    width: 100%;
+    display: block;
+    transition: transform 0.7s ease, filter 0.4s ease;
+    filter: saturate(0.85);
+  }
+
+  .pc-img.tall img { height: 380px; object-fit: cover; }
+  .pc-img.medium img { height: 300px; object-fit: cover; }
+  .pc-img.short img { height: 240px; object-fit: cover; }
+
+  .project-card:hover .pc-img img {
+    transform: scale(1.06);
+    filter: saturate(1.05);
+  }
+
+  .pc-img-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(26,18,12,0.72) 0%, rgba(26,18,12,0.1) 45%, transparent 100%);
+    pointer-events: none;
+    transition: background 0.35s;
+  }
+
+  .project-card:hover .pc-img-overlay {
+    background: linear-gradient(to top, rgba(26,18,12,0.82) 0%, rgba(26,18,12,0.15) 45%, transparent 100%);
+  }
+
+  .pc-num {
+    position: absolute;
+    top: 14px; right: 18px;
+    font-family: 'Playfair Display', serif;
+    font-size: 52px;
+    font-weight: 900;
+    color: rgba(201,168,76,0.2);
+    line-height: 1;
+    pointer-events: none;
+    transition: color 0.3s;
+  }
+
+  .project-card:hover .pc-num { color: rgba(201,168,76,0.32); }
+
+  .pc-content {
+    padding: 24px 28px 32px;
+    position: relative;
+  }
+
+  .pc-cat {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .pc-cat::before {
+    content: '';
+    width: 16px; height: 1px;
+    background: var(--gold);
+  }
+
+  .pc-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(16px, 1.8vw, 21px);
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.3;
+    margin-bottom: 12px;
+  }
+
+  .pc-title em { font-style: italic; color: var(--gold); }
+
+  .pc-text {
+    font-size: 13px;
+    line-height: 1.8;
+    color: rgba(247,242,232,0.55);
+    margin-bottom: 20px;
+  }
+
+  .pc-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  /* Accent card variant (gold bg) */
+  .project-card.accent {
+    background: var(--gold);
+  }
+
+  .project-card.accent .pc-cat { color: var(--earth-mid); }
+  .project-card.accent .pc-cat::before { background: var(--earth-mid); }
+  .project-card.accent .pc-title { color: var(--earth); }
+  .project-card.accent .pc-text { color: var(--earth-mid); }
+  .project-card.accent .pc-num { color: rgba(61,43,31,0.15); }
+  .project-card.accent .ptag {
+    background: rgba(61,43,31,0.12);
+    border-color: rgba(61,43,31,0.2);
+    color: var(--earth);
+  }
+  .project-card.accent .pc-img-overlay {
+    background: linear-gradient(to top, rgba(61,43,31,0.65) 0%, rgba(61,43,31,0.08) 45%, transparent 100%);
+  }
+  .project-card.accent:hover .pc-img-overlay {
+    background: linear-gradient(to top, rgba(61,43,31,0.78) 0%, rgba(61,43,31,0.15) 45%, transparent 100%);
+  }
+
+  /* Green variant */
+  .project-card.green-card {
+    background: var(--green);
+  }
+
+  .project-card.green-card .pc-text { color: rgba(247,242,232,0.58); }
+
+  /* ══════════════════════════════
+     QUOTE DIVIDER
+  ══════════════════════════════ */
+  .quote-divider {
+    background: var(--gold);
+    padding: 52px 80px;
+    margin-bottom: 6px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .quote-divider::before {
+    content: '"';
+    position: absolute;
+    top: -28px; left: 40px;
+    font-family: 'Playfair Display', serif;
+    font-size: 180px;
+    color: rgba(61,43,31,0.08);
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .quote-divider-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .quote-divider-text {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(17px, 2vw, 24px);
+    font-style: italic;
+    color: var(--earth);
+    line-height: 1.55;
+    position: relative;
+    z-index: 2;
+  }
+
+  .quote-divider-attr {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--earth-mid);
+    white-space: nowrap;
+    writing-mode: vertical-rl;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ══════════════════════════════
+     IMPACT STATS ROW
+  ══════════════════════════════ */
+  .impact-row {
+    background: var(--earth);
+    padding: 0;
+    margin-bottom: 6px;
+  }
+
+  .impact-row-inner {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+
+  .impact-cell {
+    padding: 48px 36px;
+    border-right: 1px solid rgba(201,168,76,0.1);
+    position: relative;
+    transition: background 0.3s;
+    overflow: hidden;
+  }
+
+  .impact-cell:last-child { border-right: none; }
+  .impact-cell:hover { background: rgba(201,168,76,0.06); }
+
+  .impact-cell::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+
+  .impact-cell:hover::before { transform: scaleX(1); }
+
+  .impact-cell-icon { font-size: 24px; margin-bottom: 16px; }
+
+  .impact-cell-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 44px;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .impact-cell-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(247,242,232,0.38);
+    margin-bottom: 8px;
+  }
+
+  .impact-cell-sub {
+    font-size: 12px;
+    line-height: 1.6;
+    color: rgba(247,242,232,0.35);
+  }
+
+  /* ══════════════════════════════
+     FISH VIDEO SECTION
+  ══════════════════════════════ */
+  .fish-video-section {
+    background: var(--ink);
+    margin-bottom: 6px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .fish-video-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(45,74,45,0.25) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 50%, rgba(201,168,76,0.08) 0%, transparent 55%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .fish-video-inner {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
+
+  .fish-video-content {
+    padding: 64px 56px;
+  }
+
+  .fish-video-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .fish-video-eyebrow::before {
+    content: '';
+    width: 20px; height: 1px;
+    background: var(--gold);
+  }
+
+  .fish-video-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 2.4vw, 32px);
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.25;
+    margin-bottom: 16px;
+  }
+
+  .fish-video-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .fish-video-text {
+    font-size: 13px;
+    line-height: 1.85;
+    color: rgba(247,242,232,0.55);
+    margin-bottom: 28px;
+  }
+
+  .fish-video-stats {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+
+  .fish-video-stat {}
+
+  .fish-video-stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .fish-video-stat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(247,242,232,0.35);
+  }
+
+  .fish-video-wrap {
+    position: relative;
+    height: 100%;
+    min-height: 380px;
+  }
+
+  .fish-video-wrap video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .fish-video-wrap::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, var(--ink) 0%, transparent 20%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .fish-video-badge {
+    position: absolute;
+    top: 20px; right: 20px;
+    z-index: 2;
+    background: rgba(201,168,76,0.9);
+    color: var(--earth);
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 2px;
+    font-weight: 500;
+  }
+
+  /* ══════════════════════════════
+     FOOTER CTA BAND
+  ══════════════════════════════ */
+  .projects-footer-band {
+    background: var(--ink);
+    padding: 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .projects-footer-band::before {
+    content: 'MOVFACOS';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Playfair Display', serif;
+    font-size: 140px;
+    font-weight: 900;
+    color: rgba(255,255,255,0.02);
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  .projects-footer-inner { position: relative; z-index: 2; }
+
+  .pf-band-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .pf-band-label::before,
+  .pf-band-label::after {
+    content: '';
+    width: 40px; height: 1px;
+    background: var(--gold);
+    opacity: 0.5;
+  }
+
+  .pf-band-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 52px);
+    color: var(--cream);
+    margin-bottom: 16px;
+    line-height: 1.1;
+  }
+
+  .pf-band-title em { font-style: italic; color: var(--gold); }
+
+  .pf-band-sub {
+    font-size: 15px;
+    color: rgba(247,242,232,0.5);
+    margin-bottom: 40px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.7;
+  }
+
+  .pf-band-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-gold {
+    background: var(--gold);
+    color: var(--earth);
+    padding: 15px 38px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: background 0.2s;
+  }
+  .btn-gold:hover { background: var(--vanilla); }
+
+  .btn-ghost {
+    border: 1px solid rgba(247,242,232,0.2);
+    color: var(--cream);
+    padding: 15px 38px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: border-color 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--gold); }
+
+  /* ══════════════════════════════
+     FOOTER
+  ══════════════════════════════ */
+  footer {
+    background: var(--ink);
+    border-top: 1px solid rgba(201,168,76,0.1);
+    padding: 40px 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .footer-left {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: rgba(247,242,232,0.3);
+  }
+
+  .footer-reg {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: rgba(201,168,76,0.4);
+    margin-top: 4px;
+  }
+
+  .footer-right {
+    font-size: 12px;
+    color: rgba(247,242,232,0.25);
+  }
+
+  /* ══════════════════════════════
+     ANIMATIONS
+  ══════════════════════════════ */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ══════════════════════════════
+     RESPONSIVE
+  ══════════════════════════════ */
+  @media (max-width: 1100px) {
+    .page-hero-inner { grid-template-columns: 1fr; gap: 48px; }
+    .page-hero-right { grid-template-columns: repeat(4, 1fr); }
+    .hero-stat-card:first-child { grid-column: span 2; }
+    .p-asym, .p-asym.reverse { grid-template-columns: 1fr 1fr; }
+    .impact-row-inner { grid-template-columns: 1fr 1fr; }
+    .impact-cell:nth-child(2) { border-right: none; }
+    .impact-cell:nth-child(3) { border-top: 1px solid rgba(201,168,76,0.1); }
+    .fish-video-inner { grid-template-columns: 1fr; }
+    .fish-video-wrap { min-height: 300px; }
+    .fish-video-wrap::before { background: linear-gradient(to bottom, var(--ink) 0%, transparent 30%); }
+  }
+
+  @media (max-width: 900px) {
+    .nav-inner { padding: 14px 20px; }
+    .nav-links { display: none; }
+    .nav-hamburger { display: flex; }
+    .nav-mobile-menu { display: block; }
+
+    .page-hero { padding: 120px 24px 64px; }
+    .page-hero-right { grid-template-columns: 1fr 1fr; }
+    .hero-stat-card:first-child { grid-column: span 2; }
+
+    .intro-band { padding: 48px 24px; }
+    .intro-band-inner { grid-template-columns: 1fr; gap: 32px; }
+    .intro-pillar { padding: 0 0 32px 0; border-right: none; border-bottom: 1px solid rgba(201,168,76,0.2); }
+    .intro-pillar:last-child { border-bottom: none; padding-bottom: 0; }
+
+    .projects-body { padding: 48px 16px 80px; }
+
+    .project-featured { grid-template-columns: 1fr; }
+    .pf-img { min-height: 320px; }
+    .pf-content { padding: 36px 28px; }
+
+    .p-2col, .p-3col, .p-asym, .p-asym.reverse { grid-template-columns: 1fr; }
+    .impact-row-inner { grid-template-columns: 1fr 1fr; }
+    .quote-divider { padding: 40px 24px; }
+    .quote-divider-inner { grid-template-columns: 1fr; gap: 16px; }
+    .quote-divider-attr { writing-mode: horizontal-tb; }
+
+    .fish-video-inner { grid-template-columns: 1fr; }
+    .fish-video-content { padding: 40px 24px 32px; }
+    .fish-video-wrap { min-height: 260px; }
+    .fish-video-wrap::before { background: linear-gradient(to bottom, var(--ink) 0%, transparent 30%); }
+
+    .projects-footer-band { padding: 60px 24px; }
+    footer { flex-direction: column; padding: 28px 24px; text-align: center; }
+  }
+
+  @media (max-width: 600px) {
+    .p-2col, .p-3col { grid-template-columns: 1fr; }
+    .impact-row-inner { grid-template-columns: 1fr; }
+    .impact-cell { border-right: none; border-bottom: 1px solid rgba(201,168,76,0.1); }
+    .page-hero-right { grid-template-columns: 1fr 1fr; }
+    .pf-impact { grid-template-columns: 1fr 1fr; }
+    .pf-band-buttons { flex-direction: column; align-items: center; }
+    .fish-video-stats { gap: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav id="main-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-mark">M</div>
+      <div class="nav-logo-text">MOVFACOS<br>Est. 2013 · Uganda</div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#about">Who We Are</a></li>
+      <li><a href="projects.html" class="active">Projects</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="index.html#contact" class="nav-cta">Contact Us</a></li>
+      <li><a href="index.html#donate" class="nav-donate">Donate</a></li>
+    </ul>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav-mobile-menu" id="nav-mobile-menu" aria-hidden="true">
+    <ul class="nav-mobile-links">
+      <li><a href="index.html" onclick="closeMenu()">Home</a></li>
+      <li><a href="index.html#about" onclick="closeMenu()">Who We Are</a></li>
+      <li><a href="projects.html" onclick="closeMenu()">Projects</a></li>
+      <li><a href="events.html" onclick="closeMenu()">Events</a></li>
+      <li><a href="gallery.html" onclick="closeMenu()">Gallery</a></li>
+      <li><a href="index.html#contact" onclick="closeMenu()" class="mobile-cta">Contact Us</a></li>
+      <li><a href="index.html#donate" onclick="closeMenu()" class="mobile-donate">♥ Donate</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ══ PAGE HERO ══ -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div class="page-hero-left">
+      <div class="page-hero-eyebrow">MOVFACOS · Kasese, Uganda</div>
+      <h1 class="page-hero-title">
+        Our<br><em>Projects</em>
+      </h1>
+      <p class="page-hero-desc">
+        Nine active programs spanning modern farming, youth enterprise, women's empowerment, environmental conservation, and market-linkage — all rooted in the communities of Kasese District, Western Uganda.
+      </p>
+    </div>
+    <div class="page-hero-right">
+      <div class="hero-stat-card">
+        <div class="hero-stat-icon">🌍</div>
+        <div class="hero-stat-num">9</div>
+        <div class="hero-stat-label">Active Projects</div>
+      </div>
+      <div class="hero-stat-card">
+        <div class="hero-stat-icon">👩‍🌾</div>
+        <div class="hero-stat-num">2,551</div>
+        <div class="hero-stat-label">Farmer Members</div>
+      </div>
+      <div class="hero-stat-card">
+        <div class="hero-stat-icon">🏘️</div>
+        <div class="hero-stat-num">25</div>
+        <div class="hero-stat-label">Community Groups</div>
+      </div>
+      <div class="hero-stat-card">
+        <div class="hero-stat-icon">📅</div>
+        <div class="hero-stat-num">2013</div>
+        <div class="hero-stat-label">Year Founded</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TICKER ══ -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item">Modern Beekeeping</span>
+    <span class="ticker-item">Youth Skilling</span>
+    <span class="ticker-item">Female Empowerment</span>
+    <span class="ticker-item">Tree Nursery</span>
+    <span class="ticker-item">Export Passion Fruits</span>
+    <span class="ticker-item">Savings Culture</span>
+    <span class="ticker-item">Vanilla Beans</span>
+    <span class="ticker-item">Sim Sim Farming</span>
+    <span class="ticker-item">Fish Pond Extension</span>
+    <span class="ticker-item">Kasese District</span>
+    <span class="ticker-item">Rwenzori Region</span>
+    <span class="ticker-item">Modern Beekeeping</span>
+    <span class="ticker-item">Youth Skilling</span>
+    <span class="ticker-item">Female Empowerment</span>
+    <span class="ticker-item">Tree Nursery</span>
+    <span class="ticker-item">Export Passion Fruits</span>
+    <span class="ticker-item">Savings Culture</span>
+    <span class="ticker-item">Vanilla Beans</span>
+    <span class="ticker-item">Sim Sim Farming</span>
+    <span class="ticker-item">Fish Pond Extension</span>
+    <span class="ticker-item">Kasese District</span>
+    <span class="ticker-item">Rwenzori Region</span>
+  </div>
+</div>
+
+<!-- ══ INTRO PILLARS ══ -->
+<div class="intro-band reveal">
+  <div class="intro-band-inner">
+    <div class="intro-pillar">
+      <div class="intro-pillar-icon">🌱</div>
+      <div class="intro-pillar-title">Agricultural Innovation</div>
+      <div class="intro-pillar-text">From modern beekeeping on small plots to export-quality passion fruit and cured vanilla beans, MOVFACOS projects introduce advanced techniques that maximise yield and market value for smallholder farmers.</div>
+    </div>
+    <div class="intro-pillar">
+      <div class="intro-pillar-icon">👩‍🤝‍👩</div>
+      <div class="intro-pillar-title">Women & Youth First</div>
+      <div class="intro-pillar-text">Hairdressing & salon enterprise, savings groups, and female youth inclusion programs place women and young people at the forefront of poverty eradication across Kasese District communities.</div>
+    </div>
+    <div class="intro-pillar">
+      <div class="intro-pillar-icon">🌍</div>
+      <div class="intro-pillar-title">Environmental Stewardship</div>
+      <div class="intro-pillar-text">Tree seedling nurseries and lake extension projects protect the Rwenzori ecosystem while creating new food sources, income streams, and long-term resilience for farming households.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PROJECTS BODY ══ -->
+<div class="projects-body">
+
+  <div class="section-header reveal">
+    <div>
+      <div class="section-tag">All Projects</div>
+      <h2 class="section-title">Nine Programs,<br><em>One Mission</em></h2>
+    </div>
+    <div class="section-count">01 — 09 · Kasese District, Uganda</div>
+  </div>
+
+  <!-- ══ PROJECT 01 — FEATURED: Modern Beekeeping ══ -->
+  <div class="project-featured reveal">
+    <div class="pf-img">
+      <img src="project1.jpg" alt="Modern beekeeping methods on a small piece of land — MOVFACOS Uganda">
+      <div class="pf-img-overlay"></div>
+      <div class="pf-num">01</div>
+      <div class="pf-badge">Featured Project</div>
+    </div>
+    <div class="pf-content">
+      <div class="pf-cat">Apiculture · Income Diversification</div>
+      <h2 class="pf-title">Modern Beekeeping on<br><em>Small Pieces of Land</em></h2>
+      <p class="pf-text">
+        MOVFACOS introduces its members to modern, scientific beekeeping methods specifically adapted for the small land holdings typical across Kasese District. Using Langstroth and top-bar hives, farmers learn hive placement, colony management, queen rearing, and safe honey extraction — producing premium organic honey from the rich floral environment near Queen Elizabeth National Park. The project generates a high-value income stream that requires very little space, making it ideal for households with limited farmland. Beyond income, the bees serve as vital pollinators for vanilla flowers, cocoa, and fruit crops grown across MOVFACOS member farms.
+      </p>
+      <div class="pf-tags">
+        <span class="ptag">Organic Honey</span>
+        <span class="ptag">Langstroth Hives</span>
+        <span class="ptag">Pollination Services</span>
+        <span class="ptag">Small-Plot Farming</span>
+        <span class="ptag">Queen Elizabeth NP</span>
+      </div>
+      <div class="pf-impact">
+        <div class="pf-impact-item">
+          <div class="pf-impact-num">50+</div>
+          <div class="pf-impact-label">Active Hives</div>
+        </div>
+        <div class="pf-impact-item">
+          <div class="pf-impact-num">Zero</div>
+          <div class="pf-impact-label">Extra Land Needed</div>
+        </div>
+        <div class="pf-impact-item">
+          <div class="pf-impact-num">2×</div>
+          <div class="pf-impact-label">Pollination Boost</div>
+        </div>
+        <div class="pf-impact-item">
+          <div class="pf-impact-num">MAC BEE</div>
+          <div class="pf-impact-label">Partner Organisation</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ PROJECTS 02 & 03 — 2-col ══ -->
+  <div class="p-2col reveal">
+
+    <!-- PROJECT 02: Youth Hairdressing & Salon -->
+    <div class="project-card accent">
+      <div class="pc-img tall">
+        <img src="project2.jpg" alt="Skilling youth and young mothers in hairdressing and salon management — MOVFACOS Uganda">
+        <div class="pc-img-overlay"></div>
+        <div class="pc-num">02</div>
+      </div>
+      <div class="pc-content">
+        <div class="pc-cat">Youth Enterprise · Vocational Skills</div>
+        <h2 class="pc-title">Skilling Youth &amp; Young Mothers in<br><em>Hairdressing &amp; Salon Management</em></h2>
+        <p class="pc-text">
+          This hands-on vocational program equips out-of-school youth and young mothers with professional hairdressing, beauty therapy, and salon business management skills. Participants learn cutting, braiding, chemical treatments, and client management — then receive startup toolkits to launch micro-enterprises. The program directly targets youth unemployment, a critical challenge in Kasese District, turning a marketable skill into a sustainable livelihood that can be practiced from home or a low-cost salon space.
+        </p>
+        <div class="pc-tags">
+          <span class="ptag">Hairdressing</span>
+          <span class="ptag">Business Skills</span>
+          <span class="ptag">Young Mothers</span>
+          <span class="ptag">Self-Employment</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 03: Female Youth Poverty Eradication -->
+    <div class="project-card green-card">
+      <div class="pc-img tall">
+        <img src="project3.jpg" alt="Encouraging greater participation of female youth in poverty eradication projects — MOVFACOS Uganda">
+        <div class="pc-img-overlay"></div>
+        <div class="pc-num">03</div>
+      </div>
+      <div class="pc-content">
+        <div class="pc-cat">Gender Inclusion · Youth Empowerment</div>
+        <h2 class="pc-title">Female Youth in<br><em>Poverty Eradication Projects</em></h2>
+        <p class="pc-text">
+          MOVFACOS actively recruits and supports female youth participation across all its economic programs — from vanilla farming and handcraft production to savings groups and vocational training. This project provides mentorship, subsidised training fees, and female-safe meeting spaces to break the social and economic barriers that prevent young women from joining cooperative programs. By embedding gender inclusion into every project design, MOVFACOS ensures that the next generation of women in Kasese District have an equal stake in their community's agricultural future.
+        </p>
+        <div class="pc-tags">
+          <span class="ptag">Gender Equity</span>
+          <span class="ptag">Mentorship</span>
+          <span class="ptag">Youth Networks</span>
+          <span class="ptag">Kasese District</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ QUOTE DIVIDER ══ -->
+  <div class="quote-divider reveal">
+    <div class="quote-divider-inner">
+      <div class="quote-divider-text">
+        A cooperative that invests in its women and youth is a cooperative that secures its future — every seedling nursed, every skill taught, and every shilling saved is a foundation laid for the next generation.
+      </div>
+      <div class="quote-divider-attr">MOVFACOS · Kasese, Uganda</div>
+    </div>
+  </div>
+
+  <!-- ══ PROJECTS 04, 05, 06 — 3-col ══ -->
+  <div class="p-3col reveal">
+
+    <!-- PROJECT 04: Tree Seedlings Nursery -->
+    <div class="project-card">
+      <div class="pc-img medium">
+        <img src="project4.jpg" alt="MOVFACOS tree seedlings nursery — environmental conservation Kasese Uganda">
+        <div class="pc-img-overlay"></div>
+        <div class="pc-num">04</div>
+      </div>
+      <div class="pc-content">
+        <div class="pc-cat">Environment · Agroforestry</div>
+        <h2 class="pc-title">MOVFACOS Tree<br><em>Seedlings Nursery</em></h2>
+        <p class="pc-text">
+          Community-managed tree nurseries produce thousands of indigenous and fruit tree seedlings each season, distributed to member households across all 25 farmer groups. Species include mango, avocado, jackfruit, Grevillea, and eucalyptus — chosen for their dual role as food sources and environmental protectors. The nurseries rehabilitate degraded hillsides, reduce soil erosion along Rwenzori watershed areas, create shade for vanilla vines, and provide a new income stream from seedling sales. Each nursery is managed by trained women and youth who also receive a share of seedling revenues.
+        </p>
+        <div class="pc-tags">
+          <span class="ptag">Agroforestry</span>
+          <span class="ptag">Mango & Avocado</span>
+          <span class="ptag">Watershed Protection</span>
+          <span class="ptag">Community-Managed</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 05: Export-Quality Passion Fruits -->
+    <div class="project-card">
+      <div class="pc-img medium">
+        <img src="project5.jpg" alt="MOVFACOS export-quality passion fruits — Rwenzori slopes Uganda">
+        <div class="pc-img-overlay"></div>
+        <div class="pc-num">05</div>
+      </div>
+      <div class="pc-content">
+        <div class="pc-cat">Horticulture · Export Markets</div>
+        <h2 class="pc-title">MOVFACOS Export-Quality<br><em>Passion Fruits</em></h2>
+        <p class="pc-text">
+          Leveraging the exceptional altitude and volcanic soils of the Mt Rwenzori slopes, MOVFACOS cultivates passion fruit to international export quality standards. Farmers receive training in trellis construction, integrated pest management, post-harvest handling, and grading protocols required for export. The project connects smallholders directly to premium buyers in Kampala and international markets, commanding significantly higher prices than local sales. Women farmers on the Rwenzori slopes lead this project, with their collective output pooled for volume pricing and export documentation under the MOVFACOS brand.
+        </p>
+        <div class="pc-tags">
+          <span class="ptag">Export Quality</span>
+          <span class="ptag">Mt Rwenzori Slopes</span>
+          <span class="ptag">Women Farmers</span>
+          <span class="ptag">Premium Markets</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 06: Savings Culture Among Women -->
+    <div class="project-card">
+      <div class="pc-img medium">
+        <img src="project6.jpg" alt="Promoting a savings culture among women — MOVFACOS VSLA Uganda">
+        <div class="pc-img-overlay"></div>
+        <div class="pc-num">06</div>
+      </div>
+      <div class="pc-content">
+        <div class="pc-cat">Financial Inclusion · VSLA</div>
+        <h2 class="pc-title">Promoting a Savings Culture<br><em>Among Women</em></h2>
+        <p class="pc-text">
+          Through Village Savings and Loan Associations (VSLAs) and MOVFACOS' in-house SACCO, this project builds a structured savings culture among women who have historically been excluded from formal financial services. Groups of 15–25 women meet weekly to save, access emergency loans, and invest collectively in farming inputs or small businesses. Financial literacy training covers budgeting, interest calculation, and record keeping — empowering women to make informed decisions about household finances and cooperative investments. Since launch, hundreds of women across Kasese District have accumulated savings and accessed credit for the first time.
+        </p>
+        <div class="pc-tags">
+          <span class="ptag">VSLA</span>
+          <span class="ptag">SACCO</span>
+          <span class="ptag">Financial Literacy</span>
+          <span class="ptag">Women's Credit</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ IMPACT STATS ══ -->
+  <div class="impact-row reveal">
+    <div class="impact-row-inner">
+      <div class="impact-cell">
+        <div class="impact-cell-icon">🌿</div>
+        <div class="impact-cell-num">9</div>
+        <div class="impact-cell-label">Active Projects</div>
+        <div class="impact-cell-sub">Spanning agriculture, enterprise, environment, and financial inclusion across Kasese District.</div>
+      </div>
+      <div class="impact-cell">
+        <div class="impact-cell-icon">👩</div>
+        <div class="impact-cell-num">500+</div>
+        <div class="impact-cell-label">Women Reached</div>
+        <div class="impact-cell-sub">Through savings groups, vocational training, passion fruit farming, and leadership programs.</div>
+      </div>
+      <div class="impact-cell">
+        <div class="impact-cell-icon">🌳</div>
+        <div class="impact-cell-num">5,000+</div>
+        <div class="impact-cell-label">Seedlings Produced</div>
+        <div class="impact-cell-sub">Distributed across 25 farmer groups for agroforestry, nutrition, and watershed restoration.</div>
+      </div>
+      <div class="impact-cell">
+        <div class="impact-cell-icon">🐟</div>
+        <div class="impact-cell-num">30+</div>
+        <div class="impact-cell-label">Fish Ponds Extended</div>
+        <div class="impact-cell-sub">Community lake extension projects increasing household fish production and protein security.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ PROJECTS 07 & 08 — Asymmetric ══ -->
+  <div class="p-asym reveal">
+
+    <!-- PROJECT 07: Cured Vanilla Beans -->
+    <div class="project-card">
+      <div class="pc-img tall">
+        <img src="project7.jpg" alt="MOVFACOS cured vanilla beans project — Kasese Uganda">
+        <div class="pc-img-overlay"></div>
+        <div class="pc-num">07</div>
+      </div>
+      <div class="pc-content" style="padding:28px 32px 36px;">
+        <div class="pc-cat">Value Addition · Export</div>
+        <h2 class="pc-title">MOVFACOS Cured<br><em>Vanilla Beans Project</em></h2>
+        <p class="pc-text">
+          Rather than selling green beans at farmgate prices, MOVFACOS trains its 2,551 member farmers in the full vanilla curing process — blanching, slow oven-drying, sweating, and conditioning — to produce dark, aromatic Grade A vanilla beans that command significantly higher prices in export markets. The cooperative's centralised curing facility in Kajwenge ensures quality consistency across all batches. Certified organic status, achieved through rigorous input controls and documentation, opens access to premium natural flavour markets in Europe, North America, and the Middle East. This project is the highest-value chain component in MOVFACOS' portfolio.
+        </p>
+        <div class="pc-tags">
+          <span class="ptag">Grade A Vanilla</span>
+          <span class="ptag">Certified Organic</span>
+          <span class="ptag">Curing Facility</span>
+          <span class="ptag">Export Markets</span>
+          <span class="ptag">Value Addition</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 08: Sim Sim Farm Visitation -->
+    <div class="project-card green-card">
+      <div class="pc-img medium">
+        <img src="project8.jpg" alt="MOVFACOS sim sim sesame farm visitation project — Kasese Uganda">
+        <div class="pc-img-overlay"></div>
+        <div class="pc-num">08</div>
+      </div>
+      <div class="pc-content">
+        <div class="pc-cat">Cereals · Farm Exchange</div>
+        <h2 class="pc-title">Sim Sim (Sesame)<br><em>Farm Visitation Project</em></h2>
+        <p class="pc-text">
+          MOVFACOS organises structured farm-to-farm visitation programs for members cultivating sim sim (sesame), one of Uganda's most valuable oil crops. Farmer exchange visits allow growers to observe best practices in spacing, organic fertilisation, pest scouting, harvesting techniques, and post-harvest threshing and drying. The project promotes peer learning as the most effective extension method for rural Ugandan farmers, reducing input costs and lifting yields across participating households. Collectively procured sim sim is then marketed through MOVFACOS' bulk-buying channels, ensuring members receive better farmgate prices than individual negotiation allows.
+        </p>
+        <div class="pc-tags">
+          <span class="ptag">Sesame / Simsim</span>
+          <span class="ptag">Peer Learning</span>
+          <span class="ptag">Farm Visits</span>
+          <span class="ptag">Bulk Marketing</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ PROJECT 09 — Full-width Banner ══ -->
+  <div class="project-featured reveal" style="margin-bottom:0;">
+    <div class="pf-img">
+      <img src="project9.jpg" alt="Extending lakes at homes to enhance fishing in the community — MOVFACOS Uganda">
+      <div class="pf-img-overlay"></div>
+      <div class="pf-num">09</div>
+      <div class="pf-badge">Community Project</div>
+    </div>
+    <div class="pf-content" style="background:var(--green);">
+      <div class="pf-cat">Aquaculture · Food Security</div>
+      <h2 class="pf-title">Extending Lakes at Homes to<br><em>Enhance Community Fishing</em></h2>
+      <p class="pf-text">
+        This project supports MOVFACOS member households to excavate and expand existing water bodies — small ponds, seasonal wetlands, and homestead lakes — into productive freshwater fish farms. Technical training covers pond construction, stocking densities, tilapia and catfish management, water quality monitoring, and harvesting cycles. By turning underutilised land into protein-producing water assets, the project addresses food insecurity, diversifies household income, and reduces dependence on single cash crops. Community fish ponds also serve as water reservoirs during the dry season, supporting kitchen garden irrigation and livestock watering for the wider village.
+      </p>
+      <div class="pf-tags">
+        <span class="ptag">Tilapia &amp; Catfish</span>
+        <span class="ptag">Pond Construction</span>
+        <span class="ptag">Food Security</span>
+        <span class="ptag">Water Management</span>
+        <span class="ptag">Income Diversification</span>
+      </div>
+      <div class="pf-impact">
+        <div class="pf-impact-item">
+          <div class="pf-impact-num">30+</div>
+          <div class="pf-impact-label">Ponds Extended</div>
+        </div>
+        <div class="pf-impact-item">
+          <div class="pf-impact-num">12mo</div>
+          <div class="pf-impact-label">Harvest Cycle</div>
+        </div>
+        <div class="pf-impact-item">
+          <div class="pf-impact-num">2×</div>
+          <div class="pf-impact-label">Protein Access</div>
+        </div>
+        <div class="pf-impact-item">
+          <div class="pf-impact-num">Year-Round</div>
+          <div class="pf-impact-label">Water Reserve</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ FRESH FISH VIDEO — Product Showcase ══ -->
+  <div class="fish-video-section reveal" style="margin-top:6px;">
+    <div class="fish-video-inner">
+      <div class="fish-video-content">
+        <div class="fish-video-eyebrow">Our Product · Aquaculture Harvest</div>
+        <h3 class="fish-video-title">Fresh Fish from<br><em>MOVFACOS Ponds</em></h3>
+        <p class="fish-video-text">
+          See the quality of tilapia and catfish harvested from MOVFACOS community fish ponds in Kasese District. Each fish is raised in clean, managed freshwater ponds — fed on natural inputs, harvested at peak condition, and sold directly to local markets and households. This is what food security looks like: nutritious, affordable protein grown right at home.
+        </p>
+        <div class="fish-video-stats">
+          <div class="fish-video-stat">
+            <div class="fish-video-stat-num">30+</div>
+            <div class="fish-video-stat-label">Active Ponds</div>
+          </div>
+          <div class="fish-video-stat">
+            <div class="fish-video-stat-num">Tilapia</div>
+            <div class="fish-video-stat-label">Primary Species</div>
+          </div>
+          <div class="fish-video-stat">
+            <div class="fish-video-stat-num">Fresh</div>
+            <div class="fish-video-stat-label">Farm to Table</div>
+          </div>
+        </div>
+      </div>
+      <div class="fish-video-wrap">
+        <video
+          src="fish.mp4"
+          autoplay
+          muted
+          loop
+          playsinline
+          aria-label="Fresh fish harvested from MOVFACOS community fish ponds — Kasese District, Uganda"
+        ></video>
+        <div class="fish-video-badge">🐟 Fresh Harvest</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end projects-body -->
+
+<!-- ══ FOOTER BAND ══ -->
+<div class="projects-footer-band">
+  <div class="projects-footer-inner">
+    <div class="pf-band-label">MOVFACOS · Kasese, Uganda</div>
+    <h2 class="pf-band-title">Support These<br><em>Projects</em></h2>
+    <p class="pf-band-sub">Whether you're a development partner, donor, buyer, or investor, your support directly expands these nine programs and the lives they change in Kasese District.</p>
+    <div class="pf-band-buttons">
+      <a href="index.html#donate" class="btn-gold">♥ Donate Now</a>
+      <a href="index.html#contact" class="btn-ghost">Get In Touch</a>
+    </div>
+  </div>
+</div>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-left">
+    © 2026 MOVFACOS — Margharita Organic Vanilla Farmers Cooperative Society Ltd
+    <div class="footer-reg">P.O. Box 530, Kasese, Uganda · Reg. No. P22105 RCS</div>
+  </div>
+  <div class="footer-right">Empowering farmers · Building communities · Growing sustainably</div>
+</footer>
+
+<script>
+  // ── Nav hamburger ──
+  const hamburger = document.getElementById('nav-hamburger');
+  const mobileMenu = document.getElementById('nav-mobile-menu');
+  let menuOpen = false;
+
+  hamburger.addEventListener('click', () => {
+    menuOpen = !menuOpen;
+    hamburger.classList.toggle('open', menuOpen);
+    mobileMenu.classList.toggle('open', menuOpen);
+    hamburger.setAttribute('aria-expanded', menuOpen);
+    mobileMenu.setAttribute('aria-hidden', !menuOpen);
+  });
+
+  function closeMenu() {
+    menuOpen = false;
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', false);
+    mobileMenu.setAttribute('aria-hidden', true);
+  }
+
+  document.addEventListener('click', (e) => {
+    if (menuOpen && !e.target.closest('nav')) closeMenu();
+  });
+
+  // ── Nav scroll shadow ──
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => {
+    nav.style.boxShadow = window.scrollY > 40
+      ? '0 4px 24px rgba(61,43,31,0.12)'
+      : 'none';
+  });
+
+  // ── Scroll reveal ──
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.07 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
