@@ -1,0 +1,1934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Donate — MOVFACOS Uganda</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F7F2E8;
+    --vanilla: #E8D5A0;
+    --vanilla-dark: #C9A84C;
+    --earth: #3D2B1F;
+    --earth-mid: #5C3D2E;
+    --earth-light: #8B6347;
+    --green: #2D4A2D;
+    --green-light: #4A7A4A;
+    --green-pale: #C8D8B8;
+    --white: #FEFDF9;
+    --gold: #C9A84C;
+    --gold-light: #E8D5A0;
+    --ink: #1A120C;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--earth);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    background: rgba(247,242,232,0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,168,76,0.3);
+    transition: box-shadow 0.3s;
+  }
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 48px;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  .nav-logo-mark {
+    width: 38px; height: 38px;
+    background: var(--green);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    color: var(--gold);
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  .nav-logo-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    color: var(--earth);
+    text-transform: uppercase;
+    line-height: 1.3;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+    align-items: center;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--earth-mid);
+    text-transform: uppercase;
+    transition: color 0.2s;
+    white-space: nowrap;
+  }
+
+  .nav-links a:hover,
+  .nav-links a.active { color: var(--gold); }
+
+  .nav-cta {
+    background: var(--green) !important;
+    color: var(--cream) !important;
+    padding: 9px 20px;
+    border-radius: 2px;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--green-light) !important; }
+
+  .nav-donate {
+    background: var(--gold) !important;
+    color: var(--earth) !important;
+    padding: 9px 20px;
+    border-radius: 2px;
+    font-weight: 600 !important;
+    transition: background 0.2s !important;
+  }
+  .nav-donate:hover { background: var(--vanilla-dark) !important; }
+
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40px; height: 40px;
+    background: none;
+    border: 1px solid rgba(61,43,31,0.2);
+    border-radius: 3px;
+    cursor: pointer;
+    gap: 5px;
+    padding: 8px;
+    transition: border-color 0.2s;
+    flex-shrink: 0;
+  }
+
+  .nav-hamburger:hover { border-color: var(--gold); }
+
+  .nav-hamburger span {
+    display: block;
+    width: 22px; height: 2px;
+    background: var(--earth);
+    border-radius: 2px;
+    transition: transform 0.3s, opacity 0.3s;
+    transform-origin: center;
+  }
+
+  .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .nav-mobile-menu {
+    display: none;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.4s ease;
+    background: rgba(247,242,232,0.98);
+    border-top: 1px solid rgba(201,168,76,0.2);
+  }
+
+  .nav-mobile-menu.open { max-height: 520px; }
+
+  .nav-mobile-links {
+    list-style: none;
+    padding: 12px 24px 20px;
+  }
+
+  .nav-mobile-links li { border-bottom: 1px solid rgba(201,168,76,0.15); }
+  .nav-mobile-links li:last-child { border-bottom: none; }
+
+  .nav-mobile-links a {
+    display: block;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: var(--earth-mid);
+    text-transform: uppercase;
+    padding: 14px 0;
+    transition: color 0.2s;
+  }
+
+  .nav-mobile-links a:hover { color: var(--gold); }
+  .nav-mobile-links .mobile-cta { color: var(--green) !important; font-weight: 600; }
+  .nav-mobile-links .mobile-donate { color: var(--gold) !important; font-weight: 700; }
+
+  /* PAGE HERO */
+  .page-hero {
+    background: var(--green);
+    padding: 148px 80px 88px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .page-hero::before {
+    content: 'DONATE';
+    position: absolute;
+    bottom: -40px; right: -10px;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(90px, 17vw, 210px);
+    font-weight: 900;
+    color: rgba(255,255,255,0.04);
+    letter-spacing: 0.05em;
+    line-height: 1;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  .page-hero::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      radial-gradient(ellipse at 85% 25%, rgba(201,168,76,0.13) 0%, transparent 55%),
+      radial-gradient(ellipse at 10% 80%, rgba(201,168,76,0.06) 0%, transparent 45%);
+    pointer-events: none;
+  }
+
+  .page-hero-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 1240px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .page-hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s ease forwards;
+  }
+
+  .page-hero-eyebrow::before {
+    content: '';
+    width: 40px; height: 1px;
+    background: var(--gold);
+  }
+
+  .page-hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(46px, 6vw, 84px);
+    font-weight: 900;
+    line-height: 0.95;
+    color: var(--cream);
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.4s ease forwards;
+  }
+
+  .page-hero-title em {
+    font-style: italic;
+    color: var(--gold);
+    display: block;
+  }
+
+  .page-hero-desc {
+    font-size: 15px;
+    line-height: 1.85;
+    color: rgba(247,242,232,0.65);
+    max-width: 480px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.6s ease forwards;
+  }
+
+  .hero-right {
+    opacity: 0;
+    animation: fadeUp 0.8s 0.7s ease forwards;
+  }
+
+  .hero-trust {
+    background: rgba(247,242,232,0.06);
+    border: 1px solid rgba(201,168,76,0.22);
+    border-radius: 4px;
+    padding: 32px 28px;
+    margin-bottom: 12px;
+  }
+
+  .hero-trust-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 18px;
+  }
+
+  .trust-items {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .trust-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 13px;
+    color: rgba(247,242,232,0.62);
+    line-height: 1.5;
+  }
+
+  .trust-item-icon {
+    font-size: 16px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .hero-reg-note {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    color: rgba(201,168,76,0.45);
+    text-align: center;
+    padding: 14px;
+    border: 1px solid rgba(201,168,76,0.12);
+    border-radius: 3px;
+  }
+
+  /* TICKER */
+  .ticker {
+    background: var(--gold);
+    padding: 11px 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .ticker-inner {
+    display: inline-flex;
+    animation: ticker 32s linear infinite;
+  }
+
+  .ticker-item {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--earth);
+    padding: 0 28px;
+  }
+
+  .ticker-item::before {
+    content: '♥';
+    margin-right: 28px;
+    opacity: 0.5;
+  }
+
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* DONATE BODY */
+  .donate-body {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 48px 120px;
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 60px;
+    align-items: start;
+  }
+
+  /* FORM PANEL */
+  .form-panel {
+    position: relative;
+  }
+
+  .section-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+
+  .section-tag::before {
+    content: '';
+    width: 28px; height: 1px;
+    background: var(--gold);
+  }
+
+  .form-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(26px, 3vw, 40px);
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--earth);
+    margin-bottom: 8px;
+  }
+
+  .form-title em { font-style: italic; color: var(--green); }
+
+  .form-subtitle {
+    font-size: 14px;
+    color: var(--earth-light);
+    line-height: 1.75;
+    margin-bottom: 40px;
+    max-width: 520px;
+  }
+
+  .amount-section { margin-bottom: 32px; }
+
+  .field-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--earth-mid);
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .amount-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .amount-btn {
+    border: 1.5px solid rgba(61,43,31,0.18);
+    background: var(--white);
+    border-radius: 3px;
+    padding: 14px 10px;
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--earth);
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .amount-btn:hover {
+    border-color: var(--gold);
+    background: rgba(201,168,76,0.06);
+  }
+
+  .amount-btn.active {
+    border-color: var(--gold);
+    background: var(--gold);
+    color: var(--earth);
+  }
+
+  .amount-btn-sub {
+    display: block;
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.12em;
+    color: inherit;
+    opacity: 0.55;
+    margin-top: 3px;
+    font-weight: 400;
+  }
+
+  .custom-amount-wrap {
+    position: relative;
+  }
+
+  .custom-amount-prefix {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--earth-mid);
+    pointer-events: none;
+  }
+
+  .custom-amount-input {
+    width: 100%;
+    background: var(--white);
+    border: 1.5px solid rgba(61,43,31,0.18);
+    border-radius: 3px;
+    padding: 14px 18px 14px 52px;
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--earth);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .custom-amount-input:focus { border-color: var(--gold); }
+
+  .custom-amount-input::placeholder {
+    color: rgba(61,43,31,0.25);
+    font-size: 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+  }
+
+  .frequency-section { margin-bottom: 32px; }
+
+  .frequency-tabs {
+    display: flex;
+    gap: 0;
+    border: 1.5px solid rgba(61,43,31,0.15);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .freq-tab {
+    flex: 1;
+    padding: 12px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    border: none;
+    background: var(--white);
+    color: var(--earth-mid);
+    cursor: pointer;
+    transition: all 0.2s;
+    border-right: 1px solid rgba(61,43,31,0.12);
+  }
+
+  .freq-tab:last-child { border-right: none; }
+
+  .freq-tab.active {
+    background: var(--green);
+    color: var(--gold);
+    font-weight: 500;
+  }
+
+  .freq-tab:hover:not(.active) { background: rgba(201,168,76,0.07); }
+
+  .project-section { margin-bottom: 32px; }
+
+  .project-select {
+    width: 100%;
+    background: var(--white);
+    border: 1.5px solid rgba(61,43,31,0.18);
+    border-radius: 3px;
+    padding: 14px 18px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--earth);
+    outline: none;
+    appearance: none;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%235C3D2E' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    transition: border-color 0.2s;
+  }
+
+  .project-select:focus { border-color: var(--gold); }
+
+  .donor-section { margin-bottom: 32px; }
+
+  .input-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .input-group label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--earth-mid);
+  }
+
+  .input-field {
+    background: var(--white);
+    border: 1.5px solid rgba(61,43,31,0.18);
+    border-radius: 3px;
+    padding: 12px 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--earth);
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+  }
+
+  .input-field:focus { border-color: var(--gold); }
+  .input-field::placeholder { color: rgba(61,43,31,0.3); }
+
+  .message-section { margin-bottom: 36px; }
+
+  .textarea-field {
+    background: var(--white);
+    border: 1.5px solid rgba(61,43,31,0.18);
+    border-radius: 3px;
+    padding: 14px 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--earth);
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+    resize: vertical;
+    min-height: 90px;
+  }
+
+  .textarea-field:focus { border-color: var(--gold); }
+  .textarea-field::placeholder { color: rgba(61,43,31,0.3); }
+
+  .anon-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 32px;
+  }
+
+  .anon-check {
+    width: 18px; height: 18px;
+    accent-color: var(--green);
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  .anon-label {
+    font-size: 13px;
+    color: var(--earth-mid);
+    cursor: pointer;
+  }
+
+  .donation-summary {
+    background: var(--earth);
+    border-radius: 3px;
+    padding: 20px 24px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .summary-left { flex: 1; }
+
+  .summary-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(247,242,232,0.4);
+    margin-bottom: 4px;
+  }
+
+  .summary-amount {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .summary-freq {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(247,242,232,0.38);
+    margin-top: 4px;
+  }
+
+  .summary-right {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(247,242,232,0.28);
+    text-align: right;
+  }
+
+  .submit-btn {
+    width: 100%;
+    background: var(--gold);
+    color: var(--earth);
+    border: none;
+    border-radius: 3px;
+    padding: 18px 32px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .submit-btn:hover {
+    background: var(--vanilla-dark);
+    transform: translateY(-1px);
+  }
+
+  .submit-btn:active { transform: translateY(0); }
+  .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+  .submit-btn-icon { font-size: 18px; }
+
+  .submit-note {
+    text-align: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(61,43,31,0.35);
+    margin-top: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .submit-note::before,
+  .submit-note::after {
+    content: '';
+    width: 30px; height: 1px;
+    background: rgba(61,43,31,0.15);
+  }
+
+  .pesapal-note {
+    margin-top: 16px;
+    padding: 14px 18px;
+    background: rgba(61,43,31,0.04);
+    border: 1px solid rgba(61,43,31,0.1);
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 12px;
+    color: var(--earth-mid);
+  }
+
+  .pesapal-logo-badge {
+    background: #1a1a2e;
+    color: #fff;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    padding: 5px 10px;
+    border-radius: 2px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .payment-icons {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+  }
+
+  .pay-icon {
+    background: var(--white);
+    border: 1px solid rgba(61,43,31,0.12);
+    border-radius: 3px;
+    padding: 5px 10px;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--earth-mid);
+  }
+
+  /* SIDEBAR */
+  .sidebar {
+    position: sticky;
+    top: 100px;
+  }
+
+  .sidebar-impact {
+    background: var(--earth);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+
+  .sidebar-impact-header {
+    background: rgba(201,168,76,0.15);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+    padding: 18px 24px;
+  }
+
+  .sidebar-impact-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+
+  .sidebar-impact-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.2;
+  }
+
+  .impact-tiers { padding: 8px 0; }
+
+  .impact-tier {
+    padding: 16px 24px;
+    border-bottom: 1px solid rgba(201,168,76,0.08);
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 14px;
+    align-items: start;
+    transition: background 0.2s;
+    cursor: pointer;
+  }
+
+  .impact-tier:last-child { border-bottom: none; }
+  .impact-tier:hover { background: rgba(201,168,76,0.06); }
+
+  .impact-tier.highlighted {
+    background: rgba(201,168,76,0.1);
+    border-color: rgba(201,168,76,0.15);
+  }
+
+  .tier-amount {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--gold);
+    white-space: nowrap;
+    line-height: 1;
+    min-width: 70px;
+  }
+
+  .tier-desc {
+    font-size: 12px;
+    color: rgba(247,242,232,0.55);
+    line-height: 1.6;
+  }
+
+  .tier-desc strong {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(247,242,232,0.78);
+    margin-bottom: 2px;
+  }
+
+  .sidebar-progress {
+    background: var(--white);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 4px;
+    padding: 24px;
+    margin-bottom: 16px;
+  }
+
+  .progress-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--earth-mid);
+    margin-bottom: 12px;
+  }
+
+  .progress-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--earth);
+    margin-bottom: 16px;
+  }
+
+  .progress-bar-track {
+    background: rgba(61,43,31,0.08);
+    border-radius: 100px;
+    height: 6px;
+    margin-bottom: 10px;
+    overflow: hidden;
+  }
+
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--green), var(--green-light));
+    border-radius: 100px;
+    width: 0%;
+    transition: width 1.2s ease;
+  }
+
+  .progress-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .progress-raised {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--earth);
+  }
+
+  .progress-goal {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--earth-light);
+  }
+
+  .progress-donors {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--earth-light);
+    margin-top: 8px;
+  }
+
+  .sidebar-recent {
+    background: var(--white);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 4px;
+    padding: 20px 24px;
+  }
+
+  .recent-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--earth-mid);
+    margin-bottom: 14px;
+  }
+
+  .donor-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .donor-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+  }
+
+  .donor-avatar {
+    width: 28px; height: 28px;
+    background: var(--green);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .donor-name {
+    font-weight: 600;
+    color: var(--earth);
+    flex: 1;
+  }
+
+  .donor-amount {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--green);
+  }
+
+  /* PROCESSING OVERLAY */
+  .processing-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9000;
+    background: rgba(26,18,12,0.88);
+    backdrop-filter: blur(8px);
+    align-items: center;
+    justify-content: center;
+  }
+
+  .processing-overlay.active { display: flex; }
+
+  .processing-box {
+    background: var(--earth);
+    border: 1px solid rgba(201,168,76,0.25);
+    border-radius: 6px;
+    padding: 56px 48px;
+    text-align: center;
+    max-width: 420px;
+    width: 90%;
+  }
+
+  .processing-spinner {
+    width: 52px; height: 52px;
+    border: 3px solid rgba(201,168,76,0.15);
+    border-top-color: var(--gold);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin: 0 auto 24px;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .processing-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 10px;
+  }
+
+  .processing-sub {
+    font-size: 13px;
+    color: rgba(247,242,232,0.45);
+    line-height: 1.7;
+  }
+
+  /* SUCCESS PANEL */
+  .success-panel {
+    display: none;
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 80px 48px;
+    text-align: center;
+  }
+
+  .success-panel.active { display: block; }
+
+  .success-icon {
+    font-size: 56px;
+    margin-bottom: 24px;
+    animation: pop 0.6s ease;
+  }
+
+  @keyframes pop {
+    0% { transform: scale(0.3); opacity: 0; }
+    70% { transform: scale(1.15); }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  .success-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--green);
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+
+  .success-sub {
+    font-size: 15px;
+    color: var(--earth-mid);
+    line-height: 1.8;
+    margin-bottom: 32px;
+  }
+
+  .success-ref {
+    background: var(--white);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 3px;
+    padding: 16px 24px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    color: var(--earth-mid);
+    margin-bottom: 32px;
+  }
+
+  .success-btn {
+    background: var(--green);
+    color: var(--cream);
+    padding: 14px 32px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    display: inline-block;
+  }
+
+  /* ERROR */
+  .error-banner {
+    display: none;
+    background: #fdf2f0;
+    border: 1px solid #e0c0bb;
+    border-radius: 3px;
+    padding: 14px 18px;
+    font-size: 13px;
+    color: #8b3a2e;
+    margin-bottom: 20px;
+    line-height: 1.6;
+  }
+
+  .error-banner.active { display: block; }
+
+  /* FOOTER */
+  .projects-footer-band {
+    background: var(--ink);
+    padding: 64px 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .projects-footer-band::before {
+    content: 'MOVFACOS';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Playfair Display', serif;
+    font-size: 130px;
+    font-weight: 900;
+    color: rgba(255,255,255,0.02);
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  .projects-footer-inner { position: relative; z-index: 2; }
+
+  .pf-band-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .pf-band-label::before,
+  .pf-band-label::after {
+    content: '';
+    width: 40px; height: 1px;
+    background: var(--gold);
+    opacity: 0.5;
+  }
+
+  .pf-band-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 3.5vw, 40px);
+    color: var(--cream);
+    margin-bottom: 14px;
+    line-height: 1.1;
+  }
+
+  .pf-band-title em { font-style: italic; color: var(--gold); }
+
+  .pf-band-sub {
+    font-size: 14px;
+    color: rgba(247,242,232,0.4);
+    max-width: 440px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  footer {
+    background: var(--ink);
+    border-top: 1px solid rgba(201,168,76,0.1);
+    padding: 36px 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .footer-left {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: rgba(247,242,232,0.3);
+  }
+
+  .footer-reg {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: rgba(201,168,76,0.4);
+    margin-top: 4px;
+  }
+
+  .footer-right {
+    font-size: 12px;
+    color: rgba(247,242,232,0.25);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (max-width: 1000px) {
+    .donate-body {
+      grid-template-columns: 1fr;
+      padding: 48px 24px 80px;
+    }
+    .sidebar { position: static; }
+  }
+
+  @media (max-width: 900px) {
+    .nav-inner { padding: 14px 20px; }
+    .nav-links { display: none; }
+    .nav-hamburger { display: flex; }
+    .nav-mobile-menu { display: block; }
+    .page-hero { padding: 120px 24px 60px; }
+    .page-hero-inner { grid-template-columns: 1fr; gap: 32px; }
+    .amount-grid { grid-template-columns: repeat(2, 1fr); }
+    footer { flex-direction: column; padding: 28px 24px; text-align: center; }
+    .projects-footer-band { padding: 48px 24px; }
+  }
+
+  @media (max-width: 520px) {
+    .input-row { grid-template-columns: 1fr; }
+    .amount-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-mark">M</div>
+      <div class="nav-logo-text">MOVFACOS<br>Est. 2013 · Uganda</div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#about">Who We Are</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="index.html#contact" class="nav-cta">Contact Us</a></li>
+      <li><a href="donate.html" class="nav-donate active">Donate</a></li>
+    </ul>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav-mobile-menu" id="nav-mobile-menu" aria-hidden="true">
+    <ul class="nav-mobile-links">
+      <li><a href="index.html" onclick="closeMenu()">Home</a></li>
+      <li><a href="index.html#about" onclick="closeMenu()">Who We Are</a></li>
+      <li><a href="projects.html" onclick="closeMenu()">Projects</a></li>
+      <li><a href="events.html" onclick="closeMenu()">Events</a></li>
+      <li><a href="gallery.html" onclick="closeMenu()">Gallery</a></li>
+      <li><a href="index.html#contact" onclick="closeMenu()" class="mobile-cta">Contact Us</a></li>
+      <li><a href="donate.html" onclick="closeMenu()" class="mobile-donate">♥ Donate</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div class="page-hero-left">
+      <div class="page-hero-eyebrow">MOVFACOS · Kasese, Uganda</div>
+      <h1 class="page-hero-title">
+        Give &amp;<br><em>Transform</em>
+      </h1>
+      <p class="page-hero-desc">
+        Every shilling you donate goes directly to our nine community programs — from vanilla farming and beekeeping to women's savings groups and youth vocational training across Kasese District, Western Uganda.
+      </p>
+    </div>
+    <div class="hero-right">
+      <div class="hero-trust">
+        <div class="hero-trust-title">Your Donation Is Safe &amp; Secure</div>
+        <div class="trust-items">
+          <div class="trust-item">
+            <span class="trust-item-icon">🔒</span>
+            <span>All payments processed securely through <strong>Pesapal</strong> — Uganda's leading payment gateway, supporting Mobile Money, Visa, Mastercard, and Airtel Money.</span>
+          </div>
+          <div class="trust-item">
+            <span class="trust-item-icon">✅</span>
+            <span>MOVFACOS is a registered cooperative (Reg. No. P22105 RCS). 100% of your donation funds field programs in Kasese District.</span>
+          </div>
+          <div class="trust-item">
+            <span class="trust-item-icon">📩</span>
+            <span>You will receive an email receipt immediately after your donation is confirmed.</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-reg-note">MOVFACOS · P.O. Box 530, Kasese · Reg. P22105 RCS</div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item">Organic Vanilla</span>
+    <span class="ticker-item">Modern Beekeeping</span>
+    <span class="ticker-item">Women Empowerment</span>
+    <span class="ticker-item">Youth Enterprise</span>
+    <span class="ticker-item">Tree Nursery</span>
+    <span class="ticker-item">Fish Pond Extension</span>
+    <span class="ticker-item">Savings Culture</span>
+    <span class="ticker-item">Passion Fruits</span>
+    <span class="ticker-item">Kasese District</span>
+    <span class="ticker-item">Rwenzori Region</span>
+    <span class="ticker-item">Organic Vanilla</span>
+    <span class="ticker-item">Modern Beekeeping</span>
+    <span class="ticker-item">Women Empowerment</span>
+    <span class="ticker-item">Youth Enterprise</span>
+    <span class="ticker-item">Tree Nursery</span>
+    <span class="ticker-item">Fish Pond Extension</span>
+    <span class="ticker-item">Savings Culture</span>
+    <span class="ticker-item">Passion Fruits</span>
+    <span class="ticker-item">Kasese District</span>
+    <span class="ticker-item">Rwenzori Region</span>
+  </div>
+</div>
+
+<!-- PROCESSING OVERLAY -->
+<div class="processing-overlay" id="processing-overlay">
+  <div class="processing-box">
+    <div class="processing-spinner"></div>
+    <div class="processing-title">Connecting to Pesapal…</div>
+    <div class="processing-sub">Please wait while we securely redirect you to the payment gateway. Do not close this window.</div>
+  </div>
+</div>
+
+<!-- DONATE BODY -->
+<div class="donate-body">
+
+  <!-- LEFT: Donation Form -->
+  <div class="form-panel reveal">
+
+    <!-- Success Panel -->
+    <div class="success-panel" id="success-panel">
+      <div class="success-icon">🌿</div>
+      <h2 class="success-title">Thank You for<br>Your Generosity</h2>
+      <p class="success-sub">Your donation has been received and confirmed by Pesapal. You will receive an email receipt shortly. Your contribution directly supports farmers, women, and youth across Kasese District.</p>
+      <div class="success-ref" id="success-ref">Order Reference: —</div>
+      <a href="projects.html" class="success-btn">See What Your Gift Supports →</a>
+    </div>
+
+    <!-- Donation Form -->
+    <div id="donation-form-section">
+      <div class="section-tag">Make a Donation</div>
+      <h2 class="form-title">Choose Your<br><em>Impact Level</em></h2>
+      <p class="form-subtitle">Select an amount, choose a project, and complete your donation securely through Pesapal — supporting Mobile Money (MTN &amp; Airtel), Visa, and Mastercard.</p>
+
+      <div class="error-banner" id="error-banner"></div>
+
+      <!-- 1. Amount -->
+      <div class="amount-section">
+        <span class="field-label">Select or enter amount (UGX)</span>
+        <div class="amount-grid">
+          <button class="amount-btn" data-amount="50000" onclick="selectAmount(this)">
+            50,000
+            <span class="amount-btn-sub">UGX</span>
+          </button>
+          <button class="amount-btn active" data-amount="100000" onclick="selectAmount(this)">
+            100,000
+            <span class="amount-btn-sub">UGX</span>
+          </button>
+          <button class="amount-btn" data-amount="250000" onclick="selectAmount(this)">
+            250,000
+            <span class="amount-btn-sub">UGX</span>
+          </button>
+          <button class="amount-btn" data-amount="500000" onclick="selectAmount(this)">
+            500,000
+            <span class="amount-btn-sub">UGX</span>
+          </button>
+        </div>
+        <div class="custom-amount-wrap">
+          <span class="custom-amount-prefix">UGX</span>
+          <input
+            type="number"
+            class="custom-amount-input"
+            id="custom-amount"
+            placeholder="Or enter a custom amount"
+            min="5000"
+            oninput="onCustomAmount(this)"
+          />
+        </div>
+      </div>
+
+      <!-- 2. Frequency -->
+      <div class="frequency-section">
+        <span class="field-label">Donation frequency</span>
+        <div class="frequency-tabs">
+          <button class="freq-tab active" data-freq="once" onclick="selectFreq(this)">One-Time</button>
+          <button class="freq-tab" data-freq="monthly" onclick="selectFreq(this)">Monthly</button>
+          <button class="freq-tab" data-freq="quarterly" onclick="selectFreq(this)">Quarterly</button>
+          <button class="freq-tab" data-freq="annually" onclick="selectFreq(this)">Annually</button>
+        </div>
+      </div>
+
+      <!-- 3. Project -->
+      <div class="project-section">
+        <span class="field-label">Allocate to a specific project (optional)</span>
+        <select class="project-select" id="project-select">
+          <option value="general">Where Most Needed — General Fund</option>
+          <option value="beekeeping">Project 01 · Modern Beekeeping</option>
+          <option value="hairdressing">Project 02 · Youth Hairdressing &amp; Salon Skills</option>
+          <option value="female-youth">Project 03 · Female Youth Empowerment</option>
+          <option value="nursery">Project 04 · Tree Seedlings Nursery</option>
+          <option value="passion-fruit">Project 05 · Export-Quality Passion Fruits</option>
+          <option value="savings">Project 06 · Women's Savings Culture (VSLA)</option>
+          <option value="vanilla">Project 07 · Cured Vanilla Beans</option>
+          <option value="simsim">Project 08 · Sim Sim Farm Visitation</option>
+          <option value="fish-ponds">Project 09 · Community Fish Ponds</option>
+        </select>
+      </div>
+
+      <!-- 4. Donor Details -->
+      <div class="donor-section">
+        <span class="field-label">Your Details</span>
+        <div class="input-row">
+          <div class="input-group">
+            <label for="first-name">First Name *</label>
+            <input type="text" id="first-name" class="input-field" placeholder="e.g. Sarah" required />
+          </div>
+          <div class="input-group">
+            <label for="last-name">Last Name *</label>
+            <input type="text" id="last-name" class="input-field" placeholder="e.g. Mbeki" required />
+          </div>
+        </div>
+        <div class="input-row">
+          <div class="input-group">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" class="input-field" placeholder="you@example.com" required />
+          </div>
+          <div class="input-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" class="input-field" placeholder="+256 7XX XXX XXX" />
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. Message -->
+      <div class="message-section">
+        <span class="field-label">Message to MOVFACOS (optional)</span>
+        <textarea class="textarea-field" id="donor-message" placeholder="Share what inspired your donation, or a message to the farmers…"></textarea>
+      </div>
+
+      <!-- 6. Anonymous -->
+      <div class="anon-row">
+        <input type="checkbox" class="anon-check" id="anon-check" />
+        <label for="anon-check" class="anon-label">Make this donation anonymous (your name will not be shown publicly)</label>
+      </div>
+
+      <!-- Summary -->
+      <div class="donation-summary" id="donation-summary">
+        <div class="summary-left">
+          <div class="summary-label">Total Donation</div>
+          <div class="summary-amount" id="summary-amount-display">UGX 100,000</div>
+          <div class="summary-freq" id="summary-freq-display">One-Time</div>
+        </div>
+        <div class="summary-right">
+          Secure checkout<br>via Pesapal
+        </div>
+      </div>
+
+      <!-- Submit -->
+      <button class="submit-btn" id="submit-btn" onclick="initiateDonation()">
+        <span class="submit-btn-icon">♥</span>
+        Donate Securely via Pesapal
+      </button>
+      <div class="submit-note">SSL encrypted · 256-bit secure</div>
+
+      <!-- Pesapal badge -->
+      <div class="pesapal-note">
+        <span class="pesapal-logo-badge">PESAPAL</span>
+        <div>
+          Payments are processed by Pesapal Ltd, Uganda's trusted payment gateway.
+          <div class="payment-icons">
+            <span class="pay-icon">MTN Money</span>
+            <span class="pay-icon">Airtel Money</span>
+            <span class="pay-icon">Visa</span>
+            <span class="pay-icon">Mastercard</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- RIGHT: Sidebar -->
+  <div class="sidebar reveal">
+
+    <!-- Impact Tiers -->
+    <div class="sidebar-impact">
+      <div class="sidebar-impact-header">
+        <div class="sidebar-impact-tag">Your Impact at Each Level</div>
+        <div class="sidebar-impact-title">What Every Shilling Does</div>
+      </div>
+      <div class="impact-tiers">
+        <div class="impact-tier" onclick="selectAmountFromTier(50000)">
+          <div class="tier-amount">50K</div>
+          <div class="tier-desc">
+            <strong>Seeds &amp; Seedlings</strong>
+            Funds 10 fruit tree seedlings for distribution to member households — restoring hillsides and providing future food sources.
+          </div>
+        </div>
+        <div class="impact-tier highlighted" onclick="selectAmountFromTier(100000)">
+          <div class="tier-amount">100K</div>
+          <div class="tier-desc">
+            <strong>Beehive Starter Kit</strong>
+            Covers a Langstroth hive and training session for one farmer — enabling organic honey production on any plot size.
+          </div>
+        </div>
+        <div class="impact-tier" onclick="selectAmountFromTier(250000)">
+          <div class="tier-amount">250K</div>
+          <div class="tier-desc">
+            <strong>Youth Skills Workshop</strong>
+            Covers one full vocational training slot in the hairdressing &amp; salon management program for an out-of-school youth.
+          </div>
+        </div>
+        <div class="impact-tier" onclick="selectAmountFromTier(500000)">
+          <div class="tier-amount">500K</div>
+          <div class="tier-desc">
+            <strong>VSLA Savings Group</strong>
+            Seeds a Village Savings &amp; Loan group meeting fund for 20 women — enabling access to credit and financial literacy for one month.
+          </div>
+        </div>
+        <div class="impact-tier" onclick="selectAmountFromTier(1000000)">
+          <div class="tier-amount">1M+</div>
+          <div class="tier-desc">
+            <strong>Fish Pond or Vanilla Input</strong>
+            Funds pond excavation, stocking, or a complete vanilla curing batch — transforming household food security for a full year.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Progress -->
+    <div class="sidebar-progress">
+      <div class="progress-tag">2025 Annual Fund</div>
+      <div class="progress-title">UGX 38,000,000 Goal · Nine Projects</div>
+      <div class="progress-bar-track">
+        <div class="progress-bar-fill" id="progress-fill"></div>
+      </div>
+      <div class="progress-meta">
+        <div class="progress-raised">UGX 24.1M raised</div>
+        <div class="progress-goal">63% funded</div>
+      </div>
+      <div class="progress-donors">147 donors this year</div>
+    </div>
+
+    <!-- Recent Donors -->
+    <div class="sidebar-recent">
+      <div class="recent-tag">Recent Supporters</div>
+      <div class="donor-list">
+        <div class="donor-item">
+          <div class="donor-avatar">AK</div>
+          <span class="donor-name">Amina K.</span>
+          <span class="donor-amount">100K</span>
+        </div>
+        <div class="donor-item">
+          <div class="donor-avatar">JM</div>
+          <span class="donor-name">James M.</span>
+          <span class="donor-amount">250K</span>
+        </div>
+        <div class="donor-item">
+          <div class="donor-avatar">PN</div>
+          <span class="donor-name">Priya N.</span>
+          <span class="donor-amount">500K</span>
+        </div>
+        <div class="donor-item">
+          <div class="donor-avatar">RO</div>
+          <span class="donor-name">Robert O.</span>
+          <span class="donor-amount">50K</span>
+        </div>
+        <div class="donor-item">
+          <div class="donor-avatar">FN</div>
+          <span class="donor-name">Florence N.</span>
+          <span class="donor-amount">1M</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER BAND -->
+<div class="projects-footer-band">
+  <div class="projects-footer-inner">
+    <div class="pf-band-label">MOVFACOS · Kasese, Uganda</div>
+    <h2 class="pf-band-title">Questions About<br><em>Your Donation?</em></h2>
+    <p class="pf-band-sub">Write to us at <strong style="color:var(--gold)">movfacos@gmail.com</strong> or visit <strong style="color:var(--gold)">P.O. Box 530, Kasese</strong>. We respond within 24 hours.</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">
+    © 2026 MOVFACOS — Margharita Organic Vanilla Farmers Cooperative Society Ltd
+    <div class="footer-reg">P.O. Box 530, Kasese, Uganda · Reg. No. P22105 RCS</div>
+  </div>
+  <div class="footer-right">Empowering farmers · Building communities · Growing sustainably</div>
+</footer>
+
+<script>
+// ══════════════════════════════
+//   PESAPAL LIVE CONFIGURATION
+// ══════════════════════════════
+const PESAPAL_CONFIG = {
+  consumerKey:    'MksndV0PkUIdbr9UQlfcwWv6oRO7XKBT',
+  consumerSecret: 'pYv2srQPbqZHmhe06OwTFnqb6CE=',
+  // LIVE endpoint
+  baseUrl: 'https://pay.pesapal.com/v3',
+  // Callback URL — update to your actual domain
+  callbackUrl: window.location.origin + '/donate.html?status=success',
+  notificationUrl: window.location.origin + '/ipn',
+  currency: 'UGX',
+  merchantName: 'MOVFACOS Uganda',
+};
+
+// ══ State ══
+let selectedAmount = 100000;
+let selectedFreq   = 'once';
+
+// ══ Nav ══
+const hamburger  = document.getElementById('nav-hamburger');
+const mobileMenu = document.getElementById('nav-mobile-menu');
+let menuOpen = false;
+
+hamburger.addEventListener('click', () => {
+  menuOpen = !menuOpen;
+  hamburger.classList.toggle('open', menuOpen);
+  mobileMenu.classList.toggle('open', menuOpen);
+  hamburger.setAttribute('aria-expanded', menuOpen);
+  mobileMenu.setAttribute('aria-hidden', !menuOpen);
+});
+
+function closeMenu() {
+  menuOpen = false;
+  hamburger.classList.remove('open');
+  mobileMenu.classList.remove('open');
+  hamburger.setAttribute('aria-expanded', false);
+  mobileMenu.setAttribute('aria-hidden', true);
+}
+
+document.addEventListener('click', (e) => {
+  if (menuOpen && !e.target.closest('nav')) closeMenu();
+});
+
+const nav = document.getElementById('main-nav');
+window.addEventListener('scroll', () => {
+  nav.style.boxShadow = window.scrollY > 40
+    ? '0 4px 24px rgba(61,43,31,0.12)'
+    : 'none';
+});
+
+// ══ Amount selection ══
+function selectAmount(btn) {
+  document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  selectedAmount = parseInt(btn.dataset.amount);
+  document.getElementById('custom-amount').value = '';
+  updateSummary();
+}
+
+function selectAmountFromTier(amount) {
+  selectedAmount = amount;
+  document.getElementById('custom-amount').value = amount;
+  document.querySelectorAll('.amount-btn').forEach(b => {
+    b.classList.toggle('active', parseInt(b.dataset.amount) === amount);
+  });
+  updateSummary();
+  document.getElementById('donation-form-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function onCustomAmount(input) {
+  const val = parseInt(input.value);
+  if (val && val > 0) {
+    selectedAmount = val;
+    document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('active'));
+    updateSummary();
+  }
+}
+
+// ══ Frequency ══
+function selectFreq(btn) {
+  document.querySelectorAll('.freq-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  selectedFreq = btn.dataset.freq;
+  updateSummary();
+}
+
+// ══ Summary bar ══
+function updateSummary() {
+  const freqLabels = {
+    once: 'One-Time Donation',
+    monthly: 'Monthly Recurring',
+    quarterly: 'Quarterly Recurring',
+    annually: 'Annual Recurring',
+  };
+  document.getElementById('summary-amount-display').textContent =
+    'UGX ' + selectedAmount.toLocaleString('en-UG');
+  document.getElementById('summary-freq-display').textContent =
+    freqLabels[selectedFreq] || 'One-Time Donation';
+}
+
+// ══ Scroll reveal ══
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.06 });
+reveals.forEach(el => observer.observe(el));
+
+// ══ Handle return from Pesapal ══
+(function checkReturnStatus() {
+  const params = new URLSearchParams(window.location.search);
+  const status = params.get('status');
+  const orderRef = params.get('OrderMerchantReference') || params.get('orderid') || '';
+  if (status === 'success' || status === 'completed') {
+    document.getElementById('donation-form-section').style.display = 'none';
+    document.getElementById('success-panel').classList.add('active');
+    if (orderRef) {
+      document.getElementById('success-ref').textContent = 'Order Reference: ' + orderRef;
+    }
+  }
+})();
+
+// ══════════════════════════════
+//   PESAPAL PAYMENT INITIATION
+//   Pesapal v3 LIVE API
+// ══════════════════════════════
+async function initiateDonation() {
+  hideError();
+
+  // 1. Validate
+  const firstName = document.getElementById('first-name').value.trim();
+  const lastName  = document.getElementById('last-name').value.trim();
+  const email     = document.getElementById('email').value.trim();
+
+  if (!firstName || !lastName) { return showError('Please enter your first and last name.'); }
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { return showError('Please enter a valid email address.'); }
+  if (!selectedAmount || selectedAmount < 1000) { return showError('Please select or enter a donation amount of at least UGX 1,000.'); }
+
+  const phone   = document.getElementById('phone').value.trim();
+  const project = document.getElementById('project-select').value;
+  const message = document.getElementById('donor-message').value.trim();
+  const anon    = document.getElementById('anon-check').checked;
+
+  const projectLabels = {
+    general:        'General Fund',
+    beekeeping:     'Modern Beekeeping',
+    hairdressing:   'Youth Hairdressing',
+    'female-youth': 'Female Youth Empowerment',
+    nursery:        'Tree Seedlings Nursery',
+    'passion-fruit':'Export Passion Fruits',
+    savings:        "Women's Savings (VSLA)",
+    vanilla:        'Cured Vanilla Beans',
+    simsim:         'Sim Sim Farm Visitation',
+    'fish-ponds':   'Community Fish Ponds',
+  };
+
+  const orderRef  = 'MOV-' + Date.now();
+  const description = `MOVFACOS Donation — ${projectLabels[project] || 'General'} (${selectedFreq})`;
+
+  showProcessing();
+
+  try {
+    // ── Step 1: Authenticate & get bearer token ──
+    const authRes = await fetch(`${PESAPAL_CONFIG.baseUrl}/api/Auth/RequestToken`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: JSON.stringify({
+        consumer_key:    PESAPAL_CONFIG.consumerKey,
+        consumer_secret: PESAPAL_CONFIG.consumerSecret,
+      }),
+    });
+
+    if (!authRes.ok) throw new Error(`Auth failed: ${authRes.status}`);
+    const authData = await authRes.json();
+    const token = authData.token;
+    if (!token) throw new Error('No token returned from Pesapal auth.');
+
+    // ── Step 2: Register IPN ──
+    let ipnId = '';
+    try {
+      const ipnRes = await fetch(`${PESAPAL_CONFIG.baseUrl}/api/URLSetup/RegisterIPN`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          url: PESAPAL_CONFIG.notificationUrl,
+          ipn_notification_type: 'GET',
+        }),
+      });
+      if (ipnRes.ok) {
+        const ipnData = await ipnRes.json();
+        ipnId = ipnData.ipn_id || '';
+      }
+    } catch (ipnErr) {
+      console.warn('IPN registration skipped:', ipnErr.message);
+    }
+
+    // ── Step 3: Submit order ──
+    const orderPayload = {
+      id:              orderRef,
+      currency:        PESAPAL_CONFIG.currency,
+      amount:          selectedAmount,
+      description:     description,
+      callback_url:    PESAPAL_CONFIG.callbackUrl + '&OrderMerchantReference=' + orderRef,
+      notification_id: ipnId,
+      billing_address: {
+        email_address: email,
+        phone_number:  phone || '',
+        first_name:    anon ? 'Anonymous' : firstName,
+        last_name:     anon ? 'Donor' : lastName,
+      },
+    };
+
+    const orderRes = await fetch(`${PESAPAL_CONFIG.baseUrl}/api/Transactions/SubmitOrderRequest`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+      body: JSON.stringify(orderPayload),
+    });
+
+    if (!orderRes.ok) {
+      const errBody = await orderRes.text();
+      throw new Error(`Order failed (${orderRes.status}): ${errBody}`);
+    }
+
+    const orderData = await orderRes.json();
+    const redirectUrl = orderData.redirect_url;
+
+    if (!redirectUrl) throw new Error('Pesapal did not return a redirect URL. Please try again.');
+
+    // ── Step 4: Redirect to Pesapal hosted payment page ──
+    window.location.href = redirectUrl;
+
+  } catch (err) {
+    hideProcessing();
+    console.error('Pesapal error:', err);
+    showError(
+      'We could not connect to the payment gateway. ' +
+      'Please try again or contact us directly at movfacos@gmail.com. ' +
+      '(Technical detail: ' + err.message + ')'
+    );
+  }
+}
+
+// ══ Helpers ══
+function showProcessing() {
+  document.getElementById('processing-overlay').classList.add('active');
+  document.getElementById('submit-btn').disabled = true;
+}
+
+function hideProcessing() {
+  document.getElementById('processing-overlay').classList.remove('active');
+  document.getElementById('submit-btn').disabled = false;
+}
+
+function showError(msg) {
+  const el = document.getElementById('error-banner');
+  el.textContent = '⚠ ' + msg;
+  el.classList.add('active');
+  el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function hideError() {
+  document.getElementById('error-banner').classList.remove('active');
+}
+
+// Init
+updateSummary();
+
+// Animate progress bar on load
+setTimeout(() => {
+  const fill = document.getElementById('progress-fill');
+  if (fill) fill.style.width = '63%';
+}, 600);
+</script>
+</body>
+</html>
