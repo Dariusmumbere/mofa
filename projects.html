@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Projects — MOVFACOS Uganda</title>
+<title>Projects — MOFA Uganda</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -1048,6 +1048,163 @@
     text-transform: uppercase;
     padding: 6px 14px;
     border-radius: 2px;
+  }
+
+  /* ══════════════════════════════
+     POND GALLERY — Flip Cards
+  ══════════════════════════════ */
+  .pond-gallery-card {
+    background: var(--white);
+    border: 1px solid rgba(201,168,76,0.3);
+    border-top: none;
+    padding: 56px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pond-gallery-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-bottom: 36px;
+  }
+
+  .pond-gallery-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+
+  .pond-gallery-eyebrow::before {
+    content: '';
+    width: 20px; height: 1px;
+    background: var(--gold);
+  }
+
+  .pond-gallery-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 2.4vw, 30px);
+    font-weight: 700;
+    color: var(--earth);
+    line-height: 1.25;
+  }
+
+  .pond-gallery-title em {
+    font-style: italic;
+    color: var(--vanilla-dark);
+  }
+
+  .pond-gallery-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--earth-light);
+    max-width: 260px;
+    line-height: 1.7;
+  }
+
+  .pond-flip-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+
+  .pond-flip-card {
+    perspective: 1200px;
+    height: 260px;
+  }
+
+  .pond-flip-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    animation: pondFlip 9s infinite;
+    border-radius: 3px;
+    box-shadow: 0 8px 28px rgba(26,18,12,0.14);
+  }
+
+  .pond-flip-card:nth-child(1) .pond-flip-inner { animation-delay: 0s; }
+  .pond-flip-card:nth-child(2) .pond-flip-inner { animation-delay: 2.25s; }
+  .pond-flip-card:nth-child(3) .pond-flip-inner { animation-delay: 4.5s; }
+  .pond-flip-card:nth-child(4) .pond-flip-inner { animation-delay: 6.75s; }
+
+  @keyframes pondFlip {
+    0%, 42%   { transform: rotateY(0deg); }
+    50%, 92%  { transform: rotateY(180deg); }
+    100%      { transform: rotateY(360deg); }
+  }
+
+  .pond-flip-front, .pond-flip-back {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .pond-flip-front img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .pond-flip-front::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(26,18,12,0.55) 0%, transparent 45%);
+  }
+
+  .pond-flip-front .pond-flip-label {
+    position: absolute;
+    left: 14px; bottom: 12px;
+    z-index: 2;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--cream);
+  }
+
+  .pond-flip-back {
+    background: var(--green);
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .pond-flip-back-icon { font-size: 30px; margin-bottom: 10px; }
+
+  .pond-flip-back-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+
+  .pond-flip-back-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(247,242,232,0.65);
+    line-height: 1.6;
     font-weight: 500;
   }
 
@@ -1063,7 +1220,7 @@
   }
 
   .projects-footer-band::before {
-    content: 'MOVFACOS';
+    content: 'MOFA';
     position: absolute;
     top: 50%; left: 50%;
     transform: translate(-50%, -50%);
@@ -1220,6 +1377,7 @@
     .fish-video-inner { grid-template-columns: 1fr; }
     .fish-video-wrap { min-height: 300px; }
     .fish-video-wrap::before { background: linear-gradient(to bottom, var(--ink) 0%, transparent 30%); }
+    .pond-flip-grid { grid-template-columns: repeat(2, 1fr); }
   }
 
   @media (max-width: 900px) {
@@ -1254,6 +1412,10 @@
     .fish-video-wrap { min-height: 260px; }
     .fish-video-wrap::before { background: linear-gradient(to bottom, var(--ink) 0%, transparent 30%); }
 
+    .pond-gallery-card { padding: 40px 24px; }
+    .pond-gallery-head { flex-direction: column; align-items: flex-start; }
+    .pond-gallery-sub { max-width: none; }
+
     .projects-footer-band { padding: 60px 24px; }
     footer { flex-direction: column; padding: 28px 24px; text-align: center; }
   }
@@ -1266,6 +1428,8 @@
     .pf-impact { grid-template-columns: 1fr 1fr; }
     .pf-band-buttons { flex-direction: column; align-items: center; }
     .fish-video-stats { gap: 20px; }
+    .pond-flip-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+    .pond-flip-card { height: 190px; }
   }
 </style>
 </head>
@@ -1276,7 +1440,7 @@
   <div class="nav-inner">
     <a href="index.html" class="nav-logo">
       <div class="nav-logo-mark">M</div>
-      <div class="nav-logo-text">MOVFACOS<br>Est. 2013 · Uganda</div>
+      <div class="nav-logo-text">MOFA<br>Est. 2013 · Uganda</div>
     </a>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
@@ -1308,7 +1472,7 @@
 <section class="page-hero">
   <div class="page-hero-inner">
     <div class="page-hero-left">
-      <div class="page-hero-eyebrow">MOVFACOS · Kasese, Uganda</div>
+      <div class="page-hero-eyebrow">MOFA · Kasese, Uganda</div>
       <h1 class="page-hero-title">
         Our<br><em>Projects</em>
       </h1>
@@ -1375,7 +1539,7 @@
     <div class="intro-pillar">
       <div class="intro-pillar-icon">🌱</div>
       <div class="intro-pillar-title">Agricultural Innovation</div>
-      <div class="intro-pillar-text">From modern beekeeping on small plots to export-quality passion fruit and cured vanilla beans, MOVFACOS projects introduce advanced techniques that maximise yield and market value for smallholder farmers.</div>
+      <div class="intro-pillar-text">From modern beekeeping on small plots to export-quality passion fruit and cured vanilla beans, MOFA projects introduce advanced techniques that maximise yield and market value for smallholder farmers.</div>
     </div>
     <div class="intro-pillar">
       <div class="intro-pillar-icon">👩‍🤝‍👩</div>
@@ -1404,7 +1568,7 @@
   <!-- ══ PROJECT 01 — FEATURED: Modern Beekeeping ══ -->
   <div class="project-featured reveal">
     <div class="pf-img">
-      <img src="project1.jpg" alt="Modern beekeeping methods on a small piece of land — MOVFACOS Uganda">
+      <img src="project1.jpg" alt="Modern beekeeping methods on a small piece of land — MOFA Uganda">
       <div class="pf-img-overlay"></div>
       <div class="pf-num">01</div>
       <div class="pf-badge">Featured Project</div>
@@ -1413,7 +1577,7 @@
       <div class="pf-cat">Apiculture · Income Diversification</div>
       <h2 class="pf-title">Modern Beekeeping on<br><em>Small Pieces of Land</em></h2>
       <p class="pf-text">
-        MOVFACOS introduces its members to modern, scientific beekeeping methods specifically adapted for the small land holdings typical across Kasese District. Using Langstroth and top-bar hives, farmers learn hive placement, colony management, queen rearing, and safe honey extraction — producing premium organic honey from the rich floral environment near Queen Elizabeth National Park. The project generates a high-value income stream that requires very little space, making it ideal for households with limited farmland. Beyond income, the bees serve as vital pollinators for vanilla flowers, cocoa, and fruit crops grown across MOVFACOS member farms.
+        MOFA introduces its members to modern, scientific beekeeping methods specifically adapted for the small land holdings typical across Kasese District. Using Langstroth and top-bar hives, farmers learn hive placement, colony management, queen rearing, and safe honey extraction — producing premium organic honey from the rich floral environment near Queen Elizabeth National Park. The project generates a high-value income stream that requires very little space, making it ideal for households with limited farmland. Beyond income, the bees serve as vital pollinators for vanilla flowers, cocoa, and fruit crops grown across MOFA member farms.
       </p>
       <div class="pf-tags">
         <span class="ptag">Organic Honey</span>
@@ -1449,7 +1613,7 @@
     <!-- PROJECT 02: Youth Hairdressing & Salon -->
     <div class="project-card accent">
       <div class="pc-img tall">
-        <img src="project2.jpg" alt="Skilling youth and young mothers in hairdressing and salon management — MOVFACOS Uganda">
+        <img src="project2.jpg" alt="Skilling youth and young mothers in hairdressing and salon management — MOFA Uganda">
         <div class="pc-img-overlay"></div>
         <div class="pc-num">02</div>
       </div>
@@ -1471,7 +1635,7 @@
     <!-- PROJECT 03: Female Youth Poverty Eradication -->
     <div class="project-card green-card">
       <div class="pc-img tall">
-        <img src="project3.jpg" alt="Encouraging greater participation of female youth in poverty eradication projects — MOVFACOS Uganda">
+        <img src="project3.jpg" alt="Encouraging greater participation of female youth in poverty eradication projects — MOFA Uganda">
         <div class="pc-img-overlay"></div>
         <div class="pc-num">03</div>
       </div>
@@ -1479,7 +1643,7 @@
         <div class="pc-cat">Gender Inclusion · Youth Empowerment</div>
         <h2 class="pc-title">Female Youth in<br><em>Poverty Eradication Projects</em></h2>
         <p class="pc-text">
-          MOVFACOS actively recruits and supports female youth participation across all its economic programs — from vanilla farming and handcraft production to savings groups and vocational training. This project provides mentorship, subsidised training fees, and female-safe meeting spaces to break the social and economic barriers that prevent young women from joining cooperative programs. By embedding gender inclusion into every project design, MOVFACOS ensures that the next generation of women in Kasese District have an equal stake in their community's agricultural future.
+          MOFA actively recruits and supports female youth participation across all its economic programs — from vanilla farming and handcraft production to savings groups and vocational training. This project provides mentorship, subsidised training fees, and female-safe meeting spaces to break the social and economic barriers that prevent young women from joining cooperative programs. By embedding gender inclusion into every project design, MOFA ensures that the next generation of women in Kasese District have an equal stake in their community's agricultural future.
         </p>
         <div class="pc-tags">
           <span class="ptag">Gender Equity</span>
@@ -1497,7 +1661,7 @@
       <div class="quote-divider-text">
         A cooperative that invests in its women and youth is a cooperative that secures its future — every seedling nursed, every skill taught, and every shilling saved is a foundation laid for the next generation.
       </div>
-      <div class="quote-divider-attr">MOVFACOS · Kasese, Uganda</div>
+      <div class="quote-divider-attr">MOFA · Kasese, Uganda</div>
     </div>
   </div>
 
@@ -1507,13 +1671,13 @@
     <!-- PROJECT 04: Tree Seedlings Nursery -->
     <div class="project-card">
       <div class="pc-img medium">
-        <img src="project4.jpg" alt="MOVFACOS tree seedlings nursery — environmental conservation Kasese Uganda">
+        <img src="project4.jpg" alt="MOFA tree seedlings nursery — environmental conservation Kasese Uganda">
         <div class="pc-img-overlay"></div>
         <div class="pc-num">04</div>
       </div>
       <div class="pc-content">
         <div class="pc-cat">Environment · Agroforestry</div>
-        <h2 class="pc-title">MOVFACOS Tree<br><em>Seedlings Nursery</em></h2>
+        <h2 class="pc-title">MOFA Tree<br><em>Seedlings Nursery</em></h2>
         <p class="pc-text">
           Community-managed tree nurseries produce thousands of indigenous and fruit tree seedlings each season, distributed to member households across all 25 farmer groups. Species include mango, avocado, jackfruit, Grevillea, and eucalyptus — chosen for their dual role as food sources and environmental protectors. The nurseries rehabilitate degraded hillsides, reduce soil erosion along Rwenzori watershed areas, create shade for vanilla vines, and provide a new income stream from seedling sales. Each nursery is managed by trained women and youth who also receive a share of seedling revenues.
         </p>
@@ -1529,15 +1693,15 @@
     <!-- PROJECT 05: Export-Quality Passion Fruits -->
     <div class="project-card">
       <div class="pc-img medium">
-        <img src="project5.jpg" alt="MOVFACOS export-quality passion fruits — Rwenzori slopes Uganda">
+        <img src="project5.jpg" alt="MOFA export-quality passion fruits — Rwenzori slopes Uganda">
         <div class="pc-img-overlay"></div>
         <div class="pc-num">05</div>
       </div>
       <div class="pc-content">
         <div class="pc-cat">Horticulture · Export Markets</div>
-        <h2 class="pc-title">MOVFACOS Export-Quality<br><em>Passion Fruits</em></h2>
+        <h2 class="pc-title">MOFA Export-Quality<br><em>Passion Fruits</em></h2>
         <p class="pc-text">
-          Leveraging the exceptional altitude and volcanic soils of the Mt Rwenzori slopes, MOVFACOS cultivates passion fruit to international export quality standards. Farmers receive training in trellis construction, integrated pest management, post-harvest handling, and grading protocols required for export. The project connects smallholders directly to premium buyers in Kampala and international markets, commanding significantly higher prices than local sales. Women farmers on the Rwenzori slopes lead this project, with their collective output pooled for volume pricing and export documentation under the MOVFACOS brand.
+          Leveraging the exceptional altitude and volcanic soils of the Mt Rwenzori slopes, MOFA cultivates passion fruit to international export quality standards. Farmers receive training in trellis construction, integrated pest management, post-harvest handling, and grading protocols required for export. The project connects smallholders directly to premium buyers in Kampala and international markets, commanding significantly higher prices than local sales. Women farmers on the Rwenzori slopes lead this project, with their collective output pooled for volume pricing and export documentation under the MOFA brand.
         </p>
         <div class="pc-tags">
           <span class="ptag">Export Quality</span>
@@ -1551,7 +1715,7 @@
     <!-- PROJECT 06: Savings Culture Among Women -->
     <div class="project-card">
       <div class="pc-img medium">
-        <img src="project6.jpg" alt="Promoting a savings culture among women — MOVFACOS VSLA Uganda">
+        <img src="project6.jpg" alt="Promoting a savings culture among women — MOFA VSLA Uganda">
         <div class="pc-img-overlay"></div>
         <div class="pc-num">06</div>
       </div>
@@ -1559,7 +1723,7 @@
         <div class="pc-cat">Financial Inclusion · VSLA</div>
         <h2 class="pc-title">Promoting a Savings Culture<br><em>Among Women</em></h2>
         <p class="pc-text">
-          Through Village Savings and Loan Associations (VSLAs) and MOVFACOS' in-house SACCO, this project builds a structured savings culture among women who have historically been excluded from formal financial services. Groups of 15–25 women meet weekly to save, access emergency loans, and invest collectively in farming inputs or small businesses. Financial literacy training covers budgeting, interest calculation, and record keeping — empowering women to make informed decisions about household finances and cooperative investments. Since launch, hundreds of women across Kasese District have accumulated savings and accessed credit for the first time.
+          Through Village Savings and Loan Associations (VSLAs) and MOFA' in-house SACCO, this project builds a structured savings culture among women who have historically been excluded from formal financial services. Groups of 15–25 women meet weekly to save, access emergency loans, and invest collectively in farming inputs or small businesses. Financial literacy training covers budgeting, interest calculation, and record keeping — empowering women to make informed decisions about household finances and cooperative investments. Since launch, hundreds of women across Kasese District have accumulated savings and accessed credit for the first time.
         </p>
         <div class="pc-tags">
           <span class="ptag">VSLA</span>
@@ -1607,15 +1771,15 @@
     <!-- PROJECT 07: Cured Vanilla Beans -->
     <div class="project-card">
       <div class="pc-img tall">
-        <img src="project7.jpg" alt="MOVFACOS cured vanilla beans project — Kasese Uganda">
+        <img src="project7.jpg" alt="MOFA cured vanilla beans project — Kasese Uganda">
         <div class="pc-img-overlay"></div>
         <div class="pc-num">07</div>
       </div>
       <div class="pc-content" style="padding:28px 32px 36px;">
         <div class="pc-cat">Value Addition · Export</div>
-        <h2 class="pc-title">MOVFACOS Cured<br><em>Vanilla Beans Project</em></h2>
+        <h2 class="pc-title">MOFA Cured<br><em>Vanilla Beans Project</em></h2>
         <p class="pc-text">
-          Rather than selling green beans at farmgate prices, MOVFACOS trains its 2,551 member farmers in the full vanilla curing process — blanching, slow oven-drying, sweating, and conditioning — to produce dark, aromatic Grade A vanilla beans that command significantly higher prices in export markets. The cooperative's centralised curing facility in Kajwenge ensures quality consistency across all batches. Certified organic status, achieved through rigorous input controls and documentation, opens access to premium natural flavour markets in Europe, North America, and the Middle East. This project is the highest-value chain component in MOVFACOS' portfolio.
+          Rather than selling green beans at farmgate prices, MOFA trains its 2,551 member farmers in the full vanilla curing process — blanching, slow oven-drying, sweating, and conditioning — to produce dark, aromatic Grade A vanilla beans that command significantly higher prices in export markets. The cooperative's centralised curing facility in Kajwenge ensures quality consistency across all batches. Certified organic status, achieved through rigorous input controls and documentation, opens access to premium natural flavour markets in Europe, North America, and the Middle East. This project is the highest-value chain component in MOFA' portfolio.
         </p>
         <div class="pc-tags">
           <span class="ptag">Grade A Vanilla</span>
@@ -1630,7 +1794,7 @@
     <!-- PROJECT 08: Sim Sim Farm Visitation -->
     <div class="project-card green-card">
       <div class="pc-img medium">
-        <img src="project8.jpg" alt="MOVFACOS sim sim sesame farm visitation project — Kasese Uganda">
+        <img src="project8.jpg" alt="MOFA sim sim sesame farm visitation project — Kasese Uganda">
         <div class="pc-img-overlay"></div>
         <div class="pc-num">08</div>
       </div>
@@ -1638,7 +1802,7 @@
         <div class="pc-cat">Cereals · Farm Exchange</div>
         <h2 class="pc-title">Sim Sim (Sesame)<br><em>Farm Visitation Project</em></h2>
         <p class="pc-text">
-          MOVFACOS organises structured farm-to-farm visitation programs for members cultivating sim sim (sesame), one of Uganda's most valuable oil crops. Farmer exchange visits allow growers to observe best practices in spacing, organic fertilisation, pest scouting, harvesting techniques, and post-harvest threshing and drying. The project promotes peer learning as the most effective extension method for rural Ugandan farmers, reducing input costs and lifting yields across participating households. Collectively procured sim sim is then marketed through MOVFACOS' bulk-buying channels, ensuring members receive better farmgate prices than individual negotiation allows.
+          MOFA organises structured farm-to-farm visitation programs for members cultivating sim sim (sesame), one of Uganda's most valuable oil crops. Farmer exchange visits allow growers to observe best practices in spacing, organic fertilisation, pest scouting, harvesting techniques, and post-harvest threshing and drying. The project promotes peer learning as the most effective extension method for rural Ugandan farmers, reducing input costs and lifting yields across participating households. Collectively procured sim sim is then marketed through MOFA' bulk-buying channels, ensuring members receive better farmgate prices than individual negotiation allows.
         </p>
         <div class="pc-tags">
           <span class="ptag">Sesame / Simsim</span>
@@ -1653,7 +1817,7 @@
   <!-- ══ PROJECT 09 — Full-width Banner ══ -->
   <div class="project-featured reveal" style="margin-bottom:0;">
     <div class="pf-img">
-      <img src="project9.jpg" alt="Extending lakes at homes to enhance fishing in the community — MOVFACOS Uganda">
+      <img src="project9.jpg" alt="Extending lakes at homes to enhance fishing in the community — MOFA Uganda">
       <div class="pf-img-overlay"></div>
       <div class="pf-num">09</div>
       <div class="pf-badge">Community Project</div>
@@ -1662,7 +1826,7 @@
       <div class="pf-cat">Aquaculture · Food Security</div>
       <h2 class="pf-title">Extending Lakes at Homes to<br><em>Enhance Community Fishing</em></h2>
       <p class="pf-text">
-        This project supports MOVFACOS member households to excavate and expand existing water bodies — small ponds, seasonal wetlands, and homestead lakes — into productive freshwater fish farms. Technical training covers pond construction, stocking densities, tilapia and catfish management, water quality monitoring, and harvesting cycles. By turning underutilised land into protein-producing water assets, the project addresses food insecurity, diversifies household income, and reduces dependence on single cash crops. Community fish ponds also serve as water reservoirs during the dry season, supporting kitchen garden irrigation and livestock watering for the wider village.
+        This project supports MOFA member households to excavate and expand existing water bodies — small ponds, seasonal wetlands, and homestead lakes — into productive freshwater fish farms. Technical training covers pond construction, stocking densities, tilapia and catfish management, water quality monitoring, and harvesting cycles. By turning underutilised land into protein-producing water assets, the project addresses food insecurity, diversifies household income, and reduces dependence on single cash crops. Community fish ponds also serve as water reservoirs during the dry season, supporting kitchen garden irrigation and livestock watering for the wider village.
       </p>
       <div class="pf-tags">
         <span class="ptag">Tilapia &amp; Catfish</span>
@@ -1697,9 +1861,9 @@
     <div class="fish-video-inner">
       <div class="fish-video-content">
         <div class="fish-video-eyebrow">Our Product · Aquaculture Harvest</div>
-        <h3 class="fish-video-title">Fresh Fish from<br><em>MOVFACOS Ponds</em></h3>
+        <h3 class="fish-video-title">Fresh Fish from<br><em>MOFA Ponds</em></h3>
         <p class="fish-video-text">
-          See the quality of tilapia and catfish harvested from MOVFACOS community fish ponds in Kasese District. Each fish is raised in clean, managed freshwater ponds — fed on natural inputs, harvested at peak condition, and sold directly to local markets and households. This is what food security looks like: nutritious, affordable protein grown right at home.
+          See the quality of tilapia and catfish harvested from MOFA community fish ponds in Kasese District. Each fish is raised in clean, managed freshwater ponds — fed on natural inputs, harvested at peak condition, and sold directly to local markets and households. This is what food security looks like: nutritious, affordable protein grown right at home.
         </p>
         <div class="fish-video-stats">
           <div class="fish-video-stat">
@@ -1723,9 +1887,74 @@
           muted
           loop
           playsinline
-          aria-label="Fresh fish harvested from MOVFACOS community fish ponds — Kasese District, Uganda"
+          aria-label="Fresh fish harvested from MOFA community fish ponds — Kasese District, Uganda"
         ></video>
         <div class="fish-video-badge">🐟 Fresh Harvest</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ POND GALLERY — Flip Card ══ -->
+  <div class="pond-gallery-card reveal">
+    <div class="pond-gallery-head">
+      <div>
+        <div class="pond-gallery-eyebrow">Gallery · Community Fish Ponds</div>
+        <h3 class="pond-gallery-title">Inside MOFA's<br><em>Fish Ponds</em></h3>
+      </div>
+      <div class="pond-gallery-sub">A look at the community-managed ponds behind the harvest — from stocking to steady water management.</div>
+    </div>
+    <div class="pond-flip-grid">
+      <div class="pond-flip-card">
+        <div class="pond-flip-inner">
+          <div class="pond-flip-front">
+            <img src="pond1.jpg" alt="MOFA community fish pond one — Kasese Uganda">
+            <div class="pond-flip-label">Pond 01</div>
+          </div>
+          <div class="pond-flip-back">
+            <div class="pond-flip-back-icon">🐟</div>
+            <div class="pond-flip-back-num">01</div>
+            <div class="pond-flip-back-text">Tilapia &amp; Catfish<br>Stocking Pond</div>
+          </div>
+        </div>
+      </div>
+      <div class="pond-flip-card">
+        <div class="pond-flip-inner">
+          <div class="pond-flip-front">
+            <img src="pond2.jpg" alt="MOFA community fish pond two — Kasese Uganda">
+            <div class="pond-flip-label">Pond 02</div>
+          </div>
+          <div class="pond-flip-back">
+            <div class="pond-flip-back-icon">💧</div>
+            <div class="pond-flip-back-num">02</div>
+            <div class="pond-flip-back-text">Water Quality &amp;<br>Depth Management</div>
+          </div>
+        </div>
+      </div>
+      <div class="pond-flip-card">
+        <div class="pond-flip-inner">
+          <div class="pond-flip-front">
+            <img src="pond3.jpg" alt="MOFA community fish pond three — Kasese Uganda">
+            <div class="pond-flip-label">Pond 03</div>
+          </div>
+          <div class="pond-flip-back">
+            <div class="pond-flip-back-icon">🌾</div>
+            <div class="pond-flip-back-num">03</div>
+            <div class="pond-flip-back-text">Homestead Extension<br>Fish Farm</div>
+          </div>
+        </div>
+      </div>
+      <div class="pond-flip-card">
+        <div class="pond-flip-inner">
+          <div class="pond-flip-front">
+            <img src="pond4.jpg" alt="MOFA community fish pond four — Kasese Uganda">
+            <div class="pond-flip-label">Pond 04</div>
+          </div>
+          <div class="pond-flip-back">
+            <div class="pond-flip-back-icon">🎣</div>
+            <div class="pond-flip-back-num">04</div>
+            <div class="pond-flip-back-text">Harvest-Ready<br>Community Pond</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1735,7 +1964,7 @@
 <!-- ══ FOOTER BAND ══ -->
 <div class="projects-footer-band">
   <div class="projects-footer-inner">
-    <div class="pf-band-label">MOVFACOS · Kasese, Uganda</div>
+    <div class="pf-band-label">MOFA · Kasese, Uganda</div>
     <h2 class="pf-band-title">Support These<br><em>Projects</em></h2>
     <p class="pf-band-sub">Whether you're a development partner, donor, buyer, or investor, your support directly expands these nine programs and the lives they change in Kasese District.</p>
     <div class="pf-band-buttons">
@@ -1748,7 +1977,7 @@
 <!-- ══ FOOTER ══ -->
 <footer>
   <div class="footer-left">
-    © 2026 MOVFACOS — Margharita Organic Vanilla Farmers Cooperative Society Ltd
+    © 2026 MOFA — Margharita Organic Farmers Association Ltd
     <div class="footer-reg">P.O. Box 530, Kasese, Uganda · Reg. No. P22105 RCS</div>
   </div>
   <div class="footer-right">Empowering farmers · Building communities · Growing sustainably</div>
