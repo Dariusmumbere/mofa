@@ -609,7 +609,7 @@ nav{
   text-transform:uppercase;color:rgba(245,239,227,.35);margin-top:6px}
 
 /* Videos */
-.climate-videos{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.climate-videos{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:16px}
 .climate-video-card{
   position:relative;border-radius:var(--r-xl);overflow:hidden;
   background:#080f08;cursor:pointer;
@@ -1602,6 +1602,7 @@ footer{
       <figure><img src="art23.jpg" alt="Women artisans collaborating — MOFA Artisan Skills Program, Kasese Uganda" loading="lazy"></figure>
       <figure><img src="art24.jpg" alt="Youth learning new trade — MOFA Artisan Skills Program, Kasese Uganda" loading="lazy"></figure>
       <figure><img src="art25.jpg" alt="Handcraft training session — MOFA Artisan Skills Program, Kasese Uganda" loading="lazy"></figure>
+      <figure><img src="craft1.jpg" alt="Artisan craft display — MOFA Artisan Skills Program, Kasese Uganda" loading="lazy"></figure>
       <figure><img src="art1.jpg" alt="Basket weaving training — MOFA Artisan Skills Program, Kasese Uganda" loading="lazy"></figure>
       <figure><img src="art2.jpg" alt="Tailoring skills workshop — MOFA Artisan Skills Program, Kasese Uganda" loading="lazy"></figure>
       <figure><img src="art3.jpg" alt="Youth vocational training — MOFA Artisan Skills Program, Kasese Uganda" loading="lazy"></figure>
@@ -1627,6 +1628,7 @@ footer{
       <figure><img src="art23.jpg" alt="Women artisans collaborating — MOFA Artisan Skills Program, Kasese Uganda" loading="lazy"></figure>
       <figure><img src="art24.jpg" alt="Youth learning new trade — MOFA Artisan Skills Program, Kasese Uganda" loading="lazy"></figure>
       <figure><img src="art25.jpg" alt="Handcraft training session — MOFA Artisan Skills Program, Kasese Uganda" loading="lazy"></figure>
+      <figure><img src="craft1.jpg" alt="Artisan craft display — MOFA Artisan Skills Program, Kasese Uganda" loading="lazy"></figure>
     </div>
   </div>
 </section>
@@ -1794,6 +1796,19 @@ footer{
           <span class="climate-video-tag">Carbon Sequestration · Soya Bean Cultivation</span>
           <div class="climate-video-title">Soya Beans Locking in Carbon</div>
           <div class="climate-video-desc">The thriving soya bean fields you see here are part of MOFA' youth-led climate action — growing nitrogen-fixing legumes that enrich the soil, absorb CO₂, and support healthy living across our farming communities.</div>
+        </div>
+      </div>
+      <div class="climate-video-card" id="climateCard3">
+        <video id="climateVideo3" src="river.mp4" preload="metadata" playsinline loop></video>
+        <div class="climate-video-overlay"></div>
+        <button class="climate-play-btn" id="climateBtn3" aria-label="Play river conservation video">
+          <svg class="icon-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+        </button>
+        <div class="climate-video-caption">
+          <span class="climate-video-tag">Riverbank Protection · Bamboo Planting</span>
+          <div class="climate-video-title">Protecting Our Riverbanks</div>
+          <div class="climate-video-desc">Protecting river banks through promotion of bamboo trees planting.</div>
         </div>
       </div>
     </div>
@@ -2270,6 +2285,7 @@ function setupClimateVideo(cardId, videoId, btnId) {
 }
 setupClimateVideo('climateCard1', 'climateVideo1', 'climateBtn1');
 setupClimateVideo('climateCard2', 'climateVideo2', 'climateBtn2');
+setupClimateVideo('climateCard3', 'climateVideo3', 'climateBtn3');
 </script>
 </body>
 </html>
