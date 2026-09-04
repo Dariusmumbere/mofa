@@ -1111,6 +1111,169 @@
   }
 
   /* ══════════════════════════════
+     BACKYARD POND — Simple Photo Grid
+  ══════════════════════════════ */
+  .backyard-pond-card {
+    background: var(--white);
+    border: 1px solid rgba(201,168,76,0.3);
+    border-top: none;
+    padding: 56px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .backyard-pond-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+
+  .backyard-pond-eyebrow::before {
+    content: '';
+    width: 20px; height: 1px;
+    background: var(--gold);
+  }
+
+  .backyard-pond-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 2.6vw, 32px);
+    font-weight: 700;
+    color: var(--earth);
+    line-height: 1.25;
+    margin-bottom: 12px;
+  }
+
+  .backyard-pond-title em {
+    font-style: italic;
+    color: var(--vanilla-dark);
+  }
+
+  .backyard-pond-sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--earth-mid);
+    max-width: 560px;
+    line-height: 1.7;
+    margin-bottom: 36px;
+  }
+
+  .backyard-pond-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 44px;
+  }
+
+  .backyard-pond-item {
+    position: relative;
+    height: 220px;
+    border-radius: 3px;
+    overflow: hidden;
+    box-shadow: 0 8px 28px rgba(26,18,12,0.14);
+  }
+
+  .backyard-pond-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+
+  .backyard-pond-item:hover img { transform: scale(1.06); }
+
+  .backyard-pond-item::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(26,18,12,0.5) 0%, transparent 45%);
+    pointer-events: none;
+  }
+
+  .backyard-pond-item-label {
+    position: absolute;
+    left: 14px; bottom: 12px;
+    z-index: 2;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--cream);
+  }
+
+  .catfish-showcase {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 32px;
+    align-items: center;
+    background: var(--cream);
+    border: 1px solid rgba(201,168,76,0.25);
+    border-radius: 4px;
+    overflow: hidden;
+    padding: 0;
+  }
+
+  .catfish-showcase-img {
+    height: 100%;
+    min-height: 260px;
+    overflow: hidden;
+  }
+
+  .catfish-showcase-img img {
+    width: 100%;
+    height: 100%;
+    min-height: 260px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .catfish-showcase-content {
+    padding: 36px 40px 36px 8px;
+  }
+
+  .catfish-showcase-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+
+  .catfish-showcase-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(20px, 2.2vw, 26px);
+    font-weight: 700;
+    color: var(--earth);
+    margin-bottom: 10px;
+  }
+
+  .catfish-showcase-desc {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--earth-mid);
+    line-height: 1.7;
+  }
+
+  @media (max-width: 900px) {
+    .backyard-pond-card { padding: 40px 24px; }
+    .backyard-pond-grid { grid-template-columns: 1fr 1fr; }
+    .catfish-showcase { grid-template-columns: 1fr; }
+    .catfish-showcase-content { padding: 28px 24px; }
+  }
+
+  @media (max-width: 560px) {
+    .backyard-pond-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+    .backyard-pond-item { height: 160px; }
+  }
+
+  /* ══════════════════════════════
      POND GALLERY — Flip Cards
   ══════════════════════════════ */
   .pond-gallery-card {
@@ -1950,6 +2113,43 @@
           aria-label="Fresh fish harvested from MOFA community fish ponds — Kasese District, Uganda"
         ></video>
         <div class="fish-video-badge">🐟 Fresh Harvest</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ BACKYARD POND GALLERY + CATFISH ══ -->
+  <div class="backyard-pond-card reveal">
+    <div class="backyard-pond-eyebrow">Gallery · Homestead Aquaculture</div>
+    <h3 class="backyard-pond-title">Locally Constructed Concrete<br><em>Fish Pond in Just a Backyard</em></h3>
+    <p class="backyard-pond-sub">
+      A simple concrete pond built right in a homestead backyard — proof that productive aquaculture doesn't need large land or heavy capital, just sound construction and steady management.
+    </p>
+    <div class="backyard-pond-grid">
+      <div class="backyard-pond-item">
+        <img src="pond1.jpg" alt="Locally constructed concrete backyard fish pond — view one, MOFA Uganda">
+        <div class="backyard-pond-item-label">Backyard Pond 01</div>
+      </div>
+      <div class="backyard-pond-item">
+        <img src="pond2.jpg" alt="Locally constructed concrete backyard fish pond — view two, MOFA Uganda">
+        <div class="backyard-pond-item-label">Backyard Pond 02</div>
+      </div>
+      <div class="backyard-pond-item">
+        <img src="pond3.jpg" alt="Locally constructed concrete backyard fish pond — view three, MOFA Uganda">
+        <div class="backyard-pond-item-label">Backyard Pond 03</div>
+      </div>
+      <div class="backyard-pond-item">
+        <img src="pond4.jpg" alt="Locally constructed concrete backyard fish pond — view four, MOFA Uganda">
+        <div class="backyard-pond-item-label">Backyard Pond 04</div>
+      </div>
+    </div>
+    <div class="catfish-showcase">
+      <div class="catfish-showcase-img">
+        <img src="catfish.jpg" alt="Catfish harvested from MOFA fish ponds — Kasese Uganda">
+      </div>
+      <div class="catfish-showcase-content">
+        <div class="catfish-showcase-eyebrow">Harvest</div>
+        <h4 class="catfish-showcase-title">From Pond to Plate</h4>
+        <p class="catfish-showcase-desc">Catfish from MOFA fish ponds.</p>
       </div>
     </div>
   </div>
